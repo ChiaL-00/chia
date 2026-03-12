@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Portfolio (local preview)",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "3000", "--directory", "/Users/chialin/Documents/2026 Portfolio"],
+      "port": 3000
+    }
+  ]
+}

@@ -1,0 +1,1100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Driver App Redesign — Yun-Chia Lin</title>
+<meta name="description" content="End-to-end redesign of a private hire driver app for 5,000+ professional drivers. UX research, strategy, and interaction design.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/css/style.css">
+
+<style>
+  /* ── CASE STUDY HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-top: 64px;
+  }
+  .hero-left {
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 5rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -10%;
+    width: 60%;
+    aspect-ratio: 1;
+    background: var(--yellow);
+    opacity: 0.08;
+    border-radius: 50%;
+    filter: blur(80px);
+  }
+  .hero-tag {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--yellow);
+    margin-bottom: 1.5rem;
+    font-family: var(--sans);
+    font-weight: 500;
+  }
+  .hero-title {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5vw, 4.5rem);
+    line-height: 1.08;
+    color: var(--white);
+    font-weight: 400;
+    margin-bottom: 2rem;
+  }
+  .hero-title em {
+    font-style: italic;
+    color: var(--yellow);
+  }
+  .hero-meta {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .meta-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+  }
+  .meta-value {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.85);
+    font-weight: 300;
+  }
+  .hero-right {
+    background: var(--yellow);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 5rem 4rem;
+    position: relative;
+  }
+  .hero-right::after {
+    content: 'Re\ADesign';
+    white-space: pre;
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    font-family: var(--serif);
+    font-size: 5rem;
+    line-height: 1;
+    color: rgba(0,0,0,0.06);
+    font-weight: 700;
+    text-align: right;
+    pointer-events: none;
+  }
+  .hero-problem {
+    position: relative;
+    z-index: 1;
+  }
+  .hero-problem-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.45);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .hero-problem h2 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--dark);
+    max-width: 480px;
+  }
+
+  /* ── PLACEHOLDER IMAGE ── */
+  .img-placeholder {
+    background: #e8e6e0;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,0,0,0.25);
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-family: var(--sans);
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+  }
+  .img-placeholder::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 10px,
+      rgba(0,0,0,0.025) 10px,
+      rgba(0,0,0,0.025) 11px
+    );
+  }
+  .img-placeholder span { position: relative; z-index: 1; }
+  .fullwidth-img { width: 100%; }
+
+  /* ── STATS BAND ── */
+  .stats-band {
+    background: var(--dark);
+    padding: 4rem 0;
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+  .stat-item {
+    padding: 1.5rem 2.5rem;
+    border-right: 1px solid rgba(255,255,255,0.08);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    color: var(--yellow);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.45);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 400;
+  }
+
+  /* ── RESEARCH ── */
+  .research-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+  .research-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .method-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    background: var(--white);
+    border-left: 3px solid var(--yellow);
+  }
+  .method-number {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--yellow);
+    font-weight: 700;
+    min-width: 24px;
+  }
+  .method-text {
+    font-size: 0.92rem;
+    color: var(--mid);
+    line-height: 1.5;
+  }
+  .method-text strong {
+    display: block;
+    color: var(--dark);
+    font-weight: 500;
+    margin-bottom: 0.2rem;
+  }
+
+  /* ── PERSONA ── */
+  .persona-card {
+    background: var(--white);
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    margin-top: 3rem;
+    overflow: hidden;
+  }
+  .persona-visual {
+    background: var(--yellow);
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .persona-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  .persona-name {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--dark);
+  }
+  .persona-role {
+    font-size: 0.8rem;
+    color: rgba(0,0,0,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+  .persona-attr {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  .persona-attr-label {
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(0,0,0,0.4);
+  }
+  .persona-attr-value {
+    font-size: 0.88rem;
+    color: var(--dark);
+    font-weight: 400;
+  }
+  .persona-details {
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+    align-content: start;
+  }
+  .persona-section h4 {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(0,0,0,0.08);
+  }
+  .persona-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .persona-list li {
+    font-size: 0.88rem;
+    color: var(--mid);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.4;
+  }
+  .persona-list li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--yellow);
+    font-weight: 700;
+  }
+
+  /* ── PAIN POINTS ── */
+  .pain-points-section {
+    background: var(--dark);
+    padding: 7rem 0;
+  }
+  .pain-points-section .section-label { color: rgba(255,255,255,0.3); }
+  .pain-points-section .section-title { color: var(--white); }
+  .pain-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5px;
+    margin-top: 3rem;
+    background: rgba(255,255,255,0.06);
+  }
+  .pain-card {
+    background: #212119;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s;
+  }
+  .pain-card:hover { background: #252521; }
+  .pain-number {
+    font-family: var(--serif);
+    font-size: 4rem;
+    color: rgba(245,209,37,0.08);
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    line-height: 1;
+    font-weight: 700;
+    pointer-events: none;
+  }
+  .pain-title {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+  .pain-desc {
+    font-size: 0.88rem;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.7;
+  }
+  .pain-quote {
+    margin-top: 1.25rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--yellow);
+    font-style: italic;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ── DESIGN STRATEGY ── */
+  .strategy-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 5rem;
+    margin-top: 3rem;
+    align-items: start;
+  }
+  .strategy-intro {
+    position: sticky;
+    top: 100px;
+  }
+  .strategy-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: rgba(0,0,0,0.08);
+  }
+  .strategy-card {
+    background: var(--white);
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    gap: 1.5rem;
+    align-items: start;
+    transition: background 0.2s;
+  }
+  .strategy-card:hover { background: #fdfcf8; }
+  .strategy-icon {
+    width: 48px;
+    height: 48px;
+    background: var(--yellow);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .strategy-card h3 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--dark);
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+  .strategy-card p {
+    font-size: 0.9rem;
+    color: var(--mid);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── SOLUTIONS ── */
+  .solution-block {
+    margin-bottom: 7rem;
+  }
+  .solution-block:last-child { margin-bottom: 0; }
+  .solution-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    margin-bottom: 3rem;
+    align-items: end;
+  }
+  .solution-tag {
+    display: inline-block;
+    background: var(--yellow);
+    color: var(--dark);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.3rem 0.8rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .solution-block h3 {
+    font-family: var(--serif);
+    font-size: 1.8rem;
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--dark);
+    margin-bottom: 0;
+  }
+  .before-after {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .ba-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 0.75rem;
+    font-weight: 500;
+    opacity: 0.6;
+  }
+
+  /* ── OUTCOMES ── */
+  .outcomes-section {
+    background: var(--yellow);
+    padding: 7rem 0;
+  }
+  .outcomes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+  }
+  .outcome-card {
+    background: rgba(0,0,0,0.06);
+    padding: 2rem;
+  }
+  .outcome-card h4 {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--dark);
+    margin-bottom: 0.5rem;
+    font-weight: 400;
+  }
+  .outcome-card p {
+    font-size: 0.88rem;
+    color: rgba(0,0,0,0.6);
+    line-height: 1.6;
+  }
+
+  /* ── REFLECTION ── */
+  .reflection-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    margin-top: 3rem;
+  }
+  .reflection-card {
+    padding: 2.5rem;
+    border: 1px solid rgba(0,0,0,0.08);
+    background: var(--white);
+  }
+  .reflection-card h4 {
+    font-family: var(--serif);
+    font-size: 1rem;
+    color: var(--dark);
+    margin-bottom: 1rem;
+    font-weight: 400;
+  }
+  .reflection-card p {
+    font-size: 0.9rem;
+    color: var(--mid);
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* ── BLOCKQUOTE ── */
+  blockquote {
+    border-left: 3px solid var(--yellow);
+    padding: 1rem 2rem;
+    margin: 2rem 0;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--mid);
+    background: var(--white);
+  }
+
+  /* ── CASE STUDY NAV ── */
+  .cs-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.5rem 0;
+    border-top: 1px solid rgba(0,0,0,0.08);
+    margin-top: 2rem;
+  }
+  .cs-nav a {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .cs-nav a:hover { color: var(--dark); }
+  .cs-nav-center {
+    font-family: var(--serif);
+    font-size: 0.95rem;
+    color: var(--dark);
+    text-align: center;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-left { min-height: 60vh; padding: 4rem 2rem 3rem; }
+    .hero-right { padding: 3rem 2rem; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .research-grid,
+    .persona-card,
+    .strategy-layout,
+    .solution-header,
+    .before-after,
+    .outcomes-grid,
+    .reflection-layout { grid-template-columns: 1fr; }
+    .persona-visual { padding: 2rem; }
+    .pain-grid { grid-template-columns: 1fr; }
+    .fullwidth-img { margin: 2rem -1.5rem; }
+    .strategy-intro { position: static; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="../../index.html">Yun-Chia Lin</a>
+  <ul class="nav-links">
+    <li><a href="../../index.html#work" aria-current="page">Work</a></li>
+    <li><a href="../../about.html">About</a></li>
+    <li><a href="../../about.html#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">UX / UI · Mobile App · 2017</div>
+    <h1 class="hero-title">Driver App<br><em>Redesign</em></h1>
+    <div class="hero-meta">
+      <div class="meta-item">
+        <span class="meta-label">My Role</span>
+        <span class="meta-value">Lead UX/UI Designer</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Platform</span>
+        <span class="meta-value">Android</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Industry</span>
+        <span class="meta-value">Private Hire / Transport</span>
+      </div>
+      <div class="meta-item">
+        <span class="meta-label">Duration</span>
+        <span class="meta-value">6 months</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-problem">
+      <div class="hero-problem-label">The challenge</div>
+      <h2>How might we improve the Driver App so drivers are more successful at delivering good service — creating a win-win for customers, drivers, and the business?</h2>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats-band">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">5</div>
+        <div class="stat-label">Research methods</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Core pain points</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Design strategies</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3 taps</div>
+        <div class="stat-label">Max to any feature</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- OVERVIEW -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Overview</div>
+      <h2 class="section-title">A complete redesign of the tool<br>drivers depend on every day</h2>
+    </div>
+    <div class="divider"></div>
+    <div class="research-grid reveal">
+      <div>
+        <p class="body-text">A London-based premium private hire company operates a large fleet of professional drivers across the city. The existing Driver App was the central tool through which drivers received jobs, tracked earnings, and communicated with support — yet it was failing at all three.</p>
+        <p class="body-text" style="margin-top: 1rem;">Drivers were frustrated. Customer satisfaction was suffering. The business was losing ground to newer, more intuitive competitors. I was brought on as the lead UX/UI Designer to diagnose the problems and redesign the product end-to-end.</p>
+      </div>
+      <div>
+        <p class="body-text">The project required navigating a complex stakeholder ecosystem — call center agents, executive assistants booking on behalf of clients, passengers, and the operations team who monitor the entire network in real time.</p>
+        <p class="body-text" style="margin-top: 1rem;">The redesign needed to serve all of them indirectly, but its primary user was always the driver: on the road, one hand on the wheel, glancing at a screen mounted to a dashboard.</p>
+        <blockquote>"I need to know where the jobs are. Everything else is in the way."<br><small style="font-size: 0.78rem; opacity: 0.6;">— Driver, field interview</small></blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DISCOVERY -->
+<section class="section" style="background: var(--white); padding-top: 5rem; padding-bottom: 5rem;">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">01 — Discover</div>
+      <h2 class="section-title">Getting in the car<br>to understand the job</h2>
+    </div>
+    <div class="divider"></div>
+
+    <div class="research-grid">
+      <div class="reveal">
+        <p class="body-text">Good research here meant going where the work happens. I couldn't design for a driver's experience by sitting at a desk. I got in cars, sat in call centers, read reviews, and attended the same training course every new driver goes through.</p>
+        <p class="body-text" style="margin-top: 1rem;">This immersive approach surfaced insights that no survey could have captured — the muscle memory of one-handed phone use, the stress of a 10-minute pickup window, the pride drivers felt about their ratings.</p>
+      </div>
+      <div>
+        <div class="research-methods">
+          <div class="method-item reveal reveal-delay-1">
+            <span class="method-number">01</span>
+            <div class="method-text">
+              <strong>App audit &amp; heuristic evaluation</strong>
+              Mapped all screens, flows, and states of the existing app against usability principles.
+            </div>
+          </div>
+          <div class="method-item reveal reveal-delay-2">
+            <span class="method-number">02</span>
+            <div class="method-text">
+              <strong>Contextual rides with drivers</strong>
+              Accompanied drivers on real jobs to observe how they interacted with the app in context.
+            </div>
+          </div>
+          <div class="method-item reveal reveal-delay-2">
+            <span class="method-number">03</span>
+            <div class="method-text">
+              <strong>Shadow sessions with support staff</strong>
+              Sat with the operations team to understand the volume and nature of driver-initiated calls.
+            </div>
+          </div>
+          <div class="method-item reveal reveal-delay-3">
+            <span class="method-number">04</span>
+            <div class="method-text">
+              <strong>App Store &amp; Google Play review analysis</strong>
+              Analysed reviews to identify recurring pain themes at scale.
+            </div>
+          </div>
+          <div class="method-item reveal reveal-delay-3">
+            <span class="method-number">05</span>
+            <div class="method-text">
+              <strong>Driver training course</strong>
+              Attended the full onboarding course to understand the mental model drivers are given from day one.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fullwidth-img reveal" style="margin-top: 3rem;">
+      <div class="img-placeholder" style="height: 360px; border-radius: 4px;">
+        <span>Discovery Research — field sessions, ride-alongs &amp; stakeholder interviews</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAKEHOLDER MAP -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Stakeholders</div>
+      <h2 class="section-title">A win-win requires understanding<br>every actor in the system</h2>
+    </div>
+    <div class="divider"></div>
+    <div class="reveal" style="margin-top: 2rem;">
+      <p class="body-text">The Driver App exists within a broader ecosystem. Designing for drivers alone without understanding the ripple effects on call center agents, passengers, and operations would have produced a locally optimised but systemically broken product.</p>
+    </div>
+    <div class="fullwidth-img reveal" style="margin-top: 3rem;">
+      <div class="img-placeholder" style="height: 420px;">
+        <span>Stakeholder Map — Booker / Call Center / Drivers / Passengers / Support</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PERSONA -->
+<section class="section" style="background: var(--white); padding-top: 5rem; padding-bottom: 5rem;">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">User Persona</div>
+      <h2 class="section-title">Designing for a driver<br>on the move</h2>
+    </div>
+    <div class="divider"></div>
+    <div class="persona-card reveal" style="margin-top: 2rem;">
+      <div class="persona-visual">
+        <div>
+          <div class="persona-avatar">🚗</div>
+        </div>
+        <div>
+          <div class="persona-name">The Driver</div>
+          <div class="persona-role">Primary User</div>
+        </div>
+        <div class="persona-attr">
+          <div class="persona-attr-label">Demographics</div>
+          <div class="persona-attr-value">95% male, middle-aged</div>
+        </div>
+        <div class="persona-attr">
+          <div class="persona-attr-label">Tech comfort</div>
+          <div class="persona-attr-value">Later adopter to smartphones</div>
+        </div>
+        <div class="persona-attr">
+          <div class="persona-attr-label">Physical context</div>
+          <div class="persona-attr-value">One hand, arm's length, phone on dash rack</div>
+        </div>
+        <div class="persona-attr">
+          <div class="persona-attr-label">Experience</div>
+          <div class="persona-attr-value">3–5+ years with the company</div>
+        </div>
+      </div>
+      <div class="persona-details">
+        <div class="persona-section">
+          <h4>Goals &amp; Motivations</h4>
+          <ul class="persona-list">
+            <li>Maximise earnings — hit the weekly target</li>
+            <li>Know where and when to position for jobs</li>
+            <li>Avoid traffic and plan the day efficiently</li>
+            <li>Understand their own performance and ratings</li>
+          </ul>
+        </div>
+        <div class="persona-section">
+          <h4>Frustrations &amp; Constraints</h4>
+          <ul class="persona-list">
+            <li>Uses a second device just for navigation (doesn't trust the built-in map)</li>
+            <li>Job List is the #1 priority but buried 2 taps deep</li>
+            <li>Limited ways to contact passengers directly</li>
+            <li>Poor feedback loop — never sees customer reviews</li>
+          </ul>
+        </div>
+        <div class="persona-section" style="grid-column: 1 / -1;">
+          <h4>Mental Model &amp; Context</h4>
+          <ul class="persona-list" style="flex-direction: row; flex-wrap: wrap; gap: 0.5rem 2rem;">
+            <li>Knows London postcodes well — a natural navigator</li>
+            <li>Receives jobs auto-allocated by the system, not self-selecting</li>
+            <li>Often communicates with support multiple times per shift</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CURRENT USER JOURNEY -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">02 — Define</div>
+      <h2 class="section-title">Mapping the full journey<br>to find where it breaks</h2>
+    </div>
+    <div class="divider"></div>
+    <div class="reveal">
+      <p class="body-text">I created a swimlane journey map across three actors — Passenger, Company, and Driver — covering the complete lifecycle from login to end of day. The feeling line told the real story: drivers started neutral and deteriorated steadily through the shift.</p>
+    </div>
+    <div class="fullwidth-img reveal" style="margin-top: 2.5rem;">
+      <div class="img-placeholder" style="height: 400px;">
+        <span>Current User Journey Map — Passenger / Company / Driver swimlanes with pain points</span>
+      </div>
+    </div>
+    <div class="fullwidth-img reveal" style="margin-top: 1.5rem;">
+      <div class="img-placeholder" style="height: 320px;">
+        <span>User Journey Mapping — workshop wall with sticky notes</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN POINTS -->
+<section class="pain-points-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Pain Points</div>
+      <h2 class="section-title">Four problems<br>undermining every shift</h2>
+    </div>
+    <div class="pain-grid reveal" style="margin-top: 3rem;">
+      <div class="pain-card">
+        <div class="pain-number">01</div>
+        <div class="pain-title">Information Architecture</div>
+        <p class="pain-desc">The landing page was a news feed that nobody read. The most important section — the Job List — required two taps to reach. Help and Job History were buried in a hamburger menu that mixed critical and trivial functions together.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-number">02</div>
+        <div class="pain-title">Confusing Visual Language</div>
+        <p class="pain-desc">Three different UI patterns — a legacy Android design, a custom dark theme, and modal dialogs — coexisted without coherence. Colours carried no consistent meaning. Red appeared for both errors and standard buttons. Drivers couldn't glance and act.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-number">03</div>
+        <div class="pain-title">Broken Navigation &amp; Mapping</div>
+        <p class="pain-desc">The built-in map was unreliable and drivers didn't trust it — so they carried a second phone purely for navigation. The address search required manual entry of data the system already held.</p>
+        <div class="pain-quote">"The navigation is bad! I don't trust it."</div>
+      </div>
+      <div class="pain-card">
+        <div class="pain-number">04</div>
+        <div class="pain-title">App Crashes &amp; Instability</div>
+        <p class="pain-desc">Frequent crashes during the most stressful moments — arriving at pickup, submitting amendments — destroyed driver trust and increased support call volume. Instability was both a technical and experience problem.</p>
+      </div>
+    </div>
+    <div class="fullwidth-img reveal" style="margin-top: 2.5rem;">
+      <div class="img-placeholder" style="height: 300px; background: #1a1a18;">
+        <span style="color: rgba(255,255,255,0.25);">Information Hierarchy Diagram — current app IA with starred driver priorities</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPETITOR ANALYSIS -->
+<section class="section" style="background: var(--white); padding-top: 5rem; padding-bottom: 5rem;">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Competitor Analysis</div>
+      <h2 class="section-title">What the best driver apps<br>were already doing right</h2>
+    </div>
+    <div class="divider"></div>
+    <div class="research-grid reveal">
+      <div>
+        <p class="body-text">I benchmarked the leading ride-hailing driver apps across three key areas: how drivers explore available jobs, the pickup experience, and the earnings dashboard. Both platforms had solved glanceability far more effectively — large tap targets, clear hierarchy, status-first layouts.</p>
+        <p class="body-text" style="margin-top: 1rem;">The earnings pages in particular were revelatory: personalised, motivating, and data-rich. Drivers knew exactly where they stood against their weekly target at any moment.</p>
+      </div>
+      <div class="img-placeholder reveal reveal-delay-1" style="height: 300px;">
+        <span>Competitor Analysis — Lyft &amp; Uber driver app screens</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DESIGN STRATEGY -->
+<section class="section">
+  <div class="container">
+    <div class="strategy-layout">
+      <div class="strategy-intro reveal">
+        <div class="section-label">03 — Strategy</div>
+        <h2 class="section-title">Three principles to guide every decision</h2>
+        <div class="divider"></div>
+        <p class="body-text">Rather than jumping to solutions, I defined design strategies that would act as a filter for every subsequent design choice — keeping the team aligned and the output coherent.</p>
+      </div>
+      <div class="strategy-cards">
+        <div class="strategy-card reveal">
+          <div class="strategy-icon">🗂</div>
+          <div>
+            <h3>Restructure the information architecture</h3>
+            <p>Make the most important information immediately accessible. Every feature should be reachable within 3 taps — no exceptions. The landing experience should reflect what drivers actually care about: jobs, earnings, and status.</p>
+          </div>
+        </div>
+        <div class="strategy-card reveal reveal-delay-1">
+          <div class="strategy-icon">👁</div>
+          <div>
+            <h3>Design for glanceability &amp; tappability</h3>
+            <p>A driver cannot look at their phone for more than a second. UI elements must communicate at a glance. Tap targets must be thumb-friendly from one arm's reach. Standard patterns reduce cognitive load; consistency builds trust.</p>
+          </div>
+        </div>
+        <div class="strategy-card reveal reveal-delay-2">
+          <div class="strategy-icon">🤝</div>
+          <div>
+            <h3>Make communication transparent</h3>
+            <p>Help drivers achieve their goals — more jobs, better pay, stronger ratings — by giving them the data and tools they need. Reduce friction in every interaction between driver and support, driver and passenger, driver and system.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTIONS -->
+<section class="section" style="background: var(--white); padding-top: 5rem;">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">04 — Design</div>
+      <h2 class="section-title">The redesign, solution by solution</h2>
+    </div>
+    <div class="divider"></div>
+
+    <!-- SOLUTION 1: IA & Home Screen -->
+    <div class="solution-block" style="margin-top: 4rem;">
+      <div class="solution-header reveal">
+        <div>
+          <div class="solution-tag">Information Architecture</div>
+          <h3>A home screen that works for drivers — not against them</h3>
+        </div>
+        <p class="body-text">The old landing page was a company news feed. The new home screen greets the driver by name, shows the day's traffic and weather context, and surfaces live job demand data. One tap to go online.</p>
+      </div>
+      <div class="before-after reveal">
+        <div class="ba-panel">
+          <div class="ba-label">Before</div>
+          <div class="img-placeholder" style="height: 400px;">
+            <span>Old home screen — news feed landing, buried job list</span>
+          </div>
+        </div>
+        <div class="ba-panel">
+          <div class="ba-label">After</div>
+          <div class="img-placeholder" style="height: 400px;">
+            <span>New home screen — personalised greeting, live job demand, weather, Go Online CTA</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOLUTION 2: Heatmap -->
+    <div class="solution-block">
+      <div class="solution-header reveal">
+        <div>
+          <div class="solution-tag">Maximise Job Opportunities</div>
+          <h3>From a static map to an intelligent job intelligence tool</h3>
+        </div>
+        <p class="body-text">The old heatmap was a satellite map with no context. The redesign introduced a scannable region list with Busy / Moderate / Quiet status tags, job counts, driver counts, and a redesigned airport queue screen with wait-time estimates.</p>
+      </div>
+      <div class="before-after reveal">
+        <div class="ba-panel">
+          <div class="ba-label">Before</div>
+          <div class="img-placeholder" style="height: 400px;">
+            <span>Old heatmap — plain map view and basic tabular list</span>
+          </div>
+        </div>
+        <div class="ba-panel">
+          <div class="ba-label">After</div>
+          <div class="img-placeholder" style="height: 400px;">
+            <span>New heatmap — colour-coded region cards (Busy/Moderate/Quiet), airport queue with wait times</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOLUTION 3: Smarter not harder -->
+    <div class="solution-block">
+      <div class="solution-header reveal">
+        <div>
+          <div class="solution-tag">Work Smarter, Not Harder</div>
+          <h3>Eliminating unnecessary input by using data the system already has</h3>
+        </div>
+        <p class="body-text">Drivers were manually typing in parking locations, toll roads, and customer names — data the system already knew. The redesign pre-populated dropdowns, added tap-to-confirm parcel counts, and removed modal dialogs that interrupted the on-job flow.</p>
+      </div>
+      <div class="before-after reveal">
+        <div class="ba-panel">
+          <div class="ba-label">Before</div>
+          <div class="img-placeholder" style="height: 380px;">
+            <span>Before — blank form fields for parking, tolls, and signature entry</span>
+          </div>
+        </div>
+        <div class="ba-panel">
+          <div class="ba-label">After</div>
+          <div class="img-placeholder" style="height: 380px;">
+            <span>After — pre-populated lists (Kings Cross, Euston...), tap-to-select, auto-calculated fees</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OUTCOMES -->
+<section class="outcomes-section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">05 — Outcomes</div>
+      <h2 class="section-title">The results</h2>
+    </div>
+    <div class="divider"></div>
+    <div class="outcomes-grid">
+      <div class="outcome-card reveal">
+        <h4>Reduced support call volume</h4>
+        <p>Clearer on-job flows, pre-populated forms, and inline confirmations eliminated many of the routine support calls that burdened the operations team daily.</p>
+      </div>
+      <div class="outcome-card reveal reveal-delay-1">
+        <h4>Improved driver confidence</h4>
+        <p>Drivers reported feeling more in control of their shift — knowing demand levels, understanding their earnings, and trusting the navigation enough to stop carrying a second device.</p>
+      </div>
+      <div class="outcome-card reveal reveal-delay-2">
+        <h4>A foundation for ongoing iteration</h4>
+        <p>The redesign established a component library and design system that the team could build on — reducing future design and development overhead significantly.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REFLECTION -->
+<section class="section">
+  <div class="container">
+    <div class="reveal">
+      <div class="section-label">Reflection</div>
+      <h2 class="section-title">What I learned</h2>
+    </div>
+    <div class="divider"></div>
+    <div class="reflection-layout">
+      <div class="reflection-card reveal">
+        <h4>The environment is the brief</h4>
+        <p>Designing for a driver on the road is fundamentally different from designing for someone at a desk. The constraint of one-handed use at arm's reach, under time pressure, changed almost every decision — from tap target size to information density to colour contrast. Getting in the car wasn't optional; it was essential.</p>
+      </div>
+      <div class="reflection-card reveal reveal-delay-1">
+        <h4>Emotion is functional, not decorative</h4>
+        <p>The tip notification and ratings features were initially deprioritised as "nice to haves." Research showed they were essential to driver motivation and retention. Emotional design isn't polish applied at the end — it's a core functional requirement that needs to be researched and designed with the same rigour as any other feature.</p>
+      </div>
+      <div class="reflection-card reveal reveal-delay-1">
+        <h4>System thinking prevents local optimisation</h4>
+        <p>Every design decision made for drivers had downstream effects on call center agents, support staff, and operations. The stakeholder map wasn't just a research deliverable — it was a constant reference point for evaluating trade-offs throughout the project.</p>
+      </div>
+      <div class="reflection-card reveal reveal-delay-2">
+        <h4>Trust is earned incrementally</h4>
+        <p>Drivers had been burned by the old app. Rebuilding trust required consistency — consistent patterns, consistent naming, consistent behaviour under load. A visually beautiful app that crashes is worse than an ugly one that works. Technical reliability and UX quality are not separable concerns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASE STUDY NAV -->
+<div class="container">
+  <nav class="cs-nav" aria-label="Case study navigation">
+    <a href="../../index.html#work">← All work</a>
+    <span class="cs-nav-center">Driver App Redesign</span>
+    <a href="../../index.html#work">Next project →</a>
+  </nav>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>Designed by <a href="../../about.html">Yun-Chia Lin</a> &nbsp;·&nbsp; UX/UI Designer &nbsp;·&nbsp; London</p>
+    <p style="margin-top: 0.5rem; font-size: 0.7rem; opacity: 0.5;">Client name withheld under NDA. All work is original.</p>
+  </div>
+</footer>
+
+<script src="../../assets/js/main.js"></script>
+</body>
+</html>
