@@ -13,7 +13,7 @@
 <style>
   /* ── CASE STUDY HERO ── */
   .hero {
-    min-height: 100vh;
+    min-height: 90vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     padding-top: 64px;
@@ -89,20 +89,6 @@
     padding: 5rem 4rem;
     position: relative;
   }
-  .hero-right::after {
-    content: 'Re\ADesign';
-    white-space: pre;
-    position: absolute;
-    bottom: 3rem;
-    right: 3rem;
-    font-family: var(--serif);
-    font-size: 5rem;
-    line-height: 1;
-    color: rgba(0,0,0,0.06);
-    font-weight: 700;
-    text-align: right;
-    pointer-events: none;
-  }
   .hero-problem {
     position: relative;
     z-index: 1;
@@ -154,36 +140,6 @@
   }
   .img-placeholder span { position: relative; z-index: 1; }
   .fullwidth-img { width: 100%; }
-
-  /* ── STATS BAND ── */
-  .stats-band {
-    background: var(--dark);
-    padding: 4rem 0;
-  }
-  .stats-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-  }
-  .stat-item {
-    padding: 1.5rem 2.5rem;
-    border-right: 1px solid rgba(255,255,255,0.08);
-  }
-  .stat-item:last-child { border-right: none; }
-  .stat-number {
-    font-family: var(--serif);
-    font-size: 2.4rem;
-    color: var(--yellow);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-  }
-  .stat-label {
-    font-size: 0.78rem;
-    color: rgba(255,255,255,0.45);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    font-weight: 400;
-  }
 
   /* ── RESEARCH ── */
   .research-grid {
@@ -536,30 +492,6 @@
     background: var(--white);
   }
 
-  /* ── CASE STUDY NAV ── */
-  .cs-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2.5rem 0;
-    border-top: 1px solid rgba(0,0,0,0.08);
-    margin-top: 2rem;
-  }
-  .cs-nav a {
-    font-size: 0.8rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--mid);
-    text-decoration: none;
-    transition: color 0.2s;
-  }
-  .cs-nav a:hover { color: var(--dark); }
-  .cs-nav-center {
-    font-family: var(--serif);
-    font-size: 0.95rem;
-    color: var(--dark);
-    text-align: center;
-  }
 
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
@@ -601,7 +533,7 @@
     <div class="hero-meta">
       <div class="meta-item">
         <span class="meta-label">My Role</span>
-        <span class="meta-value">Lead UX/UI Designer</span>
+        <span class="meta-value">UX/UI Designer</span>
       </div>
       <div class="meta-item">
         <span class="meta-label">Platform</span>
@@ -613,60 +545,30 @@
       </div>
       <div class="meta-item">
         <span class="meta-label">Duration</span>
-        <span class="meta-value">6 months</span>
+        <span class="meta-value">3 months</span>
       </div>
     </div>
   </div>
   <div class="hero-right">
     <div class="hero-problem">
       <div class="hero-problem-label">The challenge</div>
-      <h2>How might we improve the Driver App so drivers are more successful at delivering good service — creating a win-win for customers, drivers, and the business?</h2>
+      <h2>How might we improve the Driver App so drivers are more successful at delivering good service as well as achieving their goals — creating a win-win for customers, drivers, and the business?</h2>
     </div>
   </div>
 </section>
 
-<!-- STATS BAND -->
-<div class="stats-band">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-item">
-        <div class="stat-number">5</div>
-        <div class="stat-label">Research methods</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">4</div>
-        <div class="stat-label">Core pain points</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Design strategies</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">3 taps</div>
-        <div class="stat-label">Max to any feature</div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- OVERVIEW -->
 <section class="section">
   <div class="container">
     <div class="reveal">
       <div class="section-label">Overview</div>
-      <h2 class="section-title">A complete redesign of the tool<br>drivers depend on every day</h2>
+      <h2 class="section-title">A complete redesign of the tool drivers depend on every day</h2>
     </div>
     <div class="divider"></div>
-    <div class="research-grid reveal">
-      <div>
-        <p class="body-text">A London-based premium private hire company operates a large fleet of professional drivers across the city. The existing Driver App was the central tool through which drivers received jobs, tracked earnings, and communicated with support — yet it was failing at all three.</p>
-        <p class="body-text" style="margin-top: 1rem;">Drivers were frustrated. Customer satisfaction was suffering. The business was losing ground to newer, more intuitive competitors. I was brought on as the lead UX/UI Designer to diagnose the problems and redesign the product end-to-end.</p>
-      </div>
-      <div>
-        <p class="body-text">The project required navigating a complex stakeholder ecosystem — call center agents, executive assistants booking on behalf of clients, passengers, and the operations team who monitor the entire network in real time.</p>
-        <p class="body-text" style="margin-top: 1rem;">The redesign needed to serve all of them indirectly, but its primary user was always the driver: on the road, one hand on the wheel, glancing at a screen mounted to a dashboard.</p>
-        <blockquote>"I need to know where the jobs are. Everything else is in the way."<br><small style="font-size: 0.78rem; opacity: 0.6;">— Driver, field interview</small></blockquote>
-      </div>
+    <div class="reveal">
+      <p class="body-text">A London-based premium private hire company operates a large fleet of professional drivers across the city. The existing Driver App was the central tool through which drivers <strong>received jobs, tracked earnings, and communicated with support</strong> — yet it was failing at all three.</p>
+      <p class="body-text" style="margin-top: 1rem;">I was brought in to diagnose the problems and redesign the product end-to-end — navigating a complex stakeholder ecosystem of call center agents, operations staff, and passengers, while keeping the driver at the centre. They are the only people customers ever actually meet, and without them, there is no business.</p>
     </div>
   </div>
 </section>
@@ -676,7 +578,7 @@
   <div class="container">
     <div class="reveal">
       <div class="section-label">01 — Discover</div>
-      <h2 class="section-title">Getting in the car<br>to understand the job</h2>
+      <h2 class="section-title">Getting in the car to understand the job</h2>
     </div>
     <div class="divider"></div>
 
@@ -739,7 +641,7 @@
   <div class="container">
     <div class="reveal">
       <div class="section-label">Stakeholders</div>
-      <h2 class="section-title">A win-win requires understanding<br>every actor in the system</h2>
+      <h2 class="section-title">A win-win requires understanding every actor in the system</h2>
     </div>
     <div class="divider"></div>
     <div class="reveal" style="margin-top: 2rem;">
@@ -758,7 +660,7 @@
   <div class="container">
     <div class="reveal">
       <div class="section-label">User Persona</div>
-      <h2 class="section-title">Designing for a driver<br>on the move</h2>
+      <h2 class="section-title">Designing for a driver on the move</h2>
     </div>
     <div class="divider"></div>
     <div class="persona-card reveal" style="margin-top: 2rem;">
@@ -824,7 +726,7 @@
   <div class="container">
     <div class="reveal">
       <div class="section-label">02 — Define</div>
-      <h2 class="section-title">Mapping the full journey<br>to find where it breaks</h2>
+      <h2 class="section-title">Mapping the full journey to find where it breaks</h2>
     </div>
     <div class="divider"></div>
     <div class="reveal">
@@ -848,7 +750,7 @@
   <div class="container">
     <div class="reveal">
       <div class="section-label">Pain Points</div>
-      <h2 class="section-title">Four problems<br>undermining every shift</h2>
+      <h2 class="section-title">Four problems undermining every shift</h2>
     </div>
     <div class="pain-grid reveal" style="margin-top: 3rem;">
       <div class="pain-card">
@@ -886,7 +788,7 @@
   <div class="container">
     <div class="reveal">
       <div class="section-label">Competitor Analysis</div>
-      <h2 class="section-title">What the best driver apps<br>were already doing right</h2>
+      <h2 class="section-title">What the best driver apps were already doing right</h2>
     </div>
     <div class="divider"></div>
     <div class="research-grid reveal">
@@ -1077,15 +979,6 @@
     </div>
   </div>
 </section>
-
-<!-- CASE STUDY NAV -->
-<div class="container">
-  <nav class="cs-nav" aria-label="Case study navigation">
-    <a href="../../index.html#work">← All work</a>
-    <span class="cs-nav-center">Driver App Redesign</span>
-    <a href="../../index.html#work">Next project →</a>
-  </nav>
-</div>
 
 <!-- FOOTER -->
 <footer>
