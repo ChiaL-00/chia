@@ -97,6 +97,9 @@ footer a:hover { text-decoration: underline; }
 .section {
   padding: 7rem 0;
 }
+.section-sm {
+  padding: 5rem 0;
+}
 .section-label {
   font-size: 0.7rem;
   letter-spacing: 0.2em;

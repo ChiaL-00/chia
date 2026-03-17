@@ -153,7 +153,7 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    margin-top: 2rem;
+    margin-top: 0.5rem;
   }
   .method-item {
     display: flex;
@@ -212,12 +212,6 @@
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--dark);
-  }
-  .persona-role {
-    font-size: 0.8rem;
-    color: rgba(0,0,0,0.5);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
   }
   .persona-attr {
     display: flex;
@@ -508,7 +502,7 @@
     .reflection-layout { grid-template-columns: 1fr; }
     .persona-visual { padding: 2rem; }
     .pain-grid { grid-template-columns: 1fr; }
-    .fullwidth-img { margin: 2rem -1.5rem; }
+    .fullwidth-img { margin: 2rem 0; }
     .strategy-intro { position: static; }
   }
 </style>
@@ -528,7 +522,7 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero-left">
-    <div class="hero-tag">UX / UI · Mobile App · 2017</div>
+    <div class="hero-tag">UX / UI · Mobile App</div>
     <h1 class="hero-title">Driver App<br><em>Redesign</em></h1>
     <div class="hero-meta">
       <div class="meta-item">
@@ -574,7 +568,7 @@
 </section>
 
 <!-- DISCOVERY -->
-<section class="section" style="background: var(--white); padding-top: 5rem; padding-bottom: 5rem;">
+<section id="discovery-section" class="section" style="padding-bottom: 0;">
   <div class="container">
     <div class="reveal">
       <div class="section-label">01 — Discover</div>
@@ -582,81 +576,19 @@
     </div>
     <div class="divider"></div>
 
-    <div class="research-grid">
-      <div class="reveal">
-        <p class="body-text">Good research here meant going where the work happens. I couldn't design for a driver's experience by sitting at a desk. I got in cars, sat in call centers, read reviews, and attended the same training course every new driver goes through.</p>
-        <p class="body-text" style="margin-top: 1rem;">This immersive approach surfaced insights that no survey could have captured — the muscle memory of one-handed phone use, the stress of a 10-minute pickup window, the pride drivers felt about their ratings.</p>
-      </div>
-      <div>
-        <div class="research-methods">
-          <div class="method-item reveal reveal-delay-1">
-            <span class="method-number">01</span>
-            <div class="method-text">
-              <strong>App audit &amp; heuristic evaluation</strong>
-              Mapped all screens, flows, and states of the existing app against usability principles.
-            </div>
-          </div>
-          <div class="method-item reveal reveal-delay-2">
-            <span class="method-number">02</span>
-            <div class="method-text">
-              <strong>Contextual rides with drivers</strong>
-              Accompanied drivers on real jobs to observe how they interacted with the app in context.
-            </div>
-          </div>
-          <div class="method-item reveal reveal-delay-2">
-            <span class="method-number">03</span>
-            <div class="method-text">
-              <strong>Shadow sessions with support staff</strong>
-              Sat with the operations team to understand the volume and nature of driver-initiated calls.
-            </div>
-          </div>
-          <div class="method-item reveal reveal-delay-3">
-            <span class="method-number">04</span>
-            <div class="method-text">
-              <strong>App Store &amp; Google Play review analysis</strong>
-              Analysed reviews to identify recurring pain themes at scale.
-            </div>
-          </div>
-          <div class="method-item reveal reveal-delay-3">
-            <span class="method-number">05</span>
-            <div class="method-text">
-              <strong>Driver training course</strong>
-              Attended the full onboarding course to understand the mental model drivers are given from day one.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="fullwidth-img reveal" style="margin-top: 3rem;">
-      <div class="img-placeholder" style="height: 360px; border-radius: 4px;">
-        <span>Discovery Research — field sessions, ride-alongs &amp; stakeholder interviews</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- STAKEHOLDER MAP -->
-<section class="section">
-  <div class="container">
     <div class="reveal">
-      <div class="section-label">Stakeholders</div>
-      <h2 class="section-title">A win-win requires understanding every actor in the system</h2>
+      <p class="body-text">I got in cabs with drivers, sat with call center agents, attended driver training, and read through App Store reviews to understand where the experience was breaking down.</p>
+      <p class="body-text">Shadowing the operations and support teams was equally important — drivers don't exist in isolation, and understanding the full ecosystem was the only way to design something that worked for everyone in it.</p>
     </div>
-    <div class="divider"></div>
-    <div class="reveal" style="margin-top: 2rem;">
-      <p class="body-text">The Driver App exists within a broader ecosystem. Designing for drivers alone without understanding the ripple effects on call center agents, passengers, and operations would have produced a locally optimised but systemically broken product.</p>
-    </div>
+
     <div class="fullwidth-img reveal" style="margin-top: 3rem;">
-      <div class="img-placeholder" style="height: 420px;">
-        <span>Stakeholder Map — Booker / Call Center / Drivers / Passengers / Support</span>
-      </div>
+      <img id="discovery-img" src="../../assets/images/driver_app/discovery.jpg" alt="Discovery research — field sessions and ride-alongs" style="width: 100%; border-radius: 4px; display: block;">
     </div>
   </div>
 </section>
 
 <!-- PERSONA -->
-<section class="section" style="background: var(--white); padding-top: 5rem; padding-bottom: 5rem;">
+<section class="section-sm">
   <div class="container">
     <div class="reveal">
       <div class="section-label">User Persona</div>
@@ -670,7 +602,6 @@
         </div>
         <div>
           <div class="persona-name">The Driver</div>
-          <div class="persona-role">Primary User</div>
         </div>
         <div class="persona-attr">
           <div class="persona-attr-label">Demographics</div>
@@ -686,7 +617,7 @@
         </div>
         <div class="persona-attr">
           <div class="persona-attr-label">Experience</div>
-          <div class="persona-attr-value">3–5+ years with the company</div>
+          <div class="persona-attr-value">3–5+ years with the company, familiar with the old system's quirks</div>
         </div>
       </div>
       <div class="persona-details">
@@ -722,7 +653,7 @@
 </section>
 
 <!-- CURRENT USER JOURNEY -->
-<section class="section">
+<section class="section" style="background: var(--white);">
   <div class="container">
     <div class="reveal">
       <div class="section-label">02 — Define</div>
@@ -841,7 +772,7 @@
 </section>
 
 <!-- SOLUTIONS -->
-<section class="section" style="background: var(--white); padding-top: 5rem;">
+<section class="section" style="background: var(--white);">
   <div class="container">
     <div class="reveal">
       <div class="section-label">04 — Design</div>
@@ -989,5 +920,26 @@
 </footer>
 
 <script src="../../assets/js/main.js"></script>
+<script>
+  // Discovery section: bottom 30% of image height fades to var(--light)
+  const discoveryImg   = document.getElementById('discovery-img');
+  const discoverySection = document.getElementById('discovery-section');
+
+  function setDiscoveryGradient() {
+    const sectionH = discoverySection.offsetHeight;
+    const imgH     = discoveryImg.offsetHeight;
+    const breakPct = ((sectionH - imgH * 0.3) / sectionH * 100).toFixed(2);
+    discoverySection.style.background =
+      `linear-gradient(to bottom, #ffffff ${breakPct}%, var(--light) ${breakPct}%)`;
+  }
+
+  if (discoveryImg.complete) {
+    setDiscoveryGradient();
+  } else {
+    discoveryImg.addEventListener('load', setDiscoveryGradient);
+  }
+
+  window.addEventListener('resize', setDiscoveryGradient, { passive: true });
+</script>
 </body>
 </html>
