@@ -367,25 +367,8 @@
     font-weight: 400;
     margin-bottom: 0.5rem;
   }
-  .strategy-card p {
-    font-size: 0.9rem;
-    color: var(--mid);
-    line-height: 1.7;
-    font-weight: 300;
-  }
 
   /* ── SOLUTIONS ── */
-  .solution-block {
-    margin-bottom: 7rem;
-  }
-  .solution-block:last-child { margin-bottom: 0; }
-  .solution-header {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-    margin-bottom: 3rem;
-    align-items: end;
-  }
   .solution-tag {
     display: inline-block;
     background: var(--yellow);
@@ -397,29 +380,22 @@
     margin-bottom: 1rem;
     font-weight: 500;
   }
-  .solution-block h3 {
-    font-family: var(--serif);
-    font-size: 1.8rem;
-    font-weight: 400;
-    line-height: 1.2;
-    color: var(--dark);
-    margin-bottom: 0;
-  }
-  .before-after {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-  .ba-label {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 0.75rem;
-    font-weight: 500;
-    opacity: 0.6;
-  }
+
+  /* ── TWO-COL ── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
+
+  /* ── DESIGN PRINCIPLES ── */
+  .design-principle { padding: 3rem 0;}
+  .design-principle--dark { background: var(--dark); border-top: none; }
+  .principle-header { display: block; margin-bottom: 3rem; }
+  .principle-number { font-family: var(--serif); font-size: 4rem; color: rgba(0,0,0,0.08); line-height: 1; font-weight: 700; padding-top: 0.2rem; }
+  .principle-title { font-family: var(--serif); font-size: 1.7rem; font-weight: 400; color: var(--dark); line-height: 1.2; margin: 0.5rem 0 1rem; }
+  .ba-fullwidth { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5px; background: rgba(0,0,0,0.06); }
+  .ba-col { padding: 2rem 3rem; background: var(--white); }
+  .design-principle--dark .ba-col { background: #212119; }
+  .ba-label-top { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); margin-bottom: 1rem; font-weight: 500; opacity: 0.6; }
+  .ba-ratio-2-3 { grid-template-columns: 2fr 3fr; }
+  .before-img-wrap { width: 100%; }
 
   /* ── OUTCOMES ── */
   .outcomes-section {
@@ -559,17 +535,20 @@
     .hero-left { min-height: 60vh; padding: 4rem 2rem 3rem; }
     .hero-right { padding: 3rem 2rem; }
     .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .two-col,
     .research-grid,
     .persona-card,
     .strategy-layout,
-    .solution-header,
-    .before-after,
     .outcomes-grid,
     .reflection-layout { grid-template-columns: 1fr; }
     .persona-visual { padding: 2rem; }
     .pain-grid { grid-template-columns: 1fr; }
     .fullwidth-img { margin: 2rem 0; }
     .strategy-intro { position: static; }
+    .ba-fullwidth { grid-template-columns: 1fr; }
+    .ba-ratio-2-3 { grid-template-columns: 1fr; }
+    .before-img-wrap { width: 67%; }
+    .ba-col { padding: 1.5rem; }
   }
 </style>
 </head>
@@ -838,22 +817,22 @@
           <div class="strategy-icon">🗂</div>
           <div>
             <h3>Restructure the information architecture</h3>
-            <p>Make the most important information immediately accessible within 3 taps. Navigation should reflect what drivers actually care about: jobs, earnings, and communication.</p>
+            <p class="body-text">Make the most important information immediately accessible within 3 taps. Navigation should reflect what drivers actually care about: jobs, earnings, and communication.</p>
           </div>
         </div>
         <div class="strategy-card reveal reveal-delay-1">
           <div class="strategy-icon">👁</div>
           <div>
             <h3>Design for glanceability &amp; tappability</h3>
-            <p>The interface should work for drivers. Every element is recognisable at a glance, readable in a second, tappable with one thumb.</p>
-            <p>Standard patterns reduce cognitive load; consistency builds trust.</p>
+            <p class="body-text">The interface should work for drivers. Every element is recognisable at a glance, readable in a second, tappable with one thumb.</p>
+            <p class="body-text">Standard patterns reduce cognitive load; consistency builds trust.</p>
           </div>
         </div>
         <div class="strategy-card reveal reveal-delay-2">
           <div class="strategy-icon">🤝</div>
           <div>
             <h3>Make communication transparent</h3>
-            <p>Help drivers achieve their goals — more jobs, better pay, stronger ratings — by surfacing the data the system already holds. Drivers shouldn't have to guess what the company already knows.</p>
+            <p class="body-text">Help drivers achieve their goals — more jobs, better pay, stronger ratings — by surfacing the data the system already holds. Drivers shouldn't have to guess what the company already knows.</p>
           </div>
         </div>
       </div>
@@ -861,88 +840,127 @@
   </div>
 </section>
 
-<!-- SOLUTIONS -->
-<section class="section" style="background: var(--white);">
+<!-- DESIGN SECTION -->
+<section style="background: var(--white);">
+
+  <!-- INTRO HEADER -->
+  <div style="padding: 7rem 0 0;">
+    <div class="container reveal">
+      <div class="section-label">04 — Design</div>
+      <h2 class="section-title">The redesign</h2>
+      <div class="divider"></div>
+      <p class="body-text">Evolve, don't revolutionise — familiar enough to trust, refined enough to work.</p>
+    </div>
+  </div>
+
+  <!-- IA: GALLERY STYLE -->
+  <div class="design-principle reveal">
+    <div class="container">
+      <div class="principle-header">
+        <div>
+          <div class="solution-tag">Redefine information hierarchy</div>
+          <h3 class="principle-title">Restructure around the driver's real priorities</h3>
+          <ul class="body-text" style="padding-left: 1.2em; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li>Jobs, earnings, and communication promoted to the main navigation</li>
+            <li>Unified colour scheme and components across every screen, so the app feels coherent and trustworthy</li>
+          </ul>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: 1fr 2fr; margin-top: 2rem; align-items: start;">
+        <div><img src="../../assets/images/driver_app/newNav.png" alt="New IA — bottom tab nav overview" style="width: 100%; display: block;"></div>
+        <div style="position: relative; align-self: stretch; overflow: hidden;"><img src="../../assets/images/driver_app/IAoverview.jpg" alt="IA overview" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRINCIPLE: DATA -->
+  <div class="design-principle reveal">
+    <div class="container">
+      <div class="principle-header">
+        <div>
+          <div class="solution-tag">Make communication transparent</div>
+          <h3 class="principle-title">Give drivers the intelligence to make better decisions</h3>
+          <ul class="body-text" style="padding-left: 1.2em; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li>Show job demand, weather, and traffic so drivers can position themselves where and when it matters most</li>
+            <li>All data already lives in the system — the redesign puts it in front of the driver, removing the guesswork</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ba-fullwidth">
+      <div class="ba-col"><div class="ba-label-top">Before</div><img src="../../assets/images/driver_app/oldHome.jpg" alt="Old home screen" style="width: 100%; display: block;"></div>
+      <div class="ba-col"><div class="ba-label-top">After</div><img src="../../assets/images/driver_app/newHome.jpg" alt="New home screen" style="width: 100%; display: block;"></div>
+    </div>
+  </div>
+
+  <!-- PRINCIPLE: TAPPABILITY -->
+  <div class="design-principle reveal">
+    <div class="container">
+      <div class="principle-header">
+        <div>
+          <div class="solution-tag">Improve usability</div>
+          <h3 class="principle-title">Big, round, glanceable, tappable — designed for drivers' eyes and hands</h3>
+          <ul class="body-text" style="padding-left: 1.2em; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li>Large circular icon buttons — recognisable at a glance, tappable with one thumb</li>
+            <li>Every task completable within 3 taps, reducing cognitive load while driving</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="ba-fullwidth ba-ratio-2-3">
+      <div class="ba-col"><div class="ba-label-top">Before</div><div class="before-img-wrap"><img src="../../assets/images/driver_app/oldList.jpg" alt="Before — flat list buttons" style="width: 100%; display: block;"></div></div>
+      <div class="ba-col"><div class="ba-label-top">After</div><img src="../../assets/images/driver_app/newList.jpg" alt="After — circular icon buttons" style="width: 100%; display: block;"></div>
+    </div>
+  </div>
+
+  <!-- PRINCIPLE: NEW FEATURE -->
+  <div class="design-principle reveal">
+    <div class="container">
+      <div class="principle-header">
+        <div>
+          <div class="solution-tag">New feature</div>
+          <h3 class="principle-title">Personal touch — better engagement</h3>
+          <blockquote class="fq-quote" style="margin-top: 1.5rem;">"I would love to see my reviews from customers, either good or bad, so I can improve my job."</blockquote>
+        </div>
+      </div>
+    </div>
+    <div class="container" style="margin-top: 2rem;">
+      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5px; background: rgba(0,0,0,0.06);">
+        <div style="background: var(--white);"><div class="img-placeholder" style="height: 480px;"><span>Blank input fields for parking, toll, and signature</span></div></div>
+        <div style="background: var(--white);"><div class="img-placeholder" style="height: 480px;"><span>Pre-populated lists, auto-calculated fee, tap-to-select parcel count</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NIGHT MODE: DARK BACKGROUND -->
+  <div style="background: var(--dark); padding: 5rem 0;">
+    <div class="container reveal">
+      <div class="solution-tag">Night mode</div>
+      <h3 class="principle-title" style="color: var(--white); margin-top: 0.5rem;">A dark theme designed for safety, not just aesthetics</h3>
+      <p class="body-text" style="color: rgba(255,255,255,0.5); margin-top: 1rem;">Many drivers work nights. Bright white screens cause eye strain and reduce night vision. I researched legibility principles for driving contexts — low saturation, reduced contrast, typographic legibility at a distance — and applied them to a full dark mode drivers could toggle in one tap.</p>
+    </div>
+    <div class="ba-fullwidth reveal" style="margin-top: 3rem;">
+      <div class="ba-col" style="background: #212119;"><div class="ba-label-top" style="color: rgba(255,255,255,0.3);">Light mode</div><div class="img-placeholder" style="height: 480px; background: #2a2a28;"><span style="color: rgba(255,255,255,0.2);">Light mode — home, heatmap, earnings</span></div></div>
+      <div class="ba-col" style="background: #212119;"><div class="ba-label-top" style="color: rgba(255,255,255,0.3);">Night mode</div><div class="img-placeholder" style="height: 480px; background: #2a2a28;"><span style="color: rgba(255,255,255,0.2);">Night mode — reduced contrast, warm palette, all screens adapted</span></div></div>
+    </div>
+  </div>
+
+</section>
+
+<!-- 05 — TEST -->
+<section class="section">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">04 — Design</div>
-      <h2 class="section-title">The redesign, solution by solution</h2>
+      <div class="section-label">05 — Test</div>
+      <h2 class="section-title">Testing with real drivers in real conditions</h2>
     </div>
     <div class="divider"></div>
-
-    <!-- SOLUTION 1: IA & Home Screen -->
-    <div class="solution-block" style="margin-top: 4rem;">
-      <div class="solution-header reveal">
-        <div>
-          <div class="solution-tag">Information Architecture</div>
-          <h3>A home screen that works for drivers — not against them</h3>
-        </div>
-        <p class="body-text">The old landing page was a company news feed. The new home screen greets the driver by name, shows the day's traffic and weather context, and surfaces live job demand data. One tap to go online.</p>
+    <div class="two-col reveal">
+      <div>
+        <p class="body-text">High-fidelity prototypes were tested directly with drivers on Samsung Android devices — the actual hardware they use on shift. Sessions were run in the evening to validate the dark mode in realistic lighting conditions.</p>
+        <p class="body-text" style="margin-top: 1rem;">Key findings from testing informed a final round of refinements: the earnings screen hierarchy was adjusted based on what drivers scanned first, and the airport queue toggle was repositioned for one-thumb reach.</p>
       </div>
-      <div class="before-after reveal">
-        <div class="ba-panel">
-          <div class="ba-label">Before</div>
-          <div class="img-placeholder" style="height: 400px;">
-            <span>Old home screen — news feed landing, buried job list</span>
-          </div>
-        </div>
-        <div class="ba-panel">
-          <div class="ba-label">After</div>
-          <div class="img-placeholder" style="height: 400px;">
-            <span>New home screen — personalised greeting, live job demand, weather, Go Online CTA</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SOLUTION 2: Heatmap -->
-    <div class="solution-block">
-      <div class="solution-header reveal">
-        <div>
-          <div class="solution-tag">Maximise Job Opportunities</div>
-          <h3>From a static map to an intelligent job intelligence tool</h3>
-        </div>
-        <p class="body-text">The old heatmap was a satellite map with no context. The redesign introduced a scannable region list with Busy / Moderate / Quiet status tags, job counts, driver counts, and a redesigned airport queue screen with wait-time estimates.</p>
-      </div>
-      <div class="before-after reveal">
-        <div class="ba-panel">
-          <div class="ba-label">Before</div>
-          <div class="img-placeholder" style="height: 400px;">
-            <span>Old heatmap — plain map view and basic tabular list</span>
-          </div>
-        </div>
-        <div class="ba-panel">
-          <div class="ba-label">After</div>
-          <div class="img-placeholder" style="height: 400px;">
-            <span>New heatmap — colour-coded region cards (Busy/Moderate/Quiet), airport queue with wait times</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SOLUTION 3: Smarter not harder -->
-    <div class="solution-block">
-      <div class="solution-header reveal">
-        <div>
-          <div class="solution-tag">Work Smarter, Not Harder</div>
-          <h3>Eliminating unnecessary input by using data the system already has</h3>
-        </div>
-        <p class="body-text">Drivers were manually typing in parking locations, toll roads, and customer names — data the system already knew. The redesign pre-populated dropdowns, added tap-to-confirm parcel counts, and removed modal dialogs that interrupted the on-job flow.</p>
-      </div>
-      <div class="before-after reveal">
-        <div class="ba-panel">
-          <div class="ba-label">Before</div>
-          <div class="img-placeholder" style="height: 380px;">
-            <span>Before — blank form fields for parking, tolls, and signature entry</span>
-          </div>
-        </div>
-        <div class="ba-panel">
-          <div class="ba-label">After</div>
-          <div class="img-placeholder" style="height: 380px;">
-            <span>After — pre-populated lists (Kings Cross, Euston...), tap-to-select, auto-calculated fees</span>
-          </div>
-        </div>
-      </div>
+      <div class="img-placeholder" style="height: 320px;"><span>Usability testing — Samsung device, prototype, evening session</span></div>
     </div>
   </div>
 </section>
@@ -951,8 +969,8 @@
 <section class="outcomes-section">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">05 — Outcomes</div>
-      <h2 class="section-title">The results</h2>
+      <div class="section-label">Outcomes</div>
+      <h2 class="section-title">What the redesign delivered</h2>
     </div>
     <div class="divider"></div>
     <div class="outcomes-grid">
