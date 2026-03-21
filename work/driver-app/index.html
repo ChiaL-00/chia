@@ -381,6 +381,13 @@
     font-weight: 500;
   }
 
+  /* ── NEW FEATURE GRID ── */
+  .new-feature-grid { display: grid; grid-template-columns: 3fr 1fr; gap: 5px; }
+  .nf-img-cell { background: var(--white); height: 520px; }
+  .nf-img-cell img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
+  .video-cell { background: var(--white); height: 520px; display: flex; align-items: center; }
+  .video-cell video { width: 100%; }
+
   /* ── TWO-COL ── */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
 
@@ -548,6 +555,11 @@
     .ba-fullwidth { grid-template-columns: 1fr; }
     .ba-ratio-2-3 { grid-template-columns: 1fr; }
     .before-img-wrap { width: 67%; }
+    .new-feature-grid { grid-template-columns: 1fr; }
+    .nf-img-cell { height: auto; }
+    .nf-img-cell img { height: auto; object-fit: unset; }
+    .video-cell { height: auto; justify-content: center; }
+    .video-cell video { width: 66%; }
     .ba-col { padding: 1.5rem; }
   }
 </style>
@@ -925,9 +937,9 @@
       </div>
     </div>
     <div class="container" style="margin-top: 2rem;">
-      <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5px; background: rgba(0,0,0,0.06);">
-        <div style="background: var(--white);"><div class="img-placeholder" style="height: 480px;"><span>Blank input fields for parking, toll, and signature</span></div></div>
-        <div style="background: var(--white);"><div class="img-placeholder" style="height: 480px;"><span>Pre-populated lists, auto-calculated fee, tap-to-select parcel count</span></div></div>
+      <div class="new-feature-grid">
+        <div class="nf-img-cell"><img src="../../assets/images/driver_app/newFeature.jpg" alt="New feature" style="display: block;"></div>
+        <div class="video-cell"><video src="../../assets/images/driver_app/tips.mp4" controls autoplay loop muted playsinline style="display: block;"></video></div>
       </div>
     </div>
   </div>
