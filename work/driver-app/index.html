@@ -388,6 +388,9 @@
   .video-cell { background: var(--white); height: 520px; display: flex; align-items: center; }
   .video-cell video { width: 100%; }
 
+  /* ── NIGHT MODE GRID ── */
+  .night-mode-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
+
   /* ── TWO-COL ── */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
 
@@ -396,7 +399,7 @@
   .design-principle--dark { background: var(--dark); border-top: none; }
   .principle-header { display: block; margin-bottom: 3rem; }
   .principle-number { font-family: var(--serif); font-size: 4rem; color: rgba(0,0,0,0.08); line-height: 1; font-weight: 700; padding-top: 0.2rem; }
-  .principle-title { font-family: var(--serif); font-size: 1.7rem; font-weight: 400; color: var(--dark); line-height: 1.2; margin: 0.5rem 0 1rem; }
+  .principle-title { font-family: var(--serif); font-size: 1.7rem; font-weight: 400; color: var(--dark); line-height: 1.5; margin: 0.5rem 0 1rem; }
   .ba-fullwidth { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5px; background: rgba(0,0,0,0.06); }
   .ba-col { padding: 2rem 3rem; background: var(--white); }
   .design-principle--dark .ba-col { background: #212119; }
@@ -556,6 +559,8 @@
     .ba-ratio-2-3 { grid-template-columns: 1fr; }
     .before-img-wrap { width: 67%; }
     .new-feature-grid { grid-template-columns: 1fr; }
+    .night-mode-grid { grid-template-columns: 1fr; }
+    .night-mode-img-col { width: 66%; margin: 0 auto; }
     .nf-img-cell { height: auto; }
     .nf-img-cell img { height: auto; object-fit: unset; }
     .video-cell { height: auto; justify-content: center; }
@@ -945,34 +950,53 @@
   </div>
 
   <!-- NIGHT MODE: DARK BACKGROUND -->
-  <div style="background: var(--dark); padding: 5rem 0;">
+  <div id="night-mode-section" style="padding: 5rem 0 0;">
     <div class="container reveal">
-      <div class="solution-tag">Night mode</div>
-      <h3 class="principle-title" style="color: var(--white); margin-top: 0.5rem;">A dark theme designed for safety, not just aesthetics</h3>
-      <p class="body-text" style="color: rgba(255,255,255,0.5); margin-top: 1rem;">Many drivers work nights. Bright white screens cause eye strain and reduce night vision. I researched legibility principles for driving contexts — low saturation, reduced contrast, typographic legibility at a distance — and applied them to a full dark mode drivers could toggle in one tap.</p>
+      <div class="night-mode-grid">
+        <div>
+          <div class="solution-tag">Night mode</div>
+          <h3 class="principle-title" style="color: var(--white); margin-top: 0.5rem;">A dark theme designed for safety<br>Not just for aesthetic</h3>
+          <p class="body-text" style="color: #a8a8a4; margin-top: 1rem;">Many drivers work nights. Bright white screens cause eye strain and reduce night vision — and drivers expressed a clear preference for a darker interface even during the day.</p>
+        </div>
+        <div class="night-mode-img-col" style="position: relative;">
+          <img id="day-mode-img" src="../../assets/images/driver_app/dayMode.jpg" alt="Day mode" style="width: 100%; display: block;">
+          <img id="night-mode-img" src="../../assets/images/driver_app/nightMode.jpg" alt="Night mode" style="width: 100%; display: block; position: absolute; top: 0; left: 0; opacity: 0;">
+        </div>
+      </div>
+    </div>
+    <div style="padding: 5rem 0;">
+      <div class="container reveal">
+        <p class="body-text" style="color: #a8a8a4;">Effective dark mode: <strong style="color: var(--white); font-weight: 500;">low saturation, reduced contrast, and typography that holds legibility in low light.</strong></p>
+        <img src="../../assets/images/driver_app/nightModeResearch.jpg" alt="Night mode research" style="width: 100%; display: block; margin-top: 2rem;">
+      </div>
+    </div>
+    <div class="container reveal">
+      <p class="body-text" style="color: #a8a8a4;">Two dark mode palettes explored — a warm neutral grey and a cool navy blue.</p>
     </div>
     <div class="ba-fullwidth reveal" style="margin-top: 3rem;">
-      <div class="ba-col" style="background: #212119;"><div class="ba-label-top" style="color: rgba(255,255,255,0.3);">Light mode</div><div class="img-placeholder" style="height: 480px; background: #2a2a28;"><span style="color: rgba(255,255,255,0.2);">Light mode — home, heatmap, earnings</span></div></div>
-      <div class="ba-col" style="background: #212119;"><div class="ba-label-top" style="color: rgba(255,255,255,0.3);">Night mode</div><div class="img-placeholder" style="height: 480px; background: #2a2a28;"><span style="color: rgba(255,255,255,0.2);">Night mode — reduced contrast, warm palette, all screens adapted</span></div></div>
+      <div class="ba-col" style="background: #212119;"><div class="ba-label-top" style="color: #a8a8a4;">Neutral Grey</div><img src="../../assets/images/driver_app/greyNight.png" alt="Neutral grey night mode" style="width: 100%; display: block;"></div>
+      <div class="ba-col" style="background: #212119;"><div class="ba-label-top" style="color: #a8a8a4;">Cool Blue</div><img src="../../assets/images/driver_app/blueNight.png" alt="Cool blue night mode" style="width: 100%; display: block;"></div>
     </div>
   </div>
+
+  
 
 </section>
 
 <!-- 05 — TEST -->
-<section class="section">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">05 — Test</div>
-      <h2 class="section-title">Testing with real drivers in real conditions</h2>
-    </div>
-    <div class="divider"></div>
-    <div class="two-col reveal">
+<section class="section test-parallax-section" style="position: relative; overflow: hidden; background: var(--dark);">
+  <img class="test-parallax-bg" src="../../assets/images/driver_app/testSetup.jpg" alt="" aria-hidden="true" style="position: absolute; top: -150px; left: 0; width: 100%; height: calc(100% + 300px); object-fit: cover; will-change: transform; pointer-events: none; display: block;">
+  <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); z-index: 1;"></div>
+  <div class="container" style="position: relative; z-index: 2;">
+    <div class="two-col reveal" style="align-items: start;">
       <div>
-        <p class="body-text">High-fidelity prototypes were tested directly with drivers on Samsung Android devices — the actual hardware they use on shift. Sessions were run in the evening to validate the dark mode in realistic lighting conditions.</p>
-        <p class="body-text" style="margin-top: 1rem;">Key findings from testing informed a final round of refinements: the earnings screen hierarchy was adjusted based on what drivers scanned first, and the airport queue toggle was repositioned for one-thumb reach.</p>
+        <div class="section-label" style="color: #a8a8a4;">05 — Test</div>
+        <h2 class="section-title" style="color: var(--white);">Testing with real drivers</h2>
+        <div class="divider" style="border-color: rgba(255,255,255,0.1);"></div>
+        <p class="body-text" style="color: #a8a8a4;">To test which palette felt more natural at night, I brought drivers into a corner office and covered the windows to replicate evening street light conditions.</p>
+        <p class="body-text" style="margin-top: 1rem; color: #a8a8a4;">I expected the neutral grey to win — softer, easier on the eyes. Surprisingly, every driver chose the cool blue. They said the tone matched how they actually see at night.</p>
       </div>
-      <div class="img-placeholder" style="height: 320px;"><span>Usability testing — Samsung device, prototype, evening session</span></div>
+      <img src="../../assets/images/driver_app/testingPhones.png" alt="Usability testing — Samsung device, prototype, evening session" style="width: 100%; display: block;">
     </div>
   </div>
 </section>
@@ -1060,6 +1084,44 @@
   }
 
   window.addEventListener('resize', setDiscoveryGradient, { passive: true });
+
+  // Night mode section: background fades from white to dark as section scrolls into view
+  const nightSection = document.getElementById('night-mode-section');
+  const dayModeImg = document.getElementById('day-mode-img');
+  const nightModeImg = document.getElementById('night-mode-img');
+
+  function updateNightMode() {
+    const rect = nightSection.getBoundingClientRect();
+    const vh = window.innerHeight;
+    // 0 = section bottom just entering viewport, 1 = section top at screen top
+    const progress = Math.max(0, Math.min(1, 1 - (rect.top / vh)));
+    // Interpolate: white (255,255,255) → dark (26,26,24)
+    const r = Math.round(255 - 229 * progress);
+    const g = Math.round(255 - 229 * progress);
+    const b = Math.round(255 - 231 * progress);
+    nightSection.style.background = `rgb(${r},${g},${b})`;
+    // Cross-fade images — delayed until background is halfway dark
+    const fadeProgress = Math.max(0, Math.min(1, (progress - 0.5) / 0.5));
+    dayModeImg.style.opacity = 1 - fadeProgress;
+    nightModeImg.style.opacity = fadeProgress;
+  }
+
+  window.addEventListener('scroll', updateNightMode, { passive: true });
+  updateNightMode();
+
+  // ── TEST SECTION PARALLAX ──
+  const testSection = document.querySelector('.test-parallax-section');
+  const testBg = document.querySelector('.test-parallax-bg');
+
+  function updateTestParallax() {
+    if (!testSection || !testBg) return;
+    const rect = testSection.getBoundingClientRect();
+    const offset = -rect.top * 0.4;
+    testBg.style.transform = `translateY(${offset}px)`;
+  }
+
+  window.addEventListener('scroll', updateTestParallax, { passive: true });
+  updateTestParallax();
 </script>
 </body>
 </html>
