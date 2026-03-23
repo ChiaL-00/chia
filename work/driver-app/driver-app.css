@@ -1,0 +1,73 @@
+/* ─────────────────────────────────────────────
+   DRIVER APP REDESIGN — Project-specific styles
+   Imports: style.css → case-study.css → this file
+   Only put styles here that are unique to this
+   case study and won't appear in other projects.
+   ───────────────────────────────────────────── */
+
+
+/* ── DISCOVERY SECTION ── */
+/* JS sets the gradient dynamically — this just
+   ensures the section starts with a clean base. */
+#discovery-section {
+  background: var(--white);
+}
+
+
+/* ── COMPETITOR IMAGE CONTAINER ── */
+/* Fixed-height crop so the image aligns with
+   the text column on the right. */
+.driver-competitor-img {
+  height: 300px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.driver-competitor-img img {
+  height: 100%;
+  object-fit: cover;
+  object-position: left;
+}
+
+
+/* ── IA OVERVIEW — 1:2 INLINE GRID ── */
+/* The newNav + IAoverview side-by-side layout
+   is specific to the IA principle block. */
+.driver-ia-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  margin-top: 2rem;
+  align-items: start;
+}
+.driver-ia-grid__overview {
+  position: relative;
+  align-self: stretch;
+  overflow: hidden;
+}
+.driver-ia-grid__overview img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+
+/* ── TEST SECTION PARALLAX ── */
+/* The parallax background image — transform is
+   driven by JS scroll handler. */
+.test-parallax-bg {
+  position: absolute;
+  top: -150px;
+  left: 0;
+  height: calc(100% + 300px);
+  object-fit: cover;
+  will-change: transform;
+  pointer-events: none;
+}
+
+@media (max-width: 900px) {
+  .driver-ia-grid { grid-template-columns: 1fr; }
+  .driver-ia-grid__overview { height: 240px; }
+  .driver-ia-grid__overview img { position: static; height: 100%; width: 100%; }
+}

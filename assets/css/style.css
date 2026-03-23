@@ -5,12 +5,15 @@
 
 /* ── TOKENS ── */
 :root {
-  --yellow:      #F5D125;
-  --yellow-muted:#fdf3a3;
-  --dark:        #1a1a18;
-  --mid:         #4a4a44;
-  --light:       #f7f6f2;
-  --white:       #ffffff;
+  --yellow:        #F5D125;
+  --yellow-muted:  #fdf3a3;
+  --dark:          #1a1a18;
+  --dark-surface:  #212119;
+  --dark-surface-hover: #252521;
+  --text-on-dark:  #a8a8a4;
+  --mid:           #4a4a44;
+  --light:         #f7f6f2;
+  --white:         #ffffff;
   --serif:       'Playfair Display', Georgia, serif;
   --sans:        'DM Sans', sans-serif;
   --col:         720px;

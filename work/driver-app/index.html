@@ -9,552 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/css/style.css">
-
-<style>
-  /* ── CASE STUDY HERO ── */
-  .hero {
-    min-height: 90vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-top: 64px;
-  }
-  .hero-left {
-    background: var(--dark);
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 5rem 4rem;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-left::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    right: -10%;
-    width: 60%;
-    aspect-ratio: 1;
-    background: var(--yellow);
-    opacity: 0.08;
-    border-radius: 50%;
-    filter: blur(80px);
-  }
-  .hero-tag {
-    font-size: 0.72rem;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--yellow);
-    margin-bottom: 1.5rem;
-    font-family: var(--sans);
-    font-weight: 500;
-  }
-  .hero-title {
-    font-family: var(--serif);
-    font-size: clamp(2.8rem, 5vw, 4.5rem);
-    line-height: 1.08;
-    color: var(--white);
-    font-weight: 400;
-    margin-bottom: 2rem;
-  }
-  .hero-title em {
-    font-style: italic;
-    color: var(--yellow);
-  }
-  .hero-meta {
-    display: flex;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-  }
-  .meta-item {
-    display: flex;
-    flex-direction: column;
-    gap: 0.2rem;
-  }
-  .meta-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-  }
-  .meta-value {
-    font-size: 0.88rem;
-    color: rgba(255,255,255,0.85);
-    font-weight: 300;
-  }
-  .hero-right {
-    background: var(--yellow);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 5rem 4rem;
-    position: relative;
-  }
-  .hero-problem {
-    position: relative;
-    z-index: 1;
-  }
-  .hero-problem-label {
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(0,0,0,0.45);
-    margin-bottom: 1rem;
-    font-weight: 500;
-  }
-  .hero-problem h2 {
-    font-family: var(--serif);
-    font-size: 1.5rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: var(--dark);
-    max-width: 480px;
-  }
-
-  /* ── PLACEHOLDER IMAGE ── */
-  .img-placeholder {
-    background: #e8e6e0;
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: rgba(0,0,0,0.25);
-    font-size: 0.78rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-family: var(--sans);
-    font-weight: 500;
-    position: relative;
-    overflow: hidden;
-  }
-  .img-placeholder::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 10px,
-      rgba(0,0,0,0.025) 10px,
-      rgba(0,0,0,0.025) 11px
-    );
-  }
-  .img-placeholder span { position: relative; z-index: 1; }
-  .fullwidth-img { width: 100%; }
-
-  /* ── RESEARCH ── */
-  .research-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    align-items: start;
-    margin-top: 3rem;
-  }
-  .research-methods {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    margin-top: 0.5rem;
-  }
-  .method-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-    padding: 1.25rem 1.5rem;
-    background: var(--white);
-    border-left: 3px solid var(--yellow);
-  }
-  .method-number {
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    color: var(--yellow);
-    font-weight: 700;
-    min-width: 24px;
-  }
-  .method-text {
-    font-size: 0.92rem;
-    color: var(--mid);
-    line-height: 1.5;
-  }
-  .method-text strong {
-    display: block;
-    color: var(--dark);
-    font-weight: 500;
-    margin-bottom: 0.2rem;
-  }
-
-  /* ── PERSONA ── */
-  .persona-card {
-    background: var(--white);
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    margin-top: 3rem;
-    overflow: hidden;
-  }
-  .persona-visual {
-    background: var(--yellow);
-    padding: 3rem 2.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-  }
-  .persona-avatar {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background: rgba(0,0,0,0.15);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-  }
-  .persona-name {
-    font-family: var(--serif);
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--dark);
-  }
-  .persona-attr {
-    display: flex;
-    flex-direction: column;
-    gap: 0.3rem;
-  }
-  .persona-attr-label {
-    font-size: 0.68rem;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(0,0,0,0.4);
-  }
-  .persona-attr-value {
-    font-size: 0.88rem;
-    color: var(--dark);
-    font-weight: 400;
-  }
-  .persona-details {
-    padding: 3rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2.5rem;
-    align-content: start;
-  }
-  .persona-section h4 {
-    font-size: 0.7rem;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--mid);
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid rgba(0,0,0,0.08);
-  }
-  .persona-list {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-  }
-  .persona-list li {
-    font-size: 0.88rem;
-    color: var(--mid);
-    padding-left: 1rem;
-    position: relative;
-    line-height: 1.4;
-  }
-  .persona-list li::before {
-    content: '—';
-    position: absolute;
-    left: 0;
-    color: var(--yellow);
-    font-weight: 700;
-  }
-
-  /* ── PAIN POINTS ── */
-  .pain-points-section {
-    background: var(--dark);
-    padding: 5rem 0;
-  }
-  .pain-points-section .section-label { color: rgba(255,255,255,0.3); }
-  .pain-points-section .section-title { color: var(--white); }
-  .pain-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5px;
-    margin-top: 3rem;
-    background: rgba(255,255,255,0.06);
-  }
-  .pain-card {
-    background: #212119;
-    padding: 2.5rem;
-    position: relative;
-    overflow: hidden;
-    transition: background 0.3s;
-  }
-  .pain-card:hover { background: #252521; }
-  .pain-number {
-    font-family: var(--serif);
-    font-size: 4rem;
-    color: rgba(245,209,37,0.08);
-    position: absolute;
-    top: 1.5rem;
-    right: 2rem;
-    line-height: 1;
-    font-weight: 700;
-    pointer-events: none;
-  }
-  .pain-title {
-    font-family: var(--serif);
-    font-size: 1.25rem;
-    color: var(--white);
-    margin-bottom: 0.75rem;
-    font-weight: 400;
-  }
-  .pain-desc {
-    font-size: 0.88rem;
-    color: rgba(255,255,255,0.45);
-    line-height: 1.7;
-  }
-  .pain-quote {
-    margin-top: 1.25rem;
-    padding-left: 1rem;
-    border-left: 2px solid var(--yellow);
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1rem;
-    color: rgba(255,255,255,0.55);
-  }
-
-  /* ── DESIGN STRATEGY ── */
-  .strategy-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 5rem;
-    margin-top: 3rem;
-    align-items: start;
-  }
-  .strategy-intro {
-    position: sticky;
-    top: 100px;
-  }
-  .strategy-cards {
-    display: flex;
-    flex-direction: column;
-    gap: 1px;
-    background: rgba(0,0,0,0.08);
-  }
-  .strategy-card {
-    background: var(--white);
-    padding: 2.5rem;
-    display: grid;
-    grid-template-columns: 48px 1fr;
-    gap: 1.5rem;
-    align-items: start;
-    transition: background 0.2s;
-  }
-  .strategy-card:hover { background: #fdfcf8; }
-  .strategy-icon {
-    width: 48px;
-    height: 48px;
-    background: var(--yellow);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
-    flex-shrink: 0;
-  }
-  .strategy-card h3 {
-    font-family: var(--serif);
-    font-size: 1.15rem;
-    color: var(--dark);
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-  }
-
-  /* ── SOLUTIONS ── */
-  .solution-tag {
-    display: inline-block;
-    background: var(--yellow);
-    color: var(--dark);
-    font-size: 0.68rem;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    padding: 0.3rem 0.8rem;
-    margin-bottom: 1rem;
-    font-weight: 500;
-  }
-
-  /* ── NEW FEATURE GRID ── */
-  .new-feature-grid { display: grid; grid-template-columns: 3fr 1fr; gap: 5px; }
-  .nf-img-cell { background: var(--white); height: 520px; }
-  .nf-img-cell img { width: 100%; height: 100%; object-fit: contain; object-position: center; }
-  .video-cell { background: var(--white); height: 520px; display: flex; align-items: center; }
-  .video-cell video { width: 100%; }
-
-  /* ── NIGHT MODE GRID ── */
-  .night-mode-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
-
-  /* ── CONSISTENT BORDER RADIUS ── */
-  img, video { border-radius: 4px; }
-
-  /* ── TWO-COL ── */
-  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
-
-  /* ── DESIGN PRINCIPLES ── */
-  .design-principle { padding: 3rem 0;}
-  .design-principle--dark { background: var(--dark); border-top: none; }
-  .principle-header { display: block; margin-bottom: 3rem; }
-  .principle-number { font-family: var(--serif); font-size: 4rem; color: rgba(0,0,0,0.08); line-height: 1; font-weight: 700; padding-top: 0.2rem; }
-  .principle-title { font-family: var(--serif); font-size: 1.7rem; font-weight: 400; color: var(--dark); line-height: 1.5; margin: 0.5rem 0 1rem; }
-  .ba-fullwidth { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5px; background: rgba(0,0,0,0.06); }
-  .ba-col { padding: 2rem 3rem; background: var(--white); }
-  .design-principle--dark .ba-col { background: #212119; }
-  .ba-label-top { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mid); margin-bottom: 1rem; font-weight: 500; opacity: 0.6; }
-  .ba-ratio-2-3 { grid-template-columns: 2fr 3fr; }
-  .before-img-wrap { width: 100%; }
-
-  /* ── OUTCOMES ── */
-  .outcomes-section {
-    background: var(--yellow);
-    padding: 7rem 0;
-  }
-  .outcomes-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-top: 3rem;
-  }
-  .outcome-card {
-    background: rgba(0,0,0,0.06);
-    padding: 2rem;
-  }
-  .outcome-card h4 {
-    font-family: var(--serif);
-    font-size: 1.1rem;
-    color: var(--dark);
-    margin-bottom: 0.5rem;
-    font-weight: 400;
-  }
-  .outcome-card p {
-    font-size: 0.88rem;
-    color: rgba(0,0,0,0.6);
-    line-height: 1.6;
-  }
-
-  /* ── TESTIMONIAL ── */
-  .testimonial-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; align-items: stretch; margin-top: 3rem; }
-  .testimonial-card { padding: 2.5rem; border-radius: 4px; display: flex; flex-direction: column; justify-content: center; }
-  .testimonial-card--light { background: var(--white); }
-  .testimonial-card--yellow { background: var(--yellow); }
-  .testimonial-quote { font-family: var(--serif); font-size: 1rem; line-height: 1.8; color: var(--dark); margin: 0 0 1.2rem; font-weight: 400; }
-  .testimonial-quote--large { font-size: 1.5rem; line-height: 1.5; }
-  .testimonial-attr { font-size: 0.75rem; color: var(--mid); margin: 0; letter-spacing: 0.02em; }
-  .testimonial-attr--dark { color: #5a5a54; }
-
-  /* ── FIELD QUOTES — TIMELINE ── */
-  .field-quotes {
-    margin-top: 1.5rem;
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
-  }
-  .fq-track {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0;
-    min-width: 800px;
-  }
-  .fq-stop {
-    padding: 0 1.5rem 0 0;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-  .fq-stop:last-child { padding-right: 0; }
-  .fq-dot-row {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-  }
-  /* line grows from after label to right edge of column */
-  .fq-dot-row::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--yellow);
-    margin-left: 0.25rem;
-  }
-  .fq-stop:last-child .fq-dot-row::after { display: none; }
-  .fq-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: var(--yellow);
-    flex-shrink: 0;
-  }
-  .fq-moment {
-    font-size: 0.75rem;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: var(--dark);
-  }
-  .fq-quote {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1rem;
-    color: var(--mid);
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    border: none;
-  }
-
-  /* ── IA IMAGE ── */
-  .ia-img {
-    opacity: 0.75;
-    transition: opacity 0.3s ease;
-  }
-  .ia-img:hover { opacity: 1; }
-
-  /* ── BLOCKQUOTE ── */
-  blockquote {
-    border-left: 3px solid var(--yellow);
-    padding: 1rem 2rem;
-    margin: 2rem 0;
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.1rem;
-    color: var(--mid);
-    background: var(--white);
-  }
-
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .hero { grid-template-columns: 1fr; }
-    .hero-left { min-height: 60vh; padding: 4rem 2rem 3rem; }
-    .hero-right { padding: 3rem 2rem; }
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .two-col,
-    .research-grid,
-    .persona-card,
-    .strategy-layout,
-    .outcomes-grid,
-    .testimonial-grid { grid-template-columns: 1fr; }
-    .persona-visual { padding: 2rem; }
-    .pain-grid { grid-template-columns: 1fr; }
-    .fullwidth-img { margin: 2rem 0; }
-    .strategy-intro { position: static; }
-    .ba-fullwidth { grid-template-columns: 1fr; }
-    .ba-ratio-2-3 { grid-template-columns: 1fr; }
-    .before-img-wrap { width: 67%; }
-    .new-feature-grid { grid-template-columns: 1fr; }
-    .night-mode-grid { grid-template-columns: 1fr; }
-    .night-mode-img-col { width: 66%; margin: 0 auto; }
-    .nf-img-cell { height: auto; }
-    .nf-img-cell img { height: auto; object-fit: unset; }
-    .video-cell { height: auto; justify-content: center; }
-    .video-cell video { width: 66%; }
-    .ba-col { padding: 1.5rem; }
-  }
-</style>
+<link rel="stylesheet" href="../../assets/css/case-study.css">
+<link rel="stylesheet" href="driver-app.css">
 </head>
 <body>
 
@@ -569,32 +25,32 @@
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-left">
-    <div class="hero-tag">UX / UI · Mobile App</div>
-    <h1 class="hero-title">Driver App<br><em>Redesign</em></h1>
-    <div class="hero-meta">
-      <div class="meta-item">
-        <span class="meta-label">My Role</span>
-        <span class="meta-value">UX/UI Designer</span>
+<section class="cs-hero">
+  <div class="cs-hero__left">
+    <div class="cs-hero__tag">UX / UI · Mobile App</div>
+    <h1 class="cs-hero__title">Driver App<br><em>Redesign</em></h1>
+    <div class="cs-hero__meta">
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">My Role</span>
+        <span class="cs-meta-value">UX/UI Designer</span>
       </div>
-      <div class="meta-item">
-        <span class="meta-label">Platform</span>
-        <span class="meta-value">Android</span>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Platform</span>
+        <span class="cs-meta-value">Android</span>
       </div>
-      <div class="meta-item">
-        <span class="meta-label">Industry</span>
-        <span class="meta-value">Private Hire / Transport</span>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Industry</span>
+        <span class="cs-meta-value">Private Hire / Transport</span>
       </div>
-      <div class="meta-item">
-        <span class="meta-label">Duration</span>
-        <span class="meta-value">3 months</span>
+      <div class="cs-meta-item">
+        <span class="cs-meta-label">Duration</span>
+        <span class="cs-meta-value">3 months</span>
       </div>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-problem">
-      <div class="hero-problem-label">The challenge</div>
+  <div class="cs-hero__right">
+    <div class="cs-hero__problem">
+      <div class="cs-hero__problem-label">The challenge</div>
       <h2>How might we improve the Driver App so drivers are more successful at delivering good service as well as achieving their goals — creating a win-win for customers, drivers, and the business?</h2>
     </div>
   </div>
@@ -624,14 +80,12 @@
       <h2 class="section-title">Getting in the car to understand the job</h2>
     </div>
     <div class="divider"></div>
-
     <div class="reveal">
       <p class="body-text">I got in cabs with drivers, sat with call center agents, attended driver training, and read through App Store reviews to understand where the experience was breaking down.</p>
       <p class="body-text">Shadowing the operations and support teams was equally important — drivers don't exist in isolation, and understanding the full ecosystem was the only way to design something that worked for everyone in it.</p>
     </div>
-
-    <div class="fullwidth-img reveal" style="margin-top: 3rem;">
-      <img id="discovery-img" src="../../assets/images/driver_app/discovery.jpg" alt="Discovery research — field sessions and ride-alongs" style="width: 100%; border-radius: 4px; display: block;">
+    <div class="cs-fullwidth reveal" style="margin-top: 3rem;">
+      <img id="discovery-img" src="../../assets/images/driver_app/discovery.jpg" alt="Discovery research — field sessions and ride-alongs">
     </div>
   </div>
 </section>
@@ -644,53 +98,49 @@
       <h2 class="section-title">Designing for a driver on the move</h2>
     </div>
     <div class="divider"></div>
-    <div class="persona-card reveal" style="margin-top: 2rem;">
-      <div class="persona-visual">
-        <div>
-          <div class="persona-avatar">🚗</div>
+    <div class="cs-persona reveal">
+      <div class="cs-persona__visual">
+        <div class="cs-persona__avatar">🚗</div>
+        <div class="cs-persona__name">The Driver</div>
+        <div class="cs-persona__attr">
+          <div class="cs-persona__attr-label">Demographics</div>
+          <div class="cs-persona__attr-value">95% male, middle-aged</div>
         </div>
-        <div>
-          <div class="persona-name">The Driver</div>
+        <div class="cs-persona__attr">
+          <div class="cs-persona__attr-label">Tech comfort</div>
+          <div class="cs-persona__attr-value">Later adopter to smartphones</div>
         </div>
-        <div class="persona-attr">
-          <div class="persona-attr-label">Demographics</div>
-          <div class="persona-attr-value">95% male, middle-aged</div>
+        <div class="cs-persona__attr">
+          <div class="cs-persona__attr-label">Physical context</div>
+          <div class="cs-persona__attr-value">One hand, arm's length, phone on dash rack</div>
         </div>
-        <div class="persona-attr">
-          <div class="persona-attr-label">Tech comfort</div>
-          <div class="persona-attr-value">Later adopter to smartphones</div>
-        </div>
-        <div class="persona-attr">
-          <div class="persona-attr-label">Physical context</div>
-          <div class="persona-attr-value">One hand, arm's length, phone on dash rack</div>
-        </div>
-        <div class="persona-attr">
-          <div class="persona-attr-label">Experience</div>
-          <div class="persona-attr-value">3–5+ years with the company, familiar with the old system's quirks</div>
+        <div class="cs-persona__attr">
+          <div class="cs-persona__attr-label">Experience</div>
+          <div class="cs-persona__attr-value">3–5+ years with the company, familiar with the old system's quirks</div>
         </div>
       </div>
-      <div class="persona-details">
-        <div class="persona-section">
+      <div class="cs-persona__details">
+        <div class="cs-persona__section">
           <h4>Goals &amp; Motivations</h4>
-          <ul class="persona-list">
+          <ul class="cs-persona__list">
             <li>Maximise earnings — hit the weekly target</li>
             <li>Know where and when to position for jobs</li>
             <li>Avoid traffic and plan the day efficiently</li>
             <li>Understand their own performance and ratings</li>
           </ul>
         </div>
-        <div class="persona-section">
+        <div class="cs-persona__section">
           <h4>Frustrations &amp; Constraints</h4>
-          <ul class="persona-list">
+          <ul class="cs-persona__list">
             <li>Uses a second device just for navigation (doesn't trust the built-in map)</li>
             <li>Job List is the #1 priority but buried 2 taps deep</li>
             <li>Limited ways to contact passengers directly</li>
             <li>Poor feedback loop — never sees customer reviews</li>
           </ul>
         </div>
-        <div class="persona-section" style="grid-column: 1 / -1;">
+        <div class="cs-persona__section" style="grid-column: 1 / -1;">
           <h4>Mental Model &amp; Context</h4>
-          <ul class="persona-list" style="flex-direction: row; flex-wrap: wrap; gap: 0.5rem 2rem;">
+          <ul class="cs-persona__list" style="flex-direction: row; flex-wrap: wrap; gap: 0.5rem 2rem;">
             <li>Knows London postcodes well — a natural navigator</li>
             <li>Receives jobs auto-allocated by the system, not self-selecting</li>
             <li>Often communicates with support multiple times per shift</li>
@@ -702,7 +152,7 @@
 </section>
 
 <!-- CURRENT USER JOURNEY -->
-<section class="section" style="background: var(--white);">
+<section class="section cs-section--white">
   <div class="container">
     <div class="reveal">
       <div class="section-label">02 — Define</div>
@@ -713,39 +163,39 @@
       <p class="body-text">Mapping the journey across three actors — Passenger, Company, and Driver — made one thing clear: the problems weren't isolated. Every time a driver struggled, it created a ripple through the entire system.</p>
       <p class="body-text">Almost every step of the core on-job workflow carried a pain point. The redesign couldn't be a collection of individual fixes — it needed a strategy that addressed the underlying causes.</p>
     </div>
-    <div class="fullwidth-img reveal" style="margin-top: 2.5rem;">
-      <img src="../../assets/images/driver_app/user_journey.jpg" alt="User Journey Map — Passenger, Company, and Driver swimlanes with pain points" style="width: 100%; display: block; border-radius: 4px;">
+    <div class="cs-fullwidth reveal" style="margin-top: 2.5rem;">
+      <img src="../../assets/images/driver_app/user_journey.jpg" alt="User Journey Map — Passenger, Company, and Driver swimlanes with pain points">
     </div>
-    <div class="field-quotes reveal">
-      <div class="fq-track">
-        <div class="fq-stop">
-          <div class="fq-dot-row">
-            <div class="fq-dot"></div>
-            <div class="fq-moment">Log in</div>
+    <div class="cs-field-quotes reveal">
+      <div class="cs-fq-track">
+        <div class="cs-fq-stop">
+          <div class="cs-fq-dot-row">
+            <div class="cs-fq-dot"></div>
+            <div class="cs-fq-moment">Log in</div>
           </div>
-          <blockquote class="fq-quote">"I am not spending my morning tapping 7 times on my phone."</blockquote>
+          <blockquote class="cs-fq-quote">"I am not spending my morning tapping 7 times on my phone."</blockquote>
         </div>
-        <div class="fq-stop">
-          <div class="fq-dot-row">
-            <div class="fq-dot"></div>
-            <div class="fq-moment">Stand by</div>
+        <div class="cs-fq-stop">
+          <div class="cs-fq-dot-row">
+            <div class="cs-fq-dot"></div>
+            <div class="cs-fq-moment">Stand by</div>
           </div>
-          <blockquote class="fq-quote">"Heatmap is useless."</blockquote>
-          <blockquote class="fq-quote">"Postcode is more useful, you don't have to guess."</blockquote>
+          <blockquote class="cs-fq-quote">"Heatmap is useless."</blockquote>
+          <blockquote class="cs-fq-quote">"Postcode is more useful, you don't have to guess."</blockquote>
         </div>
-        <div class="fq-stop">
-          <div class="fq-dot-row">
-            <div class="fq-dot"></div>
-            <div class="fq-moment">When driving</div>
+        <div class="cs-fq-stop">
+          <div class="cs-fq-dot-row">
+            <div class="cs-fq-dot"></div>
+            <div class="cs-fq-moment">When driving</div>
           </div>
-          <blockquote class="fq-quote">"Some passenger would freak out because I didn't follow the route."</blockquote>
+          <blockquote class="cs-fq-quote">"Some passenger would freak out because I didn't follow the route."</blockquote>
         </div>
-        <div class="fq-stop">
-          <div class="fq-dot-row">
-            <div class="fq-dot"></div>
-            <div class="fq-moment">After drop-off</div>
+        <div class="cs-fq-stop">
+          <div class="cs-fq-dot-row">
+            <div class="cs-fq-dot"></div>
+            <div class="cs-fq-moment">After drop-off</div>
           </div>
-          <blockquote class="fq-quote">"I check this page after every job, and call the control if the pay is too low."</blockquote>
+          <blockquote class="cs-fq-quote">"I check this page after every job, and call the control if the pay is too low."</blockquote>
         </div>
       </div>
     </div>
@@ -753,55 +203,55 @@
 </section>
 
 <!-- PAIN POINTS -->
-<section class="pain-points-section">
+<section class="section cs-section--dark">
   <div class="container">
     <div class="reveal">
       <div class="section-label">Pain Points</div>
       <h2 class="section-title">Four problems undermining every shift</h2>
     </div>
-    <div class="pain-grid reveal" style="margin-top: 3rem;">
-      <div class="pain-card">
-        <div class="pain-number">01</div>
-        <div class="pain-title">Poor Information Architecture</div>
-        <p class="pain-desc">The landing page was a news feed that nobody read. The most important section — the Job List — required two taps to reach. Help and Job History were buried in a hamburger menu that mixed critical and trivial functions together.</p>
+    <div class="cs-pain-grid reveal" style="margin-top: 3rem;">
+      <div class="cs-pain-card">
+        <div class="cs-pain-number">01</div>
+        <div class="cs-pain-title">Poor Information Architecture</div>
+        <p class="cs-pain-desc">The landing page was a news feed that nobody read. The most important section — the Job List — required two taps to reach. Help and Job History were buried in a hamburger menu that mixed critical and trivial functions together.</p>
       </div>
-      <div class="pain-card">
-        <div class="pain-number">02</div>
-        <div class="pain-title">Confusing Visual Language</div>
-        <p class="pain-desc">Different UI patterns coexisted without coherence. Colours carried no consistent meaning. Red appeared for both errors and standard buttons. Drivers couldn't glance and act.</p>
+      <div class="cs-pain-card">
+        <div class="cs-pain-number">02</div>
+        <div class="cs-pain-title">Confusing Visual Language</div>
+        <p class="cs-pain-desc">Different UI patterns coexisted without coherence. Colours carried no consistent meaning. Red appeared for both errors and standard buttons. Drivers couldn't glance and act.</p>
       </div>
-      <div class="pain-card">
-        <div class="pain-number">03</div>
-        <div class="pain-title">Broken Navigation &amp; Mapping</div>
-        <p class="pain-desc">The built-in map was unreliable and drivers didn't trust it — so they carried a second phone purely for navigation.</p>
-        <div class="pain-quote">"The navigation is bad! I don't trust it."</div>
+      <div class="cs-pain-card">
+        <div class="cs-pain-number">03</div>
+        <div class="cs-pain-title">Broken Navigation &amp; Mapping</div>
+        <p class="cs-pain-desc">The built-in map was unreliable and drivers didn't trust it — so they carried a second phone purely for navigation.</p>
+        <div class="cs-pain-quote">"The navigation is bad! I don't trust it!"</div>
       </div>
-      <div class="pain-card">
-        <div class="pain-number">04</div>
-        <div class="pain-title">App Crashes &amp; Instability</div>
-        <p class="pain-desc">Frequent crashes during the most stressful moments — arriving at pickup, submitting amendments — destroyed driver trust and increased support call volume. Instability was both a technical and experience problem.</p>
+      <div class="cs-pain-card">
+        <div class="cs-pain-number">04</div>
+        <div class="cs-pain-title">App Crashes &amp; Instability</div>
+        <p class="cs-pain-desc">Frequent crashes during the most stressful moments — arriving at pickup, submitting amendments — destroyed driver trust and increased support call volume. Instability was both a technical and experience problem.</p>
       </div>
     </div>
     <div class="reveal" style="margin-top: 2.5rem;">
-      <img src="../../assets/images/driver_app/IA.png" alt="Information Architecture — current app IA with starred driver priorities" class="ia-img" style="display: block; width: 100%; height: auto; border-radius: 4px;">
+      <img src="../../assets/images/driver_app/IA.png" alt="Information Architecture — current app IA with starred driver priorities" class="cs-faded-img">
     </div>
   </div>
 </section>
 
 <!-- COMPETITOR ANALYSIS -->
-<section class="section" style="background: var(--white); padding-top: 5rem; padding-bottom: 5rem;">
+<section class="section cs-section--white" style="padding-top: 5rem; padding-bottom: 5rem;">
   <div class="container">
     <div class="reveal">
       <div class="section-label">Competitor Analysis</div>
       <h2 class="section-title">What other driver apps were already doing right</h2>
     </div>
     <div class="divider"></div>
-    <div class="research-grid reveal">
+    <div class="cs-research-grid reveal">
       <div>
         <p class="body-text">I benchmarked leading ride-hailing driver apps across three areas: exploring jobs, the pickup experience, and earnings. Both had solved glanceability far more effectively than our app — letting drivers act without reading.</p>
       </div>
-      <div class="reveal reveal-delay-1" style="height: 300px; overflow: hidden; border-radius: 4px;">
-        <img src="../../assets/images/driver_app/competitor.jpg" alt="Competitor Analysis — ride-hailing driver app screens" style="width: 100%; height: 100%; object-fit: cover; object-position: left; display: block;">
+      <div class="driver-competitor-img reveal reveal-delay-1">
+        <img src="../../assets/images/driver_app/competitor.jpg" alt="Competitor Analysis — ride-hailing driver app screens">
       </div>
     </div>
   </div>
@@ -810,30 +260,30 @@
 <!-- DESIGN STRATEGY -->
 <section class="section">
   <div class="container">
-    <div class="strategy-layout">
-      <div class="strategy-intro reveal">
+    <div class="cs-strategy">
+      <div class="cs-strategy__intro reveal">
         <div class="section-label">03 — Strategy</div>
         <h2 class="section-title">Three principles to guide every decision</h2>
         <div class="divider"></div>
       </div>
-      <div class="strategy-cards">
-        <div class="strategy-card reveal">
-          <div class="strategy-icon">🗂</div>
+      <div class="cs-strategy__cards">
+        <div class="cs-strategy__card reveal">
+          <div class="cs-strategy__icon">🗂</div>
           <div>
             <h3>Restructure the information architecture</h3>
             <p class="body-text">Make the most important information immediately accessible within 3 taps. Navigation should reflect what drivers actually care about: jobs, earnings, and communication.</p>
           </div>
         </div>
-        <div class="strategy-card reveal reveal-delay-1">
-          <div class="strategy-icon">👁</div>
+        <div class="cs-strategy__card reveal reveal-delay-1">
+          <div class="cs-strategy__icon">👁</div>
           <div>
             <h3>Design for glanceability &amp; tappability</h3>
             <p class="body-text">The interface should work for drivers. Every element is recognisable at a glance, readable in a second, tappable with one thumb.</p>
             <p class="body-text">Standard patterns reduce cognitive load; consistency builds trust.</p>
           </div>
         </div>
-        <div class="strategy-card reveal reveal-delay-2">
-          <div class="strategy-icon">🤝</div>
+        <div class="cs-strategy__card reveal reveal-delay-2">
+          <div class="cs-strategy__icon">🤝</div>
           <div>
             <h3>Make communication transparent</h3>
             <p class="body-text">Help drivers achieve their goals — more jobs, better pay, stronger ratings — by surfacing the data the system already holds. Drivers shouldn't have to guess what the company already knows.</p>
@@ -845,7 +295,7 @@
 </section>
 
 <!-- DESIGN SECTION -->
-<section style="background: var(--white);">
+<section class="cs-section--white">
 
   <!-- INTRO HEADER -->
   <div style="padding: 7rem 0 0;">
@@ -857,137 +307,126 @@
     </div>
   </div>
 
-  <!-- IA: GALLERY STYLE -->
-  <div class="design-principle reveal">
+  <!-- PRINCIPLE: IA -->
+  <div class="cs-principle reveal">
     <div class="container">
-      <div class="principle-header">
-        <div>
-          <div class="solution-tag">Redefine information hierarchy</div>
-          <h3 class="principle-title">Restructure around the driver's real priorities</h3>
-          <ul class="body-text" style="padding-left: 1.2em; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
-            <li>Jobs, earnings, and communication promoted to the main navigation</li>
-            <li>Unified colour scheme and components across every screen, so the app feels coherent and trustworthy</li>
-          </ul>
-        </div>
+      <div class="cs-principle__header">
+        <div class="cs-tag">Redefine information hierarchy</div>
+        <h3 class="cs-principle-title">Restructure around the driver's real priorities</h3>
+        <ul class="body-text" style="padding-left: 1.2em; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+          <li>Jobs, earnings, and communication promoted to the main navigation</li>
+          <li>Unified colour scheme and components across every screen, so the app feels coherent and trustworthy</li>
+        </ul>
       </div>
-      <div style="display: grid; grid-template-columns: 1fr 2fr; margin-top: 2rem; align-items: start;">
-        <div><img src="../../assets/images/driver_app/newNav.png" alt="New IA — bottom tab nav overview" style="width: 100%; display: block;"></div>
-        <div style="position: relative; align-self: stretch; overflow: hidden;"><img src="../../assets/images/driver_app/IAoverview.jpg" alt="IA overview" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top;"></div>
+      <div class="driver-ia-grid">
+        <div><img src="../../assets/images/driver_app/newNav.png" alt="New IA — bottom tab nav overview"></div>
+        <div class="driver-ia-grid__overview"><img src="../../assets/images/driver_app/IAoverview.jpg" alt="IA overview"></div>
       </div>
     </div>
   </div>
 
   <!-- PRINCIPLE: DATA -->
-  <div class="design-principle reveal">
+  <div class="cs-principle reveal">
     <div class="container">
-      <div class="principle-header">
-        <div>
-          <div class="solution-tag">Make communication transparent</div>
-          <h3 class="principle-title">Give drivers the intelligence to make better decisions</h3>
-          <ul class="body-text" style="padding-left: 1.2em; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
-            <li>Show job demand, weather, and traffic so drivers can position themselves where and when it matters most</li>
-            <li>All data already lives in the system — the redesign puts it in front of the driver, removing the guesswork</li>
-          </ul>
-        </div>
+      <div class="cs-principle__header">
+        <div class="cs-tag">Make communication transparent</div>
+        <h3 class="cs-principle-title">Give drivers the intelligence to make better decisions</h3>
+        <ul class="body-text" style="padding-left: 1.2em; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+          <li>Show job demand, weather, and traffic so drivers can position themselves where and when it matters most</li>
+          <li>All data already lives in the system — the redesign puts it in front of the driver, removing the guesswork</li>
+        </ul>
       </div>
     </div>
-    <div class="ba-fullwidth">
-      <div class="ba-col"><div class="ba-label-top">Before</div><img src="../../assets/images/driver_app/oldHome.jpg" alt="Old home screen" style="width: 100%; display: block;"></div>
-      <div class="ba-col"><div class="ba-label-top">After</div><img src="../../assets/images/driver_app/newHome.jpg" alt="New home screen" style="width: 100%; display: block;"></div>
+    <div class="cs-ba">
+      <div class="cs-ba__col"><div class="cs-ba__label">Before</div><img src="../../assets/images/driver_app/oldHome.jpg" alt="Old home screen"></div>
+      <div class="cs-ba__col"><div class="cs-ba__label">After</div><img src="../../assets/images/driver_app/newHome.jpg" alt="New home screen"></div>
     </div>
   </div>
 
   <!-- PRINCIPLE: TAPPABILITY -->
-  <div class="design-principle reveal">
+  <div class="cs-principle reveal">
     <div class="container">
-      <div class="principle-header">
-        <div>
-          <div class="solution-tag">Improve usability</div>
-          <h3 class="principle-title">Big, round, glanceable, tappable — designed for drivers' eyes and hands</h3>
-          <ul class="body-text" style="padding-left: 1.2em; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
-            <li>Large circular icon buttons — recognisable at a glance, tappable with one thumb</li>
-            <li>Every task completable within 3 taps, reducing cognitive load while driving</li>
-          </ul>
-        </div>
+      <div class="cs-principle__header">
+        <div class="cs-tag">Improve usability</div>
+        <h3 class="cs-principle-title">Big, round, glanceable, tappable — designed for drivers' eyes and hands</h3>
+        <ul class="body-text" style="padding-left: 1.2em; margin: 0; display: flex; flex-direction: column; gap: 0.5rem;">
+          <li>Large circular icon buttons — recognisable at a glance, tappable with one thumb</li>
+          <li>Every task completable within 3 taps, reducing cognitive load while driving</li>
+        </ul>
       </div>
     </div>
-    <div class="ba-fullwidth ba-ratio-2-3">
-      <div class="ba-col"><div class="ba-label-top">Before</div><div class="before-img-wrap"><img src="../../assets/images/driver_app/oldList.jpg" alt="Before — flat list buttons" style="width: 100%; display: block;"></div></div>
-      <div class="ba-col"><div class="ba-label-top">After</div><img src="../../assets/images/driver_app/newList.jpg" alt="After — circular icon buttons" style="width: 100%; display: block;"></div>
+    <div class="cs-ba cs-ba--2-3">
+      <div class="cs-ba__col"><div class="cs-ba__label">Before</div><div class="cs-ba__before-wrap"><img src="../../assets/images/driver_app/oldList.jpg" alt="Before — flat list buttons"></div></div>
+      <div class="cs-ba__col"><div class="cs-ba__label">After</div><img src="../../assets/images/driver_app/newList.jpg" alt="After — circular icon buttons"></div>
     </div>
   </div>
 
   <!-- PRINCIPLE: NEW FEATURE -->
-  <div class="design-principle reveal">
+  <div class="cs-principle reveal">
     <div class="container">
-      <div class="principle-header">
-        <div>
-          <div class="solution-tag">New feature</div>
-          <h3 class="principle-title">Personal touch — better engagement</h3>
-          <blockquote class="fq-quote" style="margin-top: 1.5rem;">"I would love to see my reviews from customers, either good or bad, so I can improve my job."</blockquote>
-        </div>
+      <div class="cs-principle__header">
+        <div class="cs-tag">New feature</div>
+        <h3 class="cs-principle-title">Personal touch — better engagement</h3>
+        <blockquote class="cs-fq-quote" style="margin-top: 1.5rem;">"I would love to see my reviews from customers, either good or bad, so I can improve my job."</blockquote>
       </div>
     </div>
     <div class="container" style="margin-top: 2rem;">
-      <div class="new-feature-grid">
-        <div class="nf-img-cell"><img src="../../assets/images/driver_app/newFeature.jpg" alt="New feature" style="display: block;"></div>
-        <div class="video-cell"><video src="../../assets/images/driver_app/tips.mp4" controls autoplay loop muted playsinline style="display: block;"></video></div>
+      <div class="cs-media-grid">
+        <div class="cs-media-grid__main"><img src="../../assets/images/driver_app/newFeature.jpg" alt="New feature — driver ratings and engagement screens"></div>
+        <div class="cs-media-grid__aside"><video src="../../assets/images/driver_app/tips.mp4" controls autoplay loop muted playsinline></video></div>
       </div>
     </div>
   </div>
 
-  <!-- NIGHT MODE: DARK BACKGROUND -->
+  <!-- NIGHT MODE -->
   <div id="night-mode-section" style="padding: 5rem 0 0;">
     <div class="container reveal">
-      <div class="night-mode-grid">
+      <div class="cs-night-grid">
         <div>
-          <div class="solution-tag">Night mode</div>
-          <h3 class="principle-title" style="color: var(--white); margin-top: 0.5rem;">A dark theme designed for safety<br>Not just for aesthetic</h3>
-          <p class="body-text" style="color: #a8a8a4; margin-top: 1rem;">Many drivers work nights. Bright white screens cause eye strain and reduce night vision — and drivers expressed a clear preference for a darker interface even during the day.</p>
+          <div class="cs-tag">Night mode</div>
+          <h3 class="cs-principle-title cs-text-white" style="margin-top: 0.5rem;">A dark theme designed for safety<br>Not just for aesthetic</h3>
+          <p class="body-text cs-text-on-dark" style="margin-top: 1rem;">Many drivers work nights. Bright white screens cause eye strain and reduce night vision — and drivers expressed a clear preference for a darker interface even during the day.</p>
         </div>
-        <div class="night-mode-img-col" style="position: relative;">
-          <img id="day-mode-img" src="../../assets/images/driver_app/dayMode.jpg" alt="Day mode" style="width: 100%; display: block;">
-          <img id="night-mode-img" src="../../assets/images/driver_app/nightMode.jpg" alt="Night mode" style="width: 100%; display: block; position: absolute; top: 0; left: 0; opacity: 0;">
+        <div class="cs-night-img-col" style="position: relative;">
+          <img id="day-mode-img" src="../../assets/images/driver_app/dayMode.jpg" alt="Day mode">
+          <img id="night-mode-img" src="../../assets/images/driver_app/nightMode.jpg" alt="Night mode" style="position: absolute; top: 0; left: 0; opacity: 0;">
         </div>
       </div>
     </div>
     <div style="padding: 5rem 0;">
       <div class="container reveal">
-        <p class="body-text" style="color: #a8a8a4;">Effective dark mode: <strong style="color: var(--white); font-weight: 500;">low saturation, reduced contrast, and typography that holds legibility in low light.</strong></p>
-        <img src="../../assets/images/driver_app/nightModeResearch.jpg" alt="Night mode research" style="width: 100%; display: block; margin-top: 2rem;">
+        <p class="body-text cs-text-on-dark">Effective dark mode: <strong class="cs-strong-white">low saturation, reduced contrast, and typography that holds legibility in low light.</strong></p>
+        <img src="../../assets/images/driver_app/nightModeResearch.jpg" alt="Night mode research" style="margin-top: 2rem;">
       </div>
     </div>
     <div class="container reveal">
-      <p class="body-text" style="color: #a8a8a4;">Two dark mode palettes explored — a warm neutral grey and a cool navy blue.</p>
+      <p class="body-text cs-text-on-dark">Two dark mode palettes explored — a warm neutral grey and a cool navy blue.</p>
     </div>
-    <div class="ba-fullwidth reveal" style="margin-top: 3rem;">
-      <div class="ba-col" style="background: #212119;"><div class="ba-label-top" style="color: #a8a8a4;">Neutral Grey</div><img src="../../assets/images/driver_app/greyNight.png" alt="Neutral grey night mode" style="width: 100%; display: block;"></div>
-      <div class="ba-col" style="background: #212119;"><div class="ba-label-top" style="color: #a8a8a4;">Cool Blue</div><img src="../../assets/images/driver_app/blueNight.png" alt="Cool blue night mode" style="width: 100%; display: block;"></div>
+    <div class="cs-ba cs-ba--dark reveal" style="margin-top: 3rem;">
+      <div class="cs-ba__col"><div class="cs-ba__label">Neutral Grey</div><img src="../../assets/images/driver_app/greyNight.png" alt="Neutral grey night mode"></div>
+      <div class="cs-ba__col"><div class="cs-ba__label">Cool Blue</div><img src="../../assets/images/driver_app/blueNight.png" alt="Cool blue night mode"></div>
     </div>
   </div>
-
-  
 
 </section>
 
 <!-- 05 — TEST -->
 <section class="section test-parallax-section" style="position: relative; overflow: hidden; background: var(--dark);">
-  <img class="test-parallax-bg" src="../../assets/images/driver_app/testSetup.jpg" alt="" aria-hidden="true" style="position: absolute; top: -150px; left: 0; width: 100%; height: calc(100% + 300px); object-fit: cover; will-change: transform; pointer-events: none; display: block;">
+  <img class="test-parallax-bg" src="../../assets/images/driver_app/testSetup.jpg" alt="" aria-hidden="true">
   <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.3); z-index: 1;"></div>
   <div class="container" style="position: relative; z-index: 2;">
-    <div class="two-col reveal" style="align-items: start;">
+    <div class="cs-two-col reveal" style="align-items: start;">
       <div>
-        <div class="section-label" style="color: #a8a8a4;">05 — Test</div>
-        <h2 class="section-title" style="color: var(--white);">Testing with real drivers</h2>
-        <div class="divider" style="border-color: rgba(255,255,255,0.1);"></div>
-        <p class="body-text" style="color: #a8a8a4;">To test which palette felt more natural at night, I brought drivers into a corner office and covered the windows to replicate evening street light conditions.</p>
-        <p class="body-text" style="margin-top: 1rem; color: #a8a8a4;">I expected the neutral grey to win — softer, easier on the eyes. <strong style="color: var(--white); font-weight: 500;">Surprisingly, every driver chose the cool blue. They said the tone matched how they actually see at night.</strong></p>
+        <div class="section-label cs-text-on-dark">05 — Test</div>
+        <h2 class="section-title cs-text-white">Testing with real drivers</h2>
+        <div class="divider" style="opacity: 0.15;"></div>
+        <p class="body-text cs-text-on-dark">To test which palette felt more natural at night, I brought drivers into a corner office and covered the windows to replicate evening street light conditions.</p>
+        <p class="body-text cs-text-on-dark" style="margin-top: 1rem;">I expected the neutral grey to win — softer, easier on the eyes. <strong class="cs-strong-white">Surprisingly, every driver chose the cool blue. They said the tone matched how they actually see at night.</strong></p>
       </div>
-      <img src="../../assets/images/driver_app/testingPhones.png" alt="Usability testing — Samsung device, prototype, evening session" style="width: 100%; display: block;">
+      <img src="../../assets/images/driver_app/testingPhones.png" alt="Usability testing — Samsung device, prototype, evening session">
     </div>
   </div>
 </section>
-
 
 <!-- TESTIMONIAL -->
 <section class="section">
@@ -997,14 +436,14 @@
       <h2 class="section-title">In their words</h2>
     </div>
     <div class="divider"></div>
-    <div class="testimonial-grid reveal">
-      <div class="testimonial-card testimonial-card--light">
-        <p class="testimonial-quote">"Chia will deep dive into the user experience and drill down any pain points. She spent hours with our drivers and couriers (even on a motorbike) to make sure she understood their day to day. She always puts user experience first and is not afraid to take risks. Her ideas for new features really blew some of the team's minds, and the elegance in which they were delivered was astounding."</p>
-        <p class="testimonial-attr">— Product Manager, Driver App Project</p>
+    <div class="cs-testimonial-grid reveal">
+      <div class="cs-testimonial cs-testimonial--light">
+        <p class="cs-testimonial__quote">"Chia will deep dive into the user experience and drill down any pain points. She spent hours with our drivers and couriers (even on a motorbike) to make sure she understood their day to day. She always puts user experience first and is not afraid to take risks. Her ideas for new features really blew some of the team's minds, and the elegance in which they were delivered was astounding."</p>
+        <p class="cs-testimonial__attr">— Product Manager, Driver App Project</p>
       </div>
-      <div class="testimonial-card testimonial-card--yellow">
-        <p class="testimonial-quote testimonial-quote--large">"When can I get it?"</p>
-        <p class="testimonial-attr testimonial-attr--dark">— Drivers, every time we met</p>
+      <div class="cs-testimonial cs-testimonial--yellow">
+        <p class="cs-testimonial__quote cs-testimonial__quote--large">"When can I get it?"</p>
+        <p class="cs-testimonial__attr">— Drivers, every time we met</p>
       </div>
     </div>
   </div>
@@ -1033,7 +472,7 @@
 <script src="../../assets/js/main.js"></script>
 <script>
   // Discovery section: bottom 30% of image height fades to var(--light)
-  const discoveryImg   = document.getElementById('discovery-img');
+  const discoveryImg     = document.getElementById('discovery-img');
   const discoverySection = document.getElementById('discovery-section');
 
   function setDiscoveryGradient() {
@@ -1044,45 +483,39 @@
       `linear-gradient(to bottom, #ffffff ${breakPct}%, var(--light) ${breakPct}%)`;
   }
 
-  if (discoveryImg.complete) {
-    setDiscoveryGradient();
-  } else {
-    discoveryImg.addEventListener('load', setDiscoveryGradient);
-  }
-
+  if (discoveryImg.complete) { setDiscoveryGradient(); }
+  else { discoveryImg.addEventListener('load', setDiscoveryGradient); }
   window.addEventListener('resize', setDiscoveryGradient, { passive: true });
 
-  // Night mode section: background fades from white to dark as section scrolls into view
+  // Night mode: background fades from white → dark as section scrolls in
   const nightSection = document.getElementById('night-mode-section');
-  const dayModeImg = document.getElementById('day-mode-img');
+  const dayModeImg   = document.getElementById('day-mode-img');
   const nightModeImg = document.getElementById('night-mode-img');
 
   function updateNightMode() {
     const rect = nightSection.getBoundingClientRect();
-    const vh = window.innerHeight;
-    // 0 = section bottom just entering viewport, 1 = section top at screen top
+    const vh   = window.innerHeight;
     const progress = Math.max(0, Math.min(1, 1 - (rect.top / vh)));
-    // Interpolate: white (255,255,255) → dark (26,26,24)
     const r = Math.round(255 - 229 * progress);
     const g = Math.round(255 - 229 * progress);
     const b = Math.round(255 - 231 * progress);
     nightSection.style.background = `rgb(${r},${g},${b})`;
-    // Cross-fade images — delayed until background is halfway dark
+    // Cross-fade delayed until background is halfway dark
     const fadeProgress = Math.max(0, Math.min(1, (progress - 0.5) / 0.5));
-    dayModeImg.style.opacity = 1 - fadeProgress;
+    dayModeImg.style.opacity  = 1 - fadeProgress;
     nightModeImg.style.opacity = fadeProgress;
   }
 
   window.addEventListener('scroll', updateNightMode, { passive: true });
   updateNightMode();
 
-  // ── TEST SECTION PARALLAX ──
+  // Test section parallax
   const testSection = document.querySelector('.test-parallax-section');
-  const testBg = document.querySelector('.test-parallax-bg');
+  const testBg      = document.querySelector('.test-parallax-bg');
 
   function updateTestParallax() {
     if (!testSection || !testBg) return;
-    const rect = testSection.getBoundingClientRect();
+    const rect   = testSection.getBoundingClientRect();
     const offset = -rect.top * 0.4;
     testBg.style.transform = `translateY(${offset}px)`;
   }
