@@ -391,6 +391,9 @@
   /* ── NIGHT MODE GRID ── */
   .night-mode-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; align-items: start; }
 
+  /* ── CONSISTENT BORDER RADIUS ── */
+  img, video { border-radius: 4px; }
+
   /* ── TWO-COL ── */
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; margin-top: 3rem; }
 
@@ -435,31 +438,15 @@
     line-height: 1.6;
   }
 
-  /* ── REFLECTION ── */
-  .reflection-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 5rem;
-    margin-top: 3rem;
-  }
-  .reflection-card {
-    padding: 2.5rem;
-    border: 1px solid rgba(0,0,0,0.08);
-    background: var(--white);
-  }
-  .reflection-card h4 {
-    font-family: var(--serif);
-    font-size: 1rem;
-    color: var(--dark);
-    margin-bottom: 1rem;
-    font-weight: 400;
-  }
-  .reflection-card p {
-    font-size: 0.9rem;
-    color: var(--mid);
-    line-height: 1.7;
-    font-weight: 300;
-  }
+  /* ── TESTIMONIAL ── */
+  .testimonial-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1rem; align-items: stretch; margin-top: 3rem; }
+  .testimonial-card { padding: 2.5rem; border-radius: 4px; display: flex; flex-direction: column; justify-content: center; }
+  .testimonial-card--light { background: var(--white); }
+  .testimonial-card--yellow { background: var(--yellow); }
+  .testimonial-quote { font-family: var(--serif); font-size: 1rem; line-height: 1.8; color: var(--dark); margin: 0 0 1.2rem; font-weight: 400; }
+  .testimonial-quote--large { font-size: 1.5rem; line-height: 1.5; }
+  .testimonial-attr { font-size: 0.75rem; color: var(--mid); margin: 0; letter-spacing: 0.02em; }
+  .testimonial-attr--dark { color: #5a5a54; }
 
   /* ── FIELD QUOTES — TIMELINE ── */
   .field-quotes {
@@ -550,7 +537,7 @@
     .persona-card,
     .strategy-layout,
     .outcomes-grid,
-    .reflection-layout { grid-template-columns: 1fr; }
+    .testimonial-grid { grid-template-columns: 1fr; }
     .persona-visual { padding: 2rem; }
     .pain-grid { grid-template-columns: 1fr; }
     .fullwidth-img { margin: 2rem 0; }
@@ -994,71 +981,51 @@
         <h2 class="section-title" style="color: var(--white);">Testing with real drivers</h2>
         <div class="divider" style="border-color: rgba(255,255,255,0.1);"></div>
         <p class="body-text" style="color: #a8a8a4;">To test which palette felt more natural at night, I brought drivers into a corner office and covered the windows to replicate evening street light conditions.</p>
-        <p class="body-text" style="margin-top: 1rem; color: #a8a8a4;">I expected the neutral grey to win — softer, easier on the eyes. Surprisingly, every driver chose the cool blue. They said the tone matched how they actually see at night.</p>
+        <p class="body-text" style="margin-top: 1rem; color: #a8a8a4;">I expected the neutral grey to win — softer, easier on the eyes. <strong style="color: var(--white); font-weight: 500;">Surprisingly, every driver chose the cool blue. They said the tone matched how they actually see at night.</strong></p>
       </div>
       <img src="../../assets/images/driver_app/testingPhones.png" alt="Usability testing — Samsung device, prototype, evening session" style="width: 100%; display: block;">
     </div>
   </div>
 </section>
 
-<!-- OUTCOMES -->
-<section class="outcomes-section">
+
+<!-- TESTIMONIAL -->
+<section class="section">
   <div class="container">
     <div class="reveal">
-      <div class="section-label">Outcomes</div>
-      <h2 class="section-title">What the redesign delivered</h2>
+      <div class="section-label">Testimonial</div>
+      <h2 class="section-title">In their words</h2>
     </div>
     <div class="divider"></div>
-    <div class="outcomes-grid">
-      <div class="outcome-card reveal">
-        <h4>Reduced support call volume</h4>
-        <p>Clearer on-job flows, pre-populated forms, and inline confirmations eliminated many of the routine support calls that burdened the operations team daily.</p>
+    <div class="testimonial-grid reveal">
+      <div class="testimonial-card testimonial-card--light">
+        <p class="testimonial-quote">"Chia will deep dive into the user experience and drill down any pain points. She spent hours with our drivers and couriers (even on a motorbike) to make sure she understood their day to day. She always puts user experience first and is not afraid to take risks. Her ideas for new features really blew some of the team's minds, and the elegance in which they were delivered was astounding."</p>
+        <p class="testimonial-attr">— Product Manager, Driver App Project</p>
       </div>
-      <div class="outcome-card reveal reveal-delay-1">
-        <h4>Improved driver confidence</h4>
-        <p>Drivers reported feeling more in control of their shift — knowing demand levels, understanding their earnings, and trusting the navigation enough to stop carrying a second device.</p>
-      </div>
-      <div class="outcome-card reveal reveal-delay-2">
-        <h4>A foundation for ongoing iteration</h4>
-        <p>The redesign established a component library and design system that the team could build on — reducing future design and development overhead significantly.</p>
+      <div class="testimonial-card testimonial-card--yellow">
+        <p class="testimonial-quote testimonial-quote--large">"When can I get it?"</p>
+        <p class="testimonial-attr testimonial-attr--dark">— Drivers, every time we met</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- REFLECTION -->
-<section class="section">
-  <div class="container">
-    <div class="reveal">
-      <div class="section-label">Reflection</div>
-      <h2 class="section-title">What I learned</h2>
-    </div>
-    <div class="divider"></div>
-    <div class="reflection-layout">
-      <div class="reflection-card reveal">
-        <h4>The environment is the brief</h4>
-        <p>Designing for a driver on the road is fundamentally different from designing for someone at a desk. The constraint of one-handed use at arm's reach, under time pressure, changed almost every decision — from tap target size to information density to colour contrast. Getting in the car wasn't optional; it was essential.</p>
-      </div>
-      <div class="reflection-card reveal reveal-delay-1">
-        <h4>Emotion is functional, not decorative</h4>
-        <p>The tip notification and ratings features were initially deprioritised as "nice to haves." Research showed they were essential to driver motivation and retention. Emotional design isn't polish applied at the end — it's a core functional requirement that needs to be researched and designed with the same rigour as any other feature.</p>
-      </div>
-      <div class="reflection-card reveal reveal-delay-1">
-        <h4>System thinking prevents local optimisation</h4>
-        <p>Every design decision made for drivers had downstream effects on call center agents, support staff, and operations. The stakeholder map wasn't just a research deliverable — it was a constant reference point for evaluating trade-offs throughout the project.</p>
-      </div>
-      <div class="reflection-card reveal reveal-delay-2">
-        <h4>Trust is earned incrementally</h4>
-        <p>Drivers had been burned by the old app. Rebuilding trust required consistency — consistent patterns, consistent naming, consistent behaviour under load. A visually beautiful app that crashes is worse than an ugly one that works. Technical reliability and UX quality are not separable concerns.</p>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- PROJECT NAV -->
+<div class="project-nav">
+  <a href="" class="project-nav__item project-nav__item--prev">
+    <span class="project-nav__label">← Previous project</span>
+    <span class="project-nav__title">Project name</span>
+  </a>
+  <a href="" class="project-nav__item project-nav__item--next">
+    <span class="project-nav__label">Next project →</span>
+    <span class="project-nav__title">Project name</span>
+  </a>
+</div>
 
 <!-- FOOTER -->
 <footer>
   <div class="container">
-    <p>Designed by <a href="../../about.html">Yun-Chia Lin</a> &nbsp;·&nbsp; UX/UI Designer &nbsp;·&nbsp; London</p>
+    <p>Designed by <a href="../../about.html">Chia</a> &nbsp;·&nbsp; Product Designer &nbsp;·&nbsp; London</p>
     <p style="margin-top: 0.5rem; font-size: 0.7rem; opacity: 0.5;">Client name withheld under NDA. All work is original.</p>
   </div>
 </footer>
