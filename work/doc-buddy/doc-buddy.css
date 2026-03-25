@@ -1,0 +1,378 @@
+/* ─────────────────────────────────────────────
+   DOC BUDDY — Project-Specific Styles
+   Import AFTER style.css and case-study.css
+   ───────────────────────────────────────────── */
+
+/* ── IBM DESIGN TOKENS ── */
+:root {
+  --accent:        #0043ce; /* IBM Blue 70 — AAA on white (7.8:1) */
+  --accent-hover:  #002d9c; /* IBM Blue 80 */
+  --accent-light:  #d0e2ff; /* IBM Blue 10 */
+  --accent-mid:    #78a9ff; /* IBM Blue 30 — for elements on dark bg */
+  --dark:          #161616; /* IBM Black */
+  --dark-surface:  #262626; /* IBM Grey 90 */
+  --dark-surface-hover: #393939; /* IBM Grey 80 */
+  --text-on-dark:  #c6c6c6; /* IBM Cool Grey 30 */
+  --mid:           #525252; /* IBM Cool Grey 70 */
+  --light:         #f4f4f4; /* IBM Cool Grey 10 */
+  --font-sans:     'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono:     'IBM Plex Mono', 'Courier New', monospace;
+  --radius:        2px;
+}
+
+/* ── BODY / FONT OVERRIDE ── */
+body {
+  font-family: var(--font-sans);
+}
+
+/* ── TYPOGRAPHY OVERRIDES ── */
+h1, h2, h3, h4 {
+  font-family: var(--font-sans);
+  line-height: 1.15;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+h1 { font-size: clamp(2.4rem, 6vw, 4.5rem); }
+h2 { font-size: clamp(1.8rem, 4vw, 3rem); }
+h3 { font-size: clamp(1.3rem, 2.5vw, 1.9rem); font-weight: 400; }
+h4 { font-size: 1.05rem; font-weight: 600; letter-spacing: 0; }
+em { font-style: normal; font-weight: 600; color: var(--accent-mid); }
+
+/* ── UTILITY OVERRIDES ── */
+.body-text { color: var(--mid); }
+.body-text--wide { max-width: 80ch; }
+.body-text strong { color: var(--dark); font-weight: 600; }
+
+.section { padding: 5rem 0; }
+
+.section-label {
+  font-family: var(--font-mono);
+  color: var(--accent);
+  opacity: 1;
+}
+
+.section-title {
+  font-family: var(--font-sans);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--dark);
+  margin-bottom: 1.5rem;
+  max-width: none;
+}
+
+.divider {
+  background: var(--accent);
+  height: 3px;
+}
+
+/* ── TAG OVERRIDE ── */
+.cs-tag {
+  font-family: var(--font-mono);
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: var(--radius);
+}
+
+/* ── IMG / PLACEHOLDER OVERRIDES ── */
+img, video { border-radius: var(--radius); }
+
+.img-placeholder {
+  background: var(--dark-surface);
+  border: 1px dashed var(--dark-surface-hover);
+  color: var(--text-on-dark);
+  font-family: var(--font-mono);
+  border-radius: var(--radius);
+}
+.img-placeholder::before { display: none; }
+
+
+/* ══════════════════════════════════════════════
+   SECTION VARIANTS
+   ══════════════════════════════════════════════ */
+
+.cs-section--dark { background: var(--dark); }
+.cs-section--dark .section-label { color: var(--accent-mid); opacity: 1; }
+.cs-section--dark .section-title { color: var(--white); }
+.cs-section--dark .body-text     { color: var(--text-on-dark); }
+.cs-section--dark .divider       { background: var(--accent-mid); }
+.cs-section--dark-2 { background: var(--dark-surface); }
+.cs-section--white  { background: var(--white); }
+.cs-section--accent { background: var(--accent); }
+
+
+/* ══════════════════════════════════════════════
+   HERO OVERRIDES
+   ══════════════════════════════════════════════ */
+
+.cs-hero { min-height: 90vh; padding-top: 64px; }
+
+.cs-hero__left {
+  background: var(--dark);
+  padding: 5rem 4rem;
+  justify-content: flex-end;
+  gap: 2rem;
+}
+.cs-hero__tag {
+  font-family: var(--font-mono);
+  color: var(--accent-mid);
+  margin-bottom: 0.5rem;
+}
+.cs-hero__title { color: var(--white); font-family: var(--font-sans); font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 300; letter-spacing: -0.02em; }
+.cs-hero__title em { color: var(--accent-mid); }
+
+.cs-meta-label { font-family: var(--font-mono); color: var(--text-on-dark); }
+.cs-meta-value { color: var(--white); font-weight: 400; }
+
+.cs-hero__right {
+  background: var(--accent);
+  padding: 5rem 4rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+.cs-hero__problem-label {
+  font-family: var(--font-mono);
+  color: var(--accent-light);
+}
+.cs-hero__problem h2 { color: var(--white); font-weight: 300; }
+.cs-hero__problem h2 strong { font-weight: 600; }
+
+
+/* ══════════════════════════════════════════════
+   METHOD LIST OVERRIDES
+   ══════════════════════════════════════════════ */
+
+.cs-method-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--accent);
+  background: none;
+  border-radius: 0;
+  width: auto;
+  height: auto;
+  min-width: 2rem;
+  padding-top: 0.1rem;
+}
+.cs-method-text { font-size: 0.9rem; color: var(--mid); }
+.cs-method-text strong { font-size: 0.95rem; font-weight: 600; }
+
+
+/* ══════════════════════════════════════════════
+   STRATEGY OVERRIDES
+   ══════════════════════════════════════════════ */
+
+.cs-strategy { grid-template-columns: 280px 1fr; }
+.cs-strategy__cards { gap: 2rem; background: none; }
+.cs-strategy__card {
+  background: var(--white);
+  border-left: 3px solid var(--accent);
+  border-radius: 0;
+  padding: 1.75rem;
+  gap: 1.5rem;
+}
+.cs-section--dark .cs-strategy__card { background: var(--dark-surface); }
+.cs-strategy__icon { font-size: 1.5rem; width: auto; height: auto; background: none; border-radius: 0; }
+.cs-strategy__card h3 { font-size: 1.05rem; font-weight: 600; }
+
+
+/* ══════════════════════════════════════════════
+   PAIN CARDS OVERRIDES
+   ══════════════════════════════════════════════ */
+
+.cs-pain-grid { background: none; gap: 1.5px; }
+.cs-pain-card {
+  background: var(--dark-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 2rem;
+}
+.cs-pain-card:hover { background: var(--dark-surface-hover); }
+.cs-pain-number {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--accent-mid);
+  position: static;
+  font-weight: 400;
+}
+.cs-pain-title {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+}
+.cs-pain-desc { font-size: 0.9rem; color: var(--text-on-dark); }
+.cs-pain-quote {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--accent-light);
+  border-left: none;
+  border-top: 1px solid var(--dark-surface-hover);
+  padding-left: 0;
+  padding-top: 1rem;
+  margin-top: auto;
+}
+
+
+/* ══════════════════════════════════════════════
+   BEFORE / AFTER OVERRIDES
+   (label is an overlay, not a block above image)
+   ══════════════════════════════════════════════ */
+
+.cs-ba__col { position: relative; }
+.cs-ba__col img { width: 100%; height: 100%; object-fit: cover; }
+.cs-ba__label {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: rgba(0,0,0,0.7);
+  color: var(--white);
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius);
+  opacity: 1;
+  margin: 0;
+}
+
+
+/* ══════════════════════════════════════════════
+   BLOCKQUOTE OVERRIDE
+   ══════════════════════════════════════════════ */
+
+blockquote {
+  border-left-color: var(--accent);
+  background: none;
+  max-width: 60ch;
+}
+.cs-section--dark blockquote { color: var(--text-on-dark); border-color: var(--accent-mid); }
+
+
+/* ══════════════════════════════════════════════
+   IMAGE GRIDS (doc-buddy specific)
+   ══════════════════════════════════════════════ */
+
+.cs-img-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+.cs-img-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.cs-img-caption {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-on-dark);
+  margin-top: 0.5rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+
+/* ══════════════════════════════════════════════
+   VIDEO EMBED (YouTube / responsive iframe)
+   ══════════════════════════════════════════════ */
+
+.cs-video-embed {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
+}
+.cs-video-embed iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: none;
+}
+
+
+/* ══════════════════════════════════════════════
+   TESTIMONIAL OVERRIDES
+   ══════════════════════════════════════════════ */
+
+.cs-testimonial { padding: 3rem; border-radius: 0; }
+.cs-testimonial--blue  { background: var(--accent); }
+.cs-testimonial__quote {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 400;
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 0;
+}
+.cs-testimonial--light .cs-testimonial__quote { color: var(--dark); }
+.cs-testimonial--blue  .cs-testimonial__quote { color: var(--white); }
+.cs-testimonial__quote--large { font-size: 1.4rem; font-weight: 300; }
+.cs-testimonial__attr {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+}
+.cs-testimonial--light .cs-testimonial__attr { color: var(--mid); }
+.cs-testimonial--blue  .cs-testimonial__attr { color: var(--accent-light); }
+
+
+/* ══════════════════════════════════════════════
+   OUTCOMES OVERRIDES
+   ══════════════════════════════════════════════ */
+
+.cs-outcomes { background: var(--accent); padding: 5rem 0; }
+.cs-outcomes .section-label { color: var(--accent-light); }
+.cs-outcomes .section-title { color: var(--white); }
+.cs-outcomes .divider       { background: var(--accent-light); }
+.cs-outcomes-grid { gap: 1.5px; }
+.cs-outcome-card {
+  background: rgba(255,255,255,0.12);
+  border-top: 2px solid rgba(255,255,255,0.3);
+  border-radius: 0;
+}
+.cs-outcome-card h4 {
+  color: var(--white);
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+.cs-outcome-card p { color: rgba(255,255,255,0.8); font-size: 1rem; line-height: 1.65; }
+.cs-outcome-card strong { color: var(--white); }
+
+
+/* ══════════════════════════════════════════════
+   TEXT UTILITIES
+   ══════════════════════════════════════════════ */
+
+.cs-label-on-dark { color: var(--accent-mid) !important; opacity: 1 !important; }
+
+
+/* ══════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════ */
+
+@media (max-width: 768px) {
+  .cs-hero { grid-template-columns: 1fr; min-height: auto; }
+  .cs-hero__left { justify-content: flex-start; }
+  .cs-two-col,
+  .cs-research-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .cs-img-grid-3,
+  .cs-img-grid-2 { grid-template-columns: 1fr; }
+  .cs-strategy { grid-template-columns: 1fr; gap: 2rem; }
+  .cs-ba,
+  .cs-ba--2-3 { grid-template-columns: 1fr; }
+  .cs-outcomes-grid { grid-template-columns: 1fr; }
+}
