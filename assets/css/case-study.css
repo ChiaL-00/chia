@@ -17,7 +17,7 @@ img, video { width: 100%; display: block; border-radius: 4px; }
    ══════════════════════════════════════════════ */
 
 .cs-hero {
-  min-height: 90vh;
+  min-height: 96vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
   padding-top: 64px;
@@ -147,9 +147,25 @@ img, video { width: 100%; display: block; border-radius: 4px; }
 .cs-two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 1.5rem;
   align-items: start;
   margin-top: 3rem;
+}
+
+.cs-img-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.cs-img-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 
 
@@ -194,7 +210,7 @@ img, video { width: 100%; display: block; border-radius: 4px; }
 .cs-research-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 1.5rem;
   align-items: start;
   margin-top: 3rem;
 }
@@ -453,12 +469,41 @@ img, video { width: 100%; display: block; border-radius: 4px; }
   font-weight: 500;
 }
 
+/* ══════════════════════════════════════════════
+   PARALLAX SECTION
+   ══════════════════════════════════════════════ */
+
+.cs-parallax-section {
+  position: relative;
+  overflow: hidden;
+  background: var(--dark);
+}
+.cs-parallax-bg {
+  position: absolute;
+  inset: -30% 0;
+  width: 100%;
+  height: 160%;
+  object-fit: cover;
+  object-position: center;
+  will-change: transform;
+  border-radius: 0;
+}
+.cs-parallax-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 1;
+}
+.cs-parallax-content {
+  position: relative;
+  z-index: 2;
+}
+
+
 /* Principle block — padded section with top rule */
 .cs-principle {
   padding: 3rem 0;
-  border-top: 1px solid rgba(0,0,0,0.06);
 }
-.cs-principle:first-of-type { border-top: none; }
 .cs-principle__header { display: block; margin-bottom: 3rem; }
 
 /* Large title for each principle */

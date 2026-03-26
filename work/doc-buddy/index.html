@@ -34,7 +34,7 @@
   <section class="cs-hero">
     <div class="cs-hero__left">
       <div class="cs-hero__tag">UX / AI · Mobile App</div>
-      <h1 class="cs-hero__title">IBM<br><em>Doc Buddy</em></h1>
+      <h1 class="cs-hero__title">IBM<br><span style="color: var(--accent-mid); font-weight: 600;">Doc Buddy</span></h1>
       <div class="cs-hero__meta">
         <div class="cs-meta-item">
           <span class="cs-meta-label">My Role</span>
@@ -46,7 +46,7 @@
         </div>
         <div class="cs-meta-item">
           <span class="cs-meta-label">Platform</span>
-          <span class="cs-meta-value">iOS & Android App</span>
+          <span class="cs-meta-value">iOS & Android</span>
         </div>
       </div>
     </div>
@@ -62,25 +62,19 @@
   <!-- ── 01 CONTEXT ────────────────────────────────────────── -->
   <section class="section cs-section--white">
     <div class="container">
-      <div class="reveal">
+      <div>
         <div class="section-label">01 — Context</div>
         <h2 class="section-title">A mockup <em>isn't</em> a brief</h2>
         <div class="divider"></div>
       </div>
-      <div class="cs-two-col">
-        <div class="reveal">
-          <p class="body-text">
-            One day, design received a request from an external team. Their clients had a problem — and a solution had already been proposed: a mockup. The ask for design was straightforward: make it look better.
-          </p>
-          <br>
-          <p class="body-text">
-            Building an app may be an obvious response, but it is not a silver bullet. <strong>Why do people need this app? What problem are we actually trying to solve?</strong>
-          </p>
-        </div>
-        <div class="reveal reveal-delay-1">
-          <img src="../My Old Portfolio/ibm-doc-buddy/mockup.png" alt="The pre-made mockup that arrived with the brief">
-          <p class="body-text" style="margin-top: 0.75rem; font-size: 0.85rem;">The solution that arrived <em>before</em> the problem was defined.</p>
-        </div>
+      <div>
+        <p class="body-text">
+          One day, design received a request from an external team. Their clients had a problem — and a solution had already been proposed: a mockup. The ask for design was straightforward: make it look better.
+        </p>
+        <img src="../../assets/images/doc-buddy/mockup.png" alt="The pre-made mockup that arrived with the brief" style="display: block; width: 80%; margin: 1.5rem auto;">
+        <p class="body-text">
+          Building an app may be an obvious response, but it is not a silver bullet. <strong>Why do people need this app? What problem are we actually trying to solve?</strong>
+        </p>
       </div>
     </div>
   </section>
@@ -89,14 +83,14 @@
   <!-- ── 02 REFRAME ────────────────────────────────────────── -->
   <section class="section cs-section--dark">
     <div class="container">
-      <div class="reveal">
+      <div>
         <div class="section-label cs-label-on-dark">02 — Reframe</div>
         <h2 class="section-title cs-text-white">Design Thinking<br><em>in a giant tech company</em></h2>
-        <div class="divider"></div>
+        <div class="divider divider--light"></div>
       </div>
 
       <div class="cs-research-grid">
-        <div class="reveal">
+        <div>
           <p class="body-text cs-text-on-dark">
             I organised a short IBM Design Thinking workshop and adapted the format so non-designers could engage with it quickly. The goal was to create enough shared understanding for the team to question the existing direction.
           </p>
@@ -105,37 +99,35 @@
             Using personas, empathy maps, and an AS-IS journey map, the team began to see the problem differently — uncovering gaps and opportunities that had previously gone unnoticed. It became clear that the initial solution might not be the right one.
           </p>
         </div>
-        <div class="reveal reveal-delay-1">
-          <img src="../My Old Portfolio/ibm-doc-buddy/workshop.JPG" alt="Design Thinking workshop in action">
+        <div>
+          <img src="../../assets/images/doc-buddy/empathy-map.jpg" alt="Empathy Map from the workshop">
         </div>
       </div>
 
-      <div class="cs-img-grid-2" style="margin-top: 2rem;">
-        <div class="reveal">
-          <img src="../My Old Portfolio/ibm-doc-buddy/empathy-map.jpg" alt="Empathy Map from the workshop">
+      <div class="cs-img-grid-2" style="margin-top: 1.5rem;">
+        <div>
+          <img src="../../assets/images/doc-buddy/workshop.JPG" alt="Design Thinking workshop in action">
         </div>
-        <div class="reveal reveal-delay-1">
-          <img src="../My Old Portfolio/ibm-doc-buddy/as-is.JPG" alt="AS-IS Scenario Map">
+        <div>
+          <img src="../../assets/images/doc-buddy/journeymap.jpg" alt="User Journey Map">
         </div>
       </div>
-      <div class="reveal" style="margin-top: 2rem;">
-        <p class="body-text cs-text-on-dark">The strongest signal came afterwards: a non-designer colleague took the AS-IS map into client conversations. The artefacts had become a shared decision-making tool.</p>
+      <div style="margin-top: 2rem;">
+        <p class="body-text cs-text-on-dark">The strongest signal came afterwards:</p>
+        <p class="body-text reveal reveal-delay-1" style="font-size: 1.6rem; color: var(--white); line-height: 1.3; margin-top: 0.5rem;">a non-designer colleague took the AS-IS map into client conversations. <strong style="color: var(--white);">The artefacts had become a shared decision-making tool.</strong></p>
       </div>
     </div>
   </section>
 
 
   <!-- ── 03 INSIGHTS ───────────────────────────────────────── -->
-  <section class="section">
+  <section id="insights-section" class="section">
     <div class="container">
-      <div class="reveal">
-        <div class="section-label">03 — Insights</div>
-        <h2 class="section-title">The real problem<br><em>was mobility</em></h2>
-        <div class="divider"></div>
-      </div>
-
-      <div class="cs-two-col">
-        <div class="reveal">
+      <div class="cs-two-col insights-grid">
+        <div class="insights-text">
+          <div class="section-label">03 — Insights</div>
+          <h2 class="section-title">The real problem<br><em>was mobility</em></h2>
+          <div class="divider"></div>
           <p class="body-text">
             By mapping the user journey and validating it with client feedback, the team identified a fundamental issue: the current platform was not designed for a mobile-first experience.
           </p>
@@ -144,13 +136,9 @@
             The direction became clear — <strong>redesign the information architecture so users can find what they need within three taps, on mobile.</strong>
           </p>
         </div>
-        <div class="reveal reveal-delay-1">
-          <img src="../My Old Portfolio/ibm-doc-buddy/journeymap.jpg" alt="User Journey Map">
+        <div id="insights-img-col" class="insights-img-col">
+          <img id="insights-img" class="insights-img" src="../../assets/images/doc-buddy/oldscreen.png" alt="Poor experience on mobile">
         </div>
-      </div>
-
-      <div class="reveal" style="margin-top: 3rem;">
-        <img src="../My Old Portfolio/ibm-doc-buddy/gapCurrent.png" alt="Gap analysis between current service and mobile-first needs" class="cs-faded-img">
       </div>
     </div>
   </section>
@@ -159,76 +147,59 @@
   <!-- ── 04 DESIGN ─────────────────────────────────────────── -->
   <section class="section cs-section--white">
     <div class="container">
-      <div class="reveal">
-        <div class="section-label">04 — Design</div>
-        <h2 class="section-title">Redesigning<br><em>the information architecture</em></h2>
-        <div class="divider"></div>
-      </div>
-
-      <div class="reveal">
-        <p class="body-text" style="margin-bottom: 1.5rem;">I redesigned the information architecture to organise content around user tasks rather than internal logic. I then translated that structure into mobile-first flows and interfaces, aligned with IBM Design Language.</p>
-        <p class="body-text">I also produced detailed annotations for handoff, making behaviours and edge cases explicit for developers. By that point, the team had fully shifted direction — the original mockup was no longer part of the conversation, and everyone was aligned around <strong>building the right thing.</strong></p>
-      </div>
-    </div>
-
-    <div style="margin-top: 3.5rem;">
-      <div class="container reveal">
-        <img src="../My Old Portfolio/ibm-doc-buddy/flow.png" alt="Redesigned information architecture flow">
-      </div>
-    </div>
-  </section>
-
-  <!-- Design screens — dark strip -->
-  <section class="section cs-section--dark" style="padding: 2.5rem 0;">
-    <div class="container">
-      <div class="cs-img-grid-2">
-        <div class="reveal">
-          <img src="../My Old Portfolio/ibm-doc-buddy/interface.png" alt="Interface overview">
-          <p class="cs-img-caption">Interface overview</p>
+      <div class="section-label">04 — Design</div>
+      <h2 class="section-title">Redesigning<br><em>the information architecture</em></h2>
+      <div class="divider"></div>
+      <p class="body-text" style="margin-bottom: 1.5rem;">I redesigned the information architecture to organise content around user tasks rather than internal logic. I then translated that structure into mobile-first flows and interfaces, aligned with IBM Design Language.</p>
+      <img src="../../assets/images/doc-buddy/interface.png" alt="Interface overview" style="margin-bottom: 1.5rem;">
+      <div class="cs-img-grid-2" style="margin-bottom: 1.5rem;">
+        <div>
+          <img src="../../assets/images/doc-buddy/flow.png" alt="Redesigned information architecture flow">
         </div>
-        <div class="reveal reveal-delay-1">
-          <img src="../My Old Portfolio/ibm-doc-buddy/UIs.png" alt="UI screen set">
-          <p class="cs-img-caption">UI screen set</p>
+        <div>
+          <img src="../../assets/images/doc-buddy/UIs.png" alt="UI screen set">
+        </div>
+      </div>
+      <div class="cs-two-col" style="grid-template-columns: 1fr 1fr; align-items: start;">
+        <div>
+          <p class="body-text">I also produced detailed annotations for handoff, making behaviours and edge cases explicit for developers. By that point, the team had fully shifted direction — the original mockup was no longer part of the conversation, and everyone was aligned around <strong>building the right thing.</strong></p>
+        </div>
+        <div>
+          <img src="../../assets/images/doc-buddy/annotation.png" alt="Detailed design annotations for handoff">
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section cs-section--white" style="padding-top: 2.5rem;">
-    <div class="container reveal">
-      <img src="../My Old Portfolio/ibm-doc-buddy/annotation.png" alt="Detailed design annotations for handoff">
-      <p class="body-text" style="margin-top: 0.75rem; font-size: 0.85rem;">Detailed annotations produced for developer handoff.</p>
-    </div>
-  </section>
 
 
   <!-- ── 05 CAMPAIGN ───────────────────────────────────────── -->
   <section class="section cs-section--dark">
     <div class="container">
-      <div class="reveal">
+      <div>
         <div class="section-label cs-label-on-dark">05 — Campaign</div>
         <h2 class="section-title cs-text-white">Producing the<br><em>internal launch video</em></h2>
-        <div class="divider"></div>
+        <div class="divider divider--light"></div>
       </div>
 
-      <div class="reveal" style="margin-bottom: 2.5rem;">
+      <div style="margin-bottom: 2.5rem;">
         <p class="body-text cs-text-on-dark">
           I was also responsible for producing the internal campaign video — from writing the script to directing the shoot.
         </p>
       </div>
 
       <div class="cs-img-grid-2" style="margin-bottom: 2.5rem;">
-        <div class="reveal">
-          <img src="../My Old Portfolio/ibm-doc-buddy/scripts.jpg" alt="Video script writing">
+        <div>
+          <img src="../../assets/images/doc-buddy/scripts.jpg" alt="Video script writing">
           <p class="cs-img-caption">Script writing</p>
         </div>
-        <div class="reveal reveal-delay-1">
-          <img src="../My Old Portfolio/ibm-doc-buddy/shooting.jpg" alt="Video shoot">
+        <div>
+          <img src="../../assets/images/doc-buddy/shooting.jpg" alt="Video shoot">
           <p class="cs-img-caption">On set</p>
         </div>
       </div>
 
-      <div class="reveal">
+      <div>
         <div class="cs-video-embed">
           <iframe
             src="https://www.youtube.com/embed/_S81kAdBy5A"
@@ -237,7 +208,6 @@
             allowfullscreen>
           </iframe>
         </div>
-        <p class="cs-img-caption" style="margin-top: 0.5rem;">Internal campaign video (app then named Message Finder)</p>
       </div>
     </div>
   </section>
@@ -249,7 +219,7 @@
       <div class="reveal">
         <div class="section-label">Outcomes</div>
         <h2 class="section-title">What it delivered</h2>
-        <div class="divider"></div>
+        <div class="divider divider--light"></div>
       </div>
 
       <div class="reveal" style="max-width: 68ch; margin-bottom: 3rem;">
@@ -298,6 +268,32 @@
 
   <!-- JS -->
   <script src="../../assets/js/main.js"></script>
+  <script>
+    (function () {
+      const section = document.getElementById('insights-section');
+      const img     = document.getElementById('insights-img');
+      if (!section || !img) return;
+
+      function updateInsightsImg() {
+        const secRect = section.getBoundingClientRect();
+        const vh      = window.innerHeight;
+        const secH    = section.offsetHeight;
+        const imgH    = img.offsetHeight;
+
+        // progress 0 → section just entering from bottom
+        // progress 1 → section just exiting from top
+        const progress = Math.max(0, Math.min(1, (vh - secRect.top) / (vh + secH)));
+
+        // translateY: -imgH (image fully above section) → secH (image fully below section)
+        const ty = -imgH + (imgH + secH) * progress;
+        img.style.transform = 'translateY(' + ty + 'px)';
+      }
+
+      window.addEventListener('scroll', updateInsightsImg, { passive: true });
+      window.addEventListener('resize', updateInsightsImg, { passive: true });
+      updateInsightsImg();
+    })();
+  </script>
 
 </body>
 </html>

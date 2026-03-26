@@ -65,6 +65,12 @@ em { font-style: normal; font-weight: 600; color: var(--accent-mid); }
   background: var(--accent);
   height: 3px;
 }
+.divider--light,
+.cs-section--dark .divider--light {
+  background: var(--accent-light);
+  height: 3px;
+  opacity: 1;
+}
 
 /* ── TAG OVERRIDE ── */
 .cs-tag {
@@ -105,7 +111,7 @@ img, video { border-radius: var(--radius); }
    HERO OVERRIDES
    ══════════════════════════════════════════════ */
 
-.cs-hero { min-height: 90vh; padding-top: 64px; }
+.cs-hero { min-height: 96vh; padding-top: 64px; }
 
 .cs-hero__left {
   background: var(--dark);
@@ -127,14 +133,14 @@ img, video { border-radius: var(--radius); }
 .cs-hero__right {
   background: var(--accent);
   padding: 5rem 4rem;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: flex-start;
 }
 .cs-hero__problem-label {
   font-family: var(--font-mono);
   color: var(--accent-light);
 }
-.cs-hero__problem h2 { color: var(--white); font-weight: 300; }
+.cs-hero__problem h2 { color: var(--white); font-weight: 300; font-family: var(--font-sans); letter-spacing: -0.02em; font-size: 2.5rem; }
 .cs-hero__problem h2 strong { font-weight: 600; }
 
 
@@ -256,18 +262,6 @@ blockquote {
    IMAGE GRIDS (doc-buddy specific)
    ══════════════════════════════════════════════ */
 
-.cs-img-grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-  margin-top: 2.5rem;
-}
-.cs-img-grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  margin-top: 2.5rem;
-}
 .cs-img-caption {
   font-family: var(--font-mono);
   font-size: 0.7rem;
@@ -333,7 +327,7 @@ blockquote {
 .cs-outcomes { background: var(--accent); padding: 5rem 0; }
 .cs-outcomes .section-label { color: var(--accent-light); }
 .cs-outcomes .section-title { color: var(--white); }
-.cs-outcomes .divider       { background: var(--accent-light); }
+.cs-outcomes .divider       { background: var(--accent-light); } /* covered by .divider--light */
 .cs-outcomes-grid { gap: 1.5px; }
 .cs-outcome-card {
   background: rgba(255,255,255,0.12);
@@ -360,6 +354,13 @@ blockquote {
 .cs-label-on-dark { color: var(--accent-mid) !important; opacity: 1 !important; }
 
 
+/* ── INSIGHTS SCROLL EFFECT (desktop only) ── */
+#insights-section  { position: relative; overflow: hidden; }
+.insights-grid     { grid-template-columns: 2fr 1fr; }
+.insights-text     { align-self: start; }
+.insights-img-col  { position: relative; align-self: stretch; }
+.insights-img      { position: absolute; top: 0; width: 100%; display: block; will-change: transform; }
+
 /* ══════════════════════════════════════════════
    RESPONSIVE
    ══════════════════════════════════════════════ */
@@ -375,4 +376,18 @@ blockquote {
   .cs-ba,
   .cs-ba--2-3 { grid-template-columns: 1fr; }
   .cs-outcomes-grid { grid-template-columns: 1fr; }
+
+  /* Insights — stack columns, disable scroll effect */
+  .insights-grid { grid-template-columns: 1fr; }
+  .insights-text { align-self: auto; }
+  .insights-img-col { align-self: auto; }
+  .insights-img {
+    position: relative;
+    top: auto;
+    width: auto;
+    max-width: 80%;
+    display: block;
+    margin: 0 auto;
+    transform: none !important; /* override JS inline style */
+  }
 }
