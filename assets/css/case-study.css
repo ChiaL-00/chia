@@ -744,7 +744,8 @@ blockquote {
 .cs-text-on-dark  { color: var(--text-on-dark); }
 .cs-text-white    { color: var(--white); }
 .cs-text-yellow   { color: var(--yellow); }
-.cs-strong-white  { color: var(--white); font-weight: 500; }
+.cs-strong-white,
+.body-text .cs-strong-white { color: var(--white); font-weight: 500; }
 
 
 /* ══════════════════════════════════════════════

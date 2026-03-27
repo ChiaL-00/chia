@@ -295,19 +295,14 @@ blockquote {
    TESTIMONIAL OVERRIDES
    ══════════════════════════════════════════════ */
 
-.cs-testimonial { padding: 3rem; border-radius: 0; }
 .cs-testimonial--blue  { background: var(--accent); }
+.cs-testimonial--blue .cs-testimonial__quote { color: var(--white); }
+.cs-testimonial--blue .cs-testimonial__attr  { color: rgba(255,255,255,0.6); }
 .cs-testimonial__quote {
   font-family: var(--font-sans);
-  font-size: 1.1rem;
-  font-weight: 400;
-  line-height: 1.7;
-  font-style: italic;
+  font-style: normal;
   margin-bottom: 0;
 }
-.cs-testimonial--light .cs-testimonial__quote { color: var(--dark); }
-.cs-testimonial--blue  .cs-testimonial__quote { color: var(--white); }
-.cs-testimonial__quote--large { font-size: 1.4rem; font-weight: 300; }
 .cs-testimonial__attr {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -316,7 +311,8 @@ blockquote {
   margin-top: 1.5rem;
   margin-bottom: 0;
 }
-.cs-testimonial--light .cs-testimonial__attr { color: var(--mid); }
+.cs-testimonial--light .cs-testimonial__quote { font-size: 1.2rem; }
+.cs-testimonial--light .cs-testimonial__attr  { color: var(--mid); }
 .cs-testimonial--blue  .cs-testimonial__attr { color: var(--accent-light); }
 
 
@@ -324,10 +320,11 @@ blockquote {
    OUTCOMES OVERRIDES
    ══════════════════════════════════════════════ */
 
-.cs-outcomes { background: var(--accent); padding: 5rem 0; }
-.cs-outcomes .section-label { color: var(--accent-light); }
-.cs-outcomes .section-title { color: var(--white); }
-.cs-outcomes .divider       { background: var(--accent-light); } /* covered by .divider--light */
+.cs-outcomes { background: var(--light); padding: 5rem 0; }
+.outcomes-main  { grid-template-columns: 1fr 2fr; }
+.outcomes-quotes { grid-template-columns: 1fr 1fr; }
+.cs-outcomes .section-label { color: var(--mid); }
+.cs-outcomes .section-title { color: var(--dark); }
 .cs-outcomes-grid { gap: 1.5px; }
 .cs-outcome-card {
   background: rgba(255,255,255,0.12);
@@ -390,4 +387,8 @@ blockquote {
     margin: 0 auto;
     transform: none !important; /* override JS inline style */
   }
+
+  /* Outcomes — each quote full width */
+  .outcomes-main  { grid-template-columns: 1fr; }
+  .outcomes-quotes { grid-template-columns: 1fr; }
 }
