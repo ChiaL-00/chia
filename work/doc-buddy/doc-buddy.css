@@ -316,6 +316,13 @@ blockquote {
 .cs-testimonial--blue  .cs-testimonial__attr { color: var(--accent-light); }
 
 
+/* ── UTILITY CLASSES ── */
+.cs-hero__accent-word  { color: var(--accent-mid); font-weight: 600; }
+.cs-callout-text       { font-size: 1.6rem; color: var(--white); line-height: 1.3; margin-top: 0.5rem; }
+.cs-annotation-grid    { grid-template-columns: 1fr 1fr; align-items: start; }
+.img-full              { width: 100%; display: block; }
+.footer-note           { margin-top: 0.5rem; font-size: 0.7rem; opacity: 0.5; }
+
 /* ══════════════════════════════════════════════
    OUTCOMES OVERRIDES
    ══════════════════════════════════════════════ */
