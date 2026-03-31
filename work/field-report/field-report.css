@@ -31,17 +31,15 @@ em { font-style: italic; color: var(--accent-mid); }
 .body-text strong  { color: var(--dark); font-weight: 500; }
 
 /* ── SECTION LABEL ── */
-.section-label { color: var(--accent); opacity: 1; }
+.section-label { color: var(--accent); }
 
 /* ── DIVIDER ── */
-.divider          { background: var(--accent); height: 3px; width: 48px; }
-.divider--light   { background: var(--accent-light); height: 3px; width: 48px; opacity: 1; }
+.divider          { background: var(--accent); }
+.divider--light   { background: var(--accent-light); }
 
 /* ── SECTION VARIANTS ── */
-.cs-section--dark        { background: var(--dark); }
 .cs-section--dark .section-label   { color: var(--accent-mid); opacity: 1; }
 .cs-section--dark .section-title   { color: var(--white); }
-.cs-section--dark .body-text       { color: var(--text-on-dark); }
 .cs-section--dark .divider         { background: var(--accent-mid); opacity: 1; }
 .cs-label-on-dark        { color: var(--accent-mid) !important; opacity: 1 !important; }
 
@@ -87,6 +85,34 @@ em { font-style: italic; color: var(--accent-mid); }
 img, video { border-radius: var(--radius); }
 .img-full  { width: 100%; display: block; }
 
+/* ── OBSERVATION ROWS ── */
+.fr-obs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5px;
+  margin-top: 2.5rem;
+  background: rgba(255,255,255,0.06);
+}
+.fr-obs-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5px;
+  background: rgba(255,255,255,0.06);
+}
+.fr-obs-row .cs-pain-number {
+  color: rgba(194, 92, 42, 0.2);
+}
+.fr-obs-row__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+  display: block;
+}
+@media (max-width: 900px) {
+  .fr-obs-row { grid-template-columns: 1fr; }
+}
+
 /* ══════════════════════════════════════════════
    HERO
    ══════════════════════════════════════════════ */
@@ -118,9 +144,10 @@ img, video { border-radius: var(--radius); }
 .cs-pain-grid         { background: none; gap: 1.5px; }
 .cs-pain-card         { background: var(--dark-surface); gap: 0.75rem; padding: 2rem; flex-direction: column; display: flex; }
 .cs-pain-card:hover   { background: var(--dark-surface-hover); }
-.cs-pain-number       { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--accent-mid); position: static; font-weight: 400; }
+.cs-pain-number       { color: var(--accent-mid); }
 .cs-pain-title        { font-size: 1rem; font-weight: 600; color: var(--white); }
 .cs-pain-desc         { font-size: 0.9rem; color: var(--text-on-dark); }
+.cs-pain-desc strong  { color: var(--white); font-weight: 600; }
 .cs-pain-quote        {
   font-style: italic; font-size: 0.85rem; color: var(--accent-light);
   border-left: none; border-top: 1px solid var(--dark-surface-hover);

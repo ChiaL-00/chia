@@ -63,12 +63,10 @@ em { font-style: normal; font-weight: 600; color: var(--accent-mid); }
 
 .divider {
   background: var(--accent);
-  height: 3px;
 }
 .divider--light,
 .cs-section--dark .divider--light {
   background: var(--accent-light);
-  height: 3px;
   opacity: 1;
 }
 

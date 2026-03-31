@@ -56,12 +56,12 @@
     /* ── DECISION STRIP (section 03) — full bleed pivot moment ── */
     .fr-decision {
       background: var(--accent);
-      padding: 6rem 0;
+      padding: 7rem 0;
     }
     .fr-decision .container {
       display: grid;
-      grid-template-columns: 280px 1fr;
-      gap: 5rem;
+      grid-template-columns: 1fr 1.8fr;
+      gap: 1.5rem;
       align-items: start;
     }
     .fr-decision__left { position: sticky; top: 100px; }
@@ -82,147 +82,20 @@
     }
     
     .fr-decision__heading {
+      font-family: var(--serif);
       font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 300;
+      font-weight: 400;
       color: #fff;
       line-height: 1.25;
       letter-spacing: -0.02em;
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
     .fr-decision__heading em { font-style: italic; color: rgba(255,255,255,0.65); }
     .fr-decision__body {
-      font-size: 1rem;
       color: rgba(255,255,255,0.85);
       line-height: 1.85;
-      max-width: 60ch;
-      margin: 0;
     }
-    .fr-decision__body + .fr-decision__body { margin-top: 1.25rem; }
     .fr-decision__body strong { color: #fff; font-weight: 600; }
-
-    /* ── TURNING POINT (section 04) ── */
-    .fr-turning-point {
-      margin-top: 3rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0;
-      background: var(--dark);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-    .fr-turning-point__text {
-      padding: 3.5rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 1.25rem;
-    }
-    .fr-turning-point__label {
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent-mid);
-      font-weight: 500;
-    }
-    .fr-turning-point__text p {
-      font-size: 1rem;
-      color: var(--text-on-dark);
-      line-height: 1.85;
-      margin: 0;
-    }
-    .fr-turning-point__text p strong { color: var(--white); }
-    .fr-turning-point__conclusion {
-      margin-top: 0.5rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.08);
-      font-size: 1.1rem;
-      color: var(--white);
-      line-height: 1.5;
-    }
-    .fr-turning-point__img img {
-      height: 100%;
-      object-fit: cover;
-      border-radius: 0;
-      display: block;
-    }
-
-    /* ── BUILD BREAKDOWN (section 05) ── */
-    .fr-build-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5px;
-      margin-top: 2.5rem;
-      background: rgba(0,0,0,0.06);
-    }
-    .fr-build-cell {
-      background: var(--white);
-      padding: 2rem 1.75rem;
-      border-top: 3px solid var(--accent);
-    }
-    .fr-build-cell__label {
-      font-size: 0.62rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 0.75rem;
-      font-weight: 500;
-    }
-    .fr-build-cell h4 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: var(--dark);
-      margin-bottom: 0.4rem;
-    }
-    .fr-build-cell p { font-size: 0.85rem; color: var(--mid); line-height: 1.65; margin: 0; }
-
-    /* ── PRODUCT COLUMNS (section 05, product part) ── */
-    .fr-product-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-    .fr-product-col { display: flex; flex-direction: column; gap: 1rem; }
-    .fr-product-col__tag {
-      font-size: 0.62rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent-mid);
-      background: rgba(255,255,255,0.07);
-      padding: 0.25rem 0.65rem;
-      border-radius: 2px;
-      align-self: flex-start;
-      font-weight: 500;
-    }
-    .fr-product-col h4 { font-size: 0.95rem; font-weight: 600; color: var(--white); margin: 0; }
-    .fr-product-col p  { font-size: 0.85rem; color: var(--text-on-dark); line-height: 1.65; margin: 0; }
-
-    /* ── SHARE ROW ── */
-    .fr-share-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      margin-top: 1.5rem;
-      border-radius: var(--radius);
-      overflow: hidden;
-      background: var(--dark-surface);
-    }
-    .fr-share-row__text {
-      padding: 3rem;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 0.75rem;
-    }
-    .fr-share-row__tag {
-      font-size: 0.62rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--accent-mid);
-      font-weight: 500;
-    }
-    .fr-share-row__text h4 { font-size: 1.15rem; font-weight: 300; color: var(--white); line-height: 1.35; margin: 0; }
-    .fr-share-row__text p  { font-size: 0.88rem; color: var(--text-on-dark); line-height: 1.7; margin: 0; }
-    .fr-share-row__img img { height: 100%; object-fit: cover; border-radius: 0; display: block; }
 
     /* ── OUTCOME STATEMENT ── */
     .fr-outcome-statement {
@@ -246,11 +119,6 @@
       .fr-decision .container { grid-template-columns: 1fr; gap: 2rem; }
       .fr-decision__left     { position: static; }
       .fr-decision__num      { display: none; }
-      .fr-turning-point      { grid-template-columns: 1fr; }
-      .fr-turning-point__img { display: none; }
-      .fr-build-grid         { grid-template-columns: 1fr; }
-      .fr-product-grid       { grid-template-columns: 1fr; }
-      .fr-share-row          { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -304,9 +172,8 @@
       <h2 class="section-title">A brief<br><em>not a brief</em></h2>
       <div class="divider"></div>
       <div class="fr-context-quote">
-        <div class="fr-context-quote__label">The brief</div>
         <p class="fr-context-quote__text">”How might we facilitate the design process for IDEOers?”</p>
-        <p class="fr-context-quote__attr">— open, ambitious, and entirely undefined.</p>
+        <p class="fr-context-quote__attr">— open, ambitious, and entirely undefined brief.</p>
       </div>
       <p class="fr-context-body">With no predefined problem or direction, I started with observation — spending time with designers, understanding how they captured, organised, and shared their work in practice.</p>
     </div>
@@ -318,41 +185,45 @@
     <div class="container">
       <div>
         <div class="section-label cs-label-on-dark">02 — Observation</div>
-        <h2 class="section-title cs-text-white">Three things<br><em>no one had named.</em></h2>
+        <h2 class="section-title cs-text-white">The wall is <br><em>the symptom</em></h2>
         <div class="divider divider--light"></div>
       </div>
 
       <div class="fr-obs-list">
-        <div class="fr-obs-item">
-          <div class="fr-obs-num">01</div>
-          <div class="fr-obs-content">
-            <h4>The wall is the bottleneck</h4>
-            <p>Every project space was covered in boards and sticky notes — the primary way IDEO teams synthesise field research. But the wall demands physical space, printed materials, and everyone present at the same time. It's powerful when it works, but it doesn't scale and it can't travel.</p>
-          </div>
-        </div>
-        <div class="fr-obs-item">
-          <div class="fr-obs-num">02</div>
-          <div class="fr-obs-content">
-            <h4>Tools are fragmented</h4>
-            <p>Every designer had their own system — one lived in Google Docs, another only trusted hand-written notes, a third kept everything as photos. The same team, the same project, no shared structure. Getting to a common view of the research meant translating across formats no one else had set up.</p>
-          </div>
-        </div>
-        <div class="fr-obs-item">
-          <div class="fr-obs-num">03</div>
-          <div class="fr-obs-content">
-            <h4>Sharing is the actual goal</h4>
-            <p>Findings only have value when the team can act on them together. The post-it wall was the best synthesis method anyone had — and it required a large physical space and everyone present at the same time. The wall wasn't a design choice. It was the only option available.</p>
-          </div>
-        </div>
-      </div>
 
-      <div style="margin-top: 2.5rem;">
-        <p class="body-text cs-callout-text reveal">The wall was not the method. <strong class="cs-strong-white">The wall was the only option.</strong></p>
-      </div>
+        <div class="fr-obs-row">
+          <div class="cs-pain-card">
+            <div class="cs-pain-number">01</div>
+            <h4 class="cs-pain-title">The wall is not the method</h4>
+            <p class="cs-pain-desc">The wall of sticky notes was the result of hours of manual work: translating notes, photos, and memories into something that could be shared with the team. <strong>By the time insights made it onto the wall, part of their original context was already gone.</strong></p>
+          </div>
+          <div class="fr-obs-row__img">
+            <img src="../../assets/images/field-report/fieldreport003.jpg" alt="An IDEO project space covered in sticky notes">
+          </div>
+        </div>
 
-      <div class="cs-img-grid-2" style="margin-top: 2rem;">
-        <img src="../My Old Portfolio/field-report/fieldreport005.jpg" alt="Two designers, two systems — no way to share the same research with each other">
-        <img src="../My Old Portfolio/field-report/fieldreport006.jpg" alt="The post-it wall — powerful but requiring physical space and full-team presence">
+        <div class="fr-obs-row">
+          <div class="cs-pain-card">
+            <div class="cs-pain-number">02</div>
+            <h4 class="cs-pain-title">Everyone has their own way of organising research</h4>
+            <p class="cs-pain-desc">Every designer had their own system — one lived in Google Docs, another only trusted hand-written notes, a third kept everything as photos. <strong>Getting to a shared view of the research meant translating across formats.</strong></p>
+          </div>
+          <div class="fr-obs-row__img">
+            <img src="../../assets/images/field-report/fieldreport005.jpg" alt="Two designers, two systems — no way to share the same research">
+          </div>
+        </div>
+
+        <div class="fr-obs-row">
+          <div class="cs-pain-card">
+            <div class="cs-pain-number">03</div>
+            <h4 class="cs-pain-title">Sharing is the actual goal</h4>
+            <p class="cs-pain-desc">Findings only have value when the team can act on them together. The post-it wall was the best synthesis method available — and it required a large physical space and everyone present at the same time. <strong>The wall wasn't a design choice. It was the only option available.</strong></p>
+          </div>
+          <div class="fr-obs-row__img">
+            <img src="../../assets/images/field-report/fieldreport006.jpg" alt="The post-it wall — powerful but requiring physical space and full-team presence">
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -360,15 +231,16 @@
 
   <!-- ── 03 DECISION ───────────────────────────────────────── -->
   <div class="fr-decision">
-    <div class="container">
+    <div class="container reveal">
       <div class="fr-decision__left">
         <div class="fr-decision__label">03 — Insight</div>
-        <div class="fr-decision__num">03</div>
+        <h2 class="fr-decision__heading">The problem was<br><em>the moment</em></h2>
+        <div class="divider divider--light"></div>
       </div>
       <div class="fr-decision__right">
-        <h2 class="fr-decision__heading">Why an app?<br><em>Because it fit the moment.</em></h2>
-        <p class="fr-decision__body">The three observations pointed to a problem that was mobile, time-sensitive, and fragmented across tools. The solution needed to live in the same context as the problem — in the designer's hand, right after the interview, shareable immediately.</p>
-        <p class="fr-decision__body">An app wasn't a default choice because I could code. It was a <strong>natural fit</strong> for what the problem demanded: capture in the moment, structure across formats, and sharing without a wall. The fact that I could build it myself — not hand off a prototype — meant the solution could be tested and iterated as a real product, not a concept.</p>
+        <p class="fr-decision__body">Findings from field research are most valuable when captured fresh, yet the wall of post-it notes is a compromise — slow and difficult to share.</p>
+        <p class="fr-decision__body"><strong>The problem was not the lack of tools, but the lack of support for that moment.</strong></p>
+        <p class="fr-decision__body">Given this — and my ability to build — <strong>a mobile solution</strong> became the natural direction.</p>
       </div>
     </div>
   </div>
@@ -379,25 +251,18 @@
     <div class="container">
       <div>
         <div class="section-label">04 — Validation</div>
-        <h2 class="section-title">The turning<br><em>point.</em></h2>
+        <h2 class="section-title">The moment it <br><em>became real</em></h2>
         <div class="divider"></div>
       </div>
       <div style="margin-top: 2.5rem; max-width: 72ch;">
-        <p class="body-text">Midway through the internship, I joined a studio team on an actual field research session with a client. What I'd observed from the studio, I now watched happen in real time.</p>
-        <br>
-        <p class="body-text">On the drive back, the team was trying to capture notes on their phones and on scraps of paper. In the hotel meeting room that evening, they were piecing it back together from memory. The three frictions I'd identified weren't theoretical — they were happening in a single afternoon, to a team doing exactly the kind of work IDEO is known for.</p>
+        <p class="body-text">This direction was reinforced when I joined a studio team on a field research project.</p>
+        <p class="body-text">The team was trying to capture and organise insights during car rides, or later in temporary meeting spaces. It made the gap visible: the moment when insights were freshest had the least support.</p>
+        <p class="body-text">The problem wasn’t theoretical — it was happening in real time, in the middle of the work.</p>
       </div>
 
-      <div class="fr-turning-point">
-        <div class="fr-turning-point__text">
-          <div class="fr-turning-point__label">Turning point</div>
-          <p>This session confirmed that the problem was real and the direction was right. But it also changed how I thought about the solution. The app needed to work in the car, on the way back from an interview, with one hand — not just at a desk.</p>
-          <p>The use context sharpened every design decision that followed.</p>
-          <div class="fr-turning-point__conclusion">The field trip didn't validate a prototype. <strong>It validated a way of thinking.</strong></div>
-        </div>
-        <div class="fr-turning-point__img">
-          <img src="../My Old Portfolio/field-report/incarwindow.jpg" alt="In the car after an interview — the exact moment the tool needed to serve">
-        </div>
+      <div class="cs-img-grid-2" style="margin-top: 2.5rem;">
+        <img src="../../assets/images/field-report/incarwindow.jpg" alt="In the car after an interview — the exact moment the tool needed to serve">
+        <img src="../../assets/images/field-report/fieldreport003.jpg" alt="Field research in progress — insights captured in the moment">
       </div>
     </div>
   </section>
@@ -410,45 +275,26 @@
       <!-- Build narrative -->
       <div>
         <div class="section-label cs-label-on-dark">05 — Execution</div>
-        <h2 class="section-title cs-text-white">Design and build.<br><em>Not a prototype.</em></h2>
+        <h2 class="section-title cs-text-white">Designed <br><em>and built</em></h2>
         <div class="divider divider--light"></div>
       </div>
 
       <div class="cs-research-grid" style="margin-top: 2.5rem;">
         <div>
-          <p class="body-text cs-text-on-dark">I designed and built the app myself in Xcode — front-end interface and back-end data model. A prototype would not have been enough; people were going to actually use it, which meant the data structure had to hold up under real conditions.</p>
-          <br>
-          <p class="body-text cs-text-on-dark">The back-end was the harder problem. Modelling the relationship between research sessions, notes, quotes, and photos — in a way that stayed coherent when you added, edited, or shared — took as much design thinking as the screens did.</p>
-          <br>
-          <p class="body-text cs-text-on-dark">I didn't treat testing as a phase at the end. I brought IDEOers in while the app was still being built and let their feedback shape the interface in real time.</p>
+          <p class="body-text cs-text-on-dark">I designed and built the app myself in Xcode.</p>
+          <p class="body-text cs-text-on-dark">The interface was shaped to match how designers already work — so that it felt immediately familiar, without requiring explanation.</p>
+          <p class="body-text cs-text-on-dark">The back-end was the harder problem. I built the data model, session logic, PDF generation, and email sharing — no handoff, no prototype.</p>
+          <p class="body-text cs-text-on-dark">Testing was continuous, not just a QA phase — feedback from IDEO designers directly shaped the user flow as it was being built.</p>
         </div>
         <div>
-          <img src="../My Old Portfolio/field-report/designingflow.jpg" alt="Mapping the user flow — the first step before any screen design">
-          <img src="../My Old Portfolio/field-report/r1003395.jpg" alt="Building in Xcode — responsible for both front-end and back-end" style="margin-top: 1rem;">
+          <img src="../../assets/images/field-report/designingflow.jpg" alt="Mapping the user flow — the first step before any screen design">
+          <img src="../../assets/images/field-report/r1003395.jpg" alt="Building in Xcode — responsible for both front-end and back-end" style="margin-top: 1rem;">
         </div>
       </div>
 
-      <div class="fr-build-grid">
-        <div class="fr-build-cell">
-          <div class="fr-build-cell__label">Design</div>
-          <h4>User flow → screens → iteration</h4>
-          <p>Designed every screen from the user flow up. Iterated through multiple rounds with working IDEO designers as testers.</p>
-        </div>
-        <div class="fr-build-cell">
-          <div class="fr-build-cell__label">Development</div>
-          <h4>Xcode, front-end and back-end</h4>
-          <p>Built the data model, session logic, photo pipeline, PDF generation, and email sharing — no handoff, no prototype.</p>
-        </div>
-        <div class="fr-build-cell">
-          <div class="fr-build-cell__label">Testing</div>
-          <h4>IDEOers in the loop throughout</h4>
-          <p>Testing was continuous, not a sign-off. Feedback shaped the interface while it was being built, not after.</p>
-        </div>
-      </div>
-
-      <div class="cs-img-grid-2" style="margin-top: 1.5rem;">
-        <img src="../My Old Portfolio/field-report/interface-evolve.jpg" alt="Interface evolution — the design changed significantly between first and final">
-        <img src="../My Old Portfolio/field-report/ondevice.jpg" alt="On-device testing — it had to work in the hand, not just on screen">
+      <div class="cs-img-grid-2" style="margin-top: 2.5rem;">
+        <img src="../../assets/images/field-report/interface-evolve.jpg" alt="Interface evolution — the design changed significantly between first and final">
+        <img src="../../assets/images/field-report/ondevice.jpg" alt="On-device testing — it had to work in the hand, not just on screen">
       </div>
 
     </div>
@@ -460,55 +306,46 @@
     <div class="container">
       <div>
         <div class="section-label">06 — Product</div>
-        <h2 class="section-title">Three gestures.<br><em>One field report.</em></h2>
+        <h2 class="section-title">Three problems<br><em>One system</em></h2>
         <div class="divider"></div>
       </div>
-      <p class="body-text" style="margin-top: 1.5rem;">The interface mirrors the three tools designers already carry into field — notebook, recorder, camera — and gives each a native mobile counterpart.</p>
-
-      <div class="fr-product-grid">
-        <div class="fr-product-col" style="color: var(--dark);">
-          <div class="fr-product-col__tag" style="color: var(--accent); background: var(--accent-light);">Note</div>
-          <h4 style="color: var(--dark);">Capture an insight</h4>
-          <p style="color: var(--mid);">A digital post-it, created in the moment — timestamped and tied to a session, not scattered across apps.</p>
+      <p class="body-text" style="margin-top: 2.5rem;">I designed a system that mirrors how designers naturally capture research — notes, quotes, and photos — and translated it into a mobile experience.</p>
+      <p class="body-text">What used to be fragmented across tools and delayed in process became immediate and structured in one flow.</p>
+      <p class="body-text">With one tap, insights could be shared with the team as a formatted PDF — no wall needed, no room required.</p>
+      <div class="cs-ba" style="margin-top: 2.5rem;">
+        <div class="cs-ba__col">
+          <div class="cs-ba__label">Note</div>
           <div class="cs-video-embed">
             <video autoplay loop muted playsinline>
               <source src="../My Old Portfolio/video/field-report-function.mp4" type="video/mp4">
             </video>
           </div>
         </div>
-        <div class="fr-product-col">
-          <div class="fr-product-col__tag" style="color: var(--accent); background: var(--accent-light);">Photo</div>
-          <h4 style="color: var(--dark);">Context stays attached</h4>
-          <p style="color: var(--mid);">Photos linked directly to research moments — not floating in a camera roll, disconnected from their meaning.</p>
-          <img src="../My Old Portfolio/field-report/fieldreport008.jpg" alt="Capturing in context — photo attached to a specific research moment">
+        <div class="cs-ba__col">
+          <div class="cs-ba__label">Photo</div>
+          <img src="../../assets/images/field-report/fieldreport008.jpg" alt="Capturing in context — photo attached to a specific research moment">
         </div>
-        <div class="fr-product-col">
-          <div class="fr-product-col__tag" style="color: var(--accent); background: var(--accent-light);">Share</div>
-          <h4 style="color: var(--dark);">One tap to the team</h4>
-          <p style="color: var(--mid);">Results packaged as a formatted PDF and sent by email. No wall needed. No room required.</p>
+      </div>
+
+      <div class="cs-ba" style="margin-top: 0.5px;">
+        <div class="cs-ba__col">
+          <div class="cs-ba__label">Share</div>
           <div class="cs-video-embed">
             <video autoplay loop muted playsinline>
               <source src="../My Old Portfolio/video/field-report-share.mp4" type="video/mp4">
             </video>
           </div>
         </div>
-      </div>
-
-      <div class="fr-share-row" style="background: var(--dark);">
-        <div class="fr-share-row__text">
-          <div class="fr-share-row__tag">The output</div>
-          <h4>Field research, formatted for the debrief</h4>
-          <p>Each session generates a shareable PDF — notes, quotes, and photos organised clearly. Designed to replace the wall in the presentation, not to supplement it.</p>
-        </div>
-        <div class="fr-share-row__img">
-          <img src="../My Old Portfolio/field-report/fieldreport011.jpg" alt="The formatted PDF — field research ready for the debrief">
+        <div class="cs-ba__col">
+          <div class="cs-ba__label">Output</div>
+          <img src="../../assets/images/field-report/fieldreport011.jpg" alt="The formatted PDF — field research ready for the debrief">
         </div>
       </div>
 
       <div class="cs-two-col" style="margin-top: 2.5rem; align-items: center;">
         <div>
           <div class="section-label" style="margin-bottom: 0.75rem;">Craft detail</div>
-          <p class="body-text">IDEO's culture treats joy in work as a design value. I added deliberate moments of playfulness — small interactions that made the app feel like it belonged in the studio, not just on it.</p>
+          <p class="body-text">I added deliberate moments of playfulness — small interactions that made the app feel like it belonged in the studio, not just on it.</p>
         </div>
         <div>
           <div class="cs-video-embed">
@@ -529,7 +366,7 @@
 
       <div class="reveal">
         <div class="section-label">Outcome</div>
-        <h2 class="section-title">Ambiguity<br>turned into product.</h2>
+        <h2 class="section-title">Ambiguity<br>turned into product</h2>
         <div class="divider"></div>
       </div>
 
@@ -556,8 +393,8 @@
       </div>
 
       <div class="cs-img-grid-2 reveal" style="margin-top: 2rem;">
-        <img src="../My Old Portfolio/field-report/finalpresent.jpg" alt="Live demo in front of IDEOers at the end of the internship">
-        <img src="../My Old Portfolio/field-report/ixdcpresent.png" alt="Presented at IxDC Shanghai 2012">
+        <img src="../../assets/images/field-report/finalpresent.jpg" alt="Live demo in front of IDEOers at the end of the internship">
+        <img src="../../assets/images/field-report/ixdcpresent.png" alt="Presented at IxDC Shanghai 2012">
       </div>
 
     </div>
