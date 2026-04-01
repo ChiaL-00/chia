@@ -53,8 +53,8 @@ em { font-style: italic; color: var(--accent-mid); }
   margin-top: 2.5rem;
 }
 .fr-context-quote__label {
-  font-size: 0.62rem;
-  letter-spacing: 0.2em;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--accent);
   font-weight: 500;
@@ -205,7 +205,7 @@ img, video { border-radius: var(--radius); }
 .cs-testimonial--terra .cs-testimonial__quote { color: var(--white); }
 .cs-testimonial--terra .cs-testimonial__attr  { color: rgba(255,255,255,0.6); }
 .cs-testimonial__quote  { font-style: normal; margin-bottom: 0; line-height: 1.7; }
-.cs-testimonial__attr   { font-size: 0.72rem; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 1.25rem; margin-bottom: 0; color: var(--mid); }
+.cs-testimonial__attr   { font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; margin-top: 1.25rem; margin-bottom: 0; color: var(--mid); }
 .cs-testimonial--light .cs-testimonial__quote { font-size: 1.05rem; }
 
 /* ══════════════════════════════════════════════
@@ -220,17 +220,125 @@ img, video { border-radius: var(--radius); }
 .outcomes-quotes        { grid-template-columns: repeat(3, 1fr); margin-top: 1.5rem; }
 
 /* ══════════════════════════════════════════════
+   OBSERVATION LIST (section 02)
+   ══════════════════════════════════════════════ */
+
+.fr-obs-list {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+}
+.fr-obs-item {
+  display: grid;
+  grid-template-columns: 3.5rem 1fr;
+  gap: 2rem;
+  padding: 2.25rem 0;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  align-items: start;
+}
+.fr-obs-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); }
+.fr-obs-num {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-mid);
+  padding-top: 0.3rem;
+  font-weight: 500;
+}
+.fr-obs-content h4 {
+  font-size: 1.15rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.01em;
+}
+.fr-obs-content p {
+  font-size: 0.9rem;
+  color: var(--text-on-dark);
+  line-height: 1.8;
+  margin: 0;
+  max-width: 68ch;
+}
+
+/* ══════════════════════════════════════════════
+   DECISION STRIP (section 03)
+   ══════════════════════════════════════════════ */
+
+.fr-decision {
+  background: var(--accent);
+  padding: 7rem 0;
+}
+.fr-decision .container {
+  display: grid;
+  grid-template-columns: 1fr 1.8fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+.fr-decision__left    { position: sticky; top: 100px; }
+.fr-decision__label {
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 1rem;
+  font-weight: 500;
+}
+.fr-decision__num {
+  font-size: clamp(5rem, 10vw, 8rem);
+  font-weight: 700;
+  color: rgba(255,255,255,0.12);
+  line-height: 1;
+  margin-top: 0.5rem;
+}
+.fr-decision__heading {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+.fr-decision__heading em  { font-style: italic; color: rgba(255,255,255,0.65); }
+.fr-decision__body        { color: rgba(255,255,255,0.85); line-height: 1.8; }
+.fr-decision__body strong { color: #fff; font-weight: 600; }
+
+/* ══════════════════════════════════════════════
+   PARALLAX BANNER (section 04)
+   ══════════════════════════════════════════════ */
+
+.fr-parallax {
+  margin-top: 3rem;
+  height: 520px;
+  position: relative;
+  overflow: hidden;
+}
+.fr-parallax__bg {
+  position: absolute;
+  top: -150px;
+  left: 0;
+  width: 100%;
+  height: calc(100% + 300px);
+  object-fit: cover;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* ══════════════════════════════════════════════
    RESPONSIVE
    ══════════════════════════════════════════════ */
 
 @media (max-width: 900px) {
   .cs-hero               { grid-template-columns: 1fr; min-height: auto; }
   .cs-hero__left         { justify-content: flex-start; }
-  .cs-two-col,
-  .cs-research-grid      { grid-template-columns: 1fr; gap: 2rem; }
+  .cs-two-col            { grid-template-columns: 1fr; gap: 2rem; }
   .cs-img-grid-2,
   .cs-img-grid-3         { grid-template-columns: 1fr; }
   .fr-process-grid       { grid-template-columns: 1fr; }
   .outcomes-main         { grid-template-columns: 1fr; }
   .outcomes-quotes       { grid-template-columns: 1fr; }
+  .fr-parallax           { height: 300px; }
+  .fr-decision .container { grid-template-columns: 1fr; gap: 2rem; }
+  .fr-decision__left     { position: static; }
+  .fr-decision__num      { display: none; }
 }

@@ -13,114 +13,6 @@
   <link rel="stylesheet" href="../../assets/css/case-study.css">
   <link rel="stylesheet" href="field-report.css">
 
-  <style>
-
-    /* ── OBSERVATION LIST (section 02) ── */
-    .fr-obs-list {
-      display: flex;
-      flex-direction: column;
-      margin-top: 3rem;
-    }
-    .fr-obs-item {
-      display: grid;
-      grid-template-columns: 3.5rem 1fr;
-      gap: 2rem;
-      padding: 2.25rem 0;
-      border-top: 1px solid rgba(255,255,255,0.07);
-      align-items: start;
-    }
-    .fr-obs-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); }
-    .fr-obs-num {
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent-mid);
-      padding-top: 0.3rem;
-      font-weight: 500;
-    }
-    .fr-obs-content h4 {
-      font-size: 1.15rem;
-      font-weight: 500;
-      color: var(--white);
-      margin-bottom: 0.6rem;
-      letter-spacing: -0.01em;
-    }
-    .fr-obs-content p {
-      font-size: 0.9rem;
-      color: var(--text-on-dark);
-      line-height: 1.75;
-      margin: 0;
-      max-width: 68ch;
-    }
-
-    /* ── DECISION STRIP (section 03) — full bleed pivot moment ── */
-    .fr-decision {
-      background: var(--accent);
-      padding: 7rem 0;
-    }
-    .fr-decision .container {
-      display: grid;
-      grid-template-columns: 1fr 1.8fr;
-      gap: 1.5rem;
-      align-items: start;
-    }
-    .fr-decision__left { position: sticky; top: 100px; }
-    .fr-decision__label {
-      font-size: 0.62rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-      margin-bottom: 1rem;
-      font-weight: 500;
-    }
-    .fr-decision__num {
-      font-size: clamp(5rem, 10vw, 8rem);
-      font-weight: 700;
-      color: rgba(255,255,255,0.12);
-      line-height: 1;
-      margin-top: 0.5rem;
-    }
-    
-    .fr-decision__heading {
-      font-family: var(--serif);
-      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-      font-weight: 400;
-      color: #fff;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-    }
-    .fr-decision__heading em { font-style: italic; color: rgba(255,255,255,0.65); }
-    .fr-decision__body {
-      color: rgba(255,255,255,0.85);
-      line-height: 1.85;
-    }
-    .fr-decision__body strong { color: #fff; font-weight: 600; }
-
-    /* ── OUTCOME STATEMENT ── */
-    .fr-outcome-statement {
-      margin-top: 3rem;
-      padding: 3rem;
-      background: var(--dark);
-      border-radius: var(--radius);
-    }
-    .fr-outcome-statement p {
-      font-size: 1.05rem;
-      color: var(--text-on-dark);
-      line-height: 1.85;
-      max-width: 70ch;
-      margin: 0;
-    }
-    .fr-outcome-statement p + p { margin-top: 1rem; }
-    .fr-outcome-statement strong { color: var(--white); }
-
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .fr-decision .container { grid-template-columns: 1fr; gap: 2rem; }
-      .fr-decision__left     { position: static; }
-      .fr-decision__num      { display: none; }
-    }
-  </style>
 </head>
 <body>
 
@@ -135,7 +27,7 @@
   <!-- ── HERO ─────────────────────────────────────────────── -->
   <section class="cs-hero">
     <div class="cs-hero__left">
-      <div class="cs-hero__tag">UX · iOS APP</div>
+      <div class="cs-hero__tag">UX · iOS APP · IDEO</div>
       <h1 class="cs-hero__title">Field <br>Report</h1>
       <div class="cs-hero__meta">
         <div class="cs-meta-item">
@@ -173,7 +65,7 @@
       <div class="divider"></div>
       <div class="fr-context-quote">
         <p class="fr-context-quote__text">”How might we facilitate the design process for IDEOers?”</p>
-        <p class="fr-context-quote__attr">— open, ambitious, and entirely undefined brief.</p>
+        <p class="fr-context-quote__attr">— open, ambitious, and entirely undefined brief</p>
       </div>
       <p class="fr-context-body">With no predefined problem or direction, I started with observation — spending time with designers, understanding how they captured, organised, and shared their work in practice.</p>
     </div>
@@ -209,7 +101,7 @@
             <p class="cs-pain-desc">Every designer had their own system — one lived in Google Docs, another only trusted hand-written notes, a third kept everything as photos. <strong>Getting to a shared view of the research meant translating across formats.</strong></p>
           </div>
           <div class="fr-obs-row__img">
-            <img src="../../assets/images/field-report/fieldreport005.jpg" alt="Two designers, two systems — no way to share the same research">
+            <img src="../../assets/images/field-report/designer-way.png" alt="Two designers, two systems — no way to share the same research">
           </div>
         </div>
 
@@ -220,7 +112,7 @@
             <p class="cs-pain-desc">Findings only have value when the team can act on them together. The post-it wall was the best synthesis method available — and it required a large physical space and everyone present at the same time. <strong>The wall wasn't a design choice. It was the only option available.</strong></p>
           </div>
           <div class="fr-obs-row__img">
-            <img src="../../assets/images/field-report/fieldreport006.jpg" alt="The post-it wall — powerful but requiring physical space and full-team presence">
+            <img src="../../assets/images/field-report/room-wall.jpg" alt="The post-it wall — powerful but requiring physical space and full-team presence">
           </div>
         </div>
 
@@ -247,23 +139,22 @@
 
 
   <!-- ── 04 VALIDATION ─────────────────────────────────────── -->
-  <section class="section cs-section--white">
+  <section class="section cs-section--white" style="padding-bottom: 0;">
     <div class="container">
       <div>
         <div class="section-label">04 — Validation</div>
         <h2 class="section-title">The moment it <br><em>became real</em></h2>
         <div class="divider"></div>
       </div>
-      <div style="margin-top: 2.5rem; max-width: 72ch;">
+      <div style="max-width: 72ch;">
         <p class="body-text">This direction was reinforced when I joined a studio team on a field research project.</p>
         <p class="body-text">The team was trying to capture and organise insights during car rides, or later in temporary meeting spaces. It made the gap visible: the moment when insights were freshest had the least support.</p>
         <p class="body-text">The problem wasn’t theoretical — it was happening in real time, in the middle of the work.</p>
       </div>
 
-      <div class="cs-img-grid-2" style="margin-top: 2.5rem;">
-        <img src="../../assets/images/field-report/incarwindow.jpg" alt="In the car after an interview — the exact moment the tool needed to serve">
-        <img src="../../assets/images/field-report/fieldreport003.jpg" alt="Field research in progress — insights captured in the moment">
-      </div>
+    </div>
+    <div class="fr-parallax">
+      <img class="fr-parallax__bg" src="../../assets/images/field-report/incarwindow.jpg" alt="" aria-hidden="true">
     </div>
   </section>
 
@@ -279,7 +170,7 @@
         <div class="divider divider--light"></div>
       </div>
 
-      <div class="cs-research-grid" style="margin-top: 2.5rem;">
+      <div class="cs-two-col"">
         <div>
           <p class="body-text cs-text-on-dark">I designed and built the app myself in Xcode.</p>
           <p class="body-text cs-text-on-dark">The interface was shaped to match how designers already work — so that it felt immediately familiar, without requiring explanation.</p>
@@ -287,13 +178,12 @@
           <p class="body-text cs-text-on-dark">Testing was continuous, not just a QA phase — feedback from IDEO designers directly shaped the user flow as it was being built.</p>
         </div>
         <div>
-          <img src="../../assets/images/field-report/designingflow.jpg" alt="Mapping the user flow — the first step before any screen design">
-          <img src="../../assets/images/field-report/r1003395.jpg" alt="Building in Xcode — responsible for both front-end and back-end" style="margin-top: 1rem;">
+          <img src="../../assets/images/field-report/xcode.jpg" alt="Building in Xcode — responsible for both front-end and back-end" style="margin-top: 1rem;">
         </div>
       </div>
 
-      <div class="cs-img-grid-2" style="margin-top: 2.5rem;">
-        <img src="../../assets/images/field-report/interface-evolve.jpg" alt="Interface evolution — the design changed significantly between first and final">
+      <div class="cs-img-grid-2" style="margin-top: 2rem;">
+        <img src="../../assets/images/field-report/pdfdesign.jpg" alt="Sharable pdf design">
         <img src="../../assets/images/field-report/ondevice.jpg" alt="On-device testing — it had to work in the hand, not just on screen">
       </div>
 
@@ -309,40 +199,25 @@
         <h2 class="section-title">Three problems<br><em>One system</em></h2>
         <div class="divider"></div>
       </div>
-      <p class="body-text" style="margin-top: 2.5rem;">I designed a system that mirrors how designers naturally capture research — notes, quotes, and photos — and translated it into a mobile experience.</p>
-      <p class="body-text">What used to be fragmented across tools and delayed in process became immediate and structured in one flow.</p>
-      <p class="body-text">With one tap, insights could be shared with the team as a formatted PDF — no wall needed, no room required.</p>
-      <div class="cs-ba" style="margin-top: 2.5rem;">
-        <div class="cs-ba__col">
-          <div class="cs-ba__label">Note</div>
-          <div class="cs-video-embed">
-            <video autoplay loop muted playsinline>
-              <source src="../My Old Portfolio/video/field-report-function.mp4" type="video/mp4">
-            </video>
-          </div>
+      <div class="cs-two-col">
+        <div>
+          <p class="body-text">I designed a system that mirrors how designers naturally capture research — notes, quotes, and photos — and translated it into a mobile experience.</p>
+          <p class="body-text">What used to be fragmented across tools and delayed in process became immediate and structured in one flow.</p>
+          <p class="body-text">With one tap, insights could be shared with the team as a formatted PDF — no wall needed, no room required.</p>
         </div>
-        <div class="cs-ba__col">
-          <div class="cs-ba__label">Photo</div>
-          <img src="../../assets/images/field-report/fieldreport008.jpg" alt="Capturing in context — photo attached to a specific research moment">
-        </div>
+        <img src="../../assets/images/field-report/fieldreport009.jpg" alt="Capturing in context — photo attached to a specific research moment" style="width: 100%; object-fit: cover;">
+      </div>
+      <div class="cs-img-grid-3" style="margin-top: 2.5rem;">
+        <img src="../../assets/images/field-report/initScreen.jpg" alt="Initial screen">
+        <video autoplay loop muted playsinline style="width: 100%; display: block; border-radius: var(--radius);">
+          <source src="../../assets/video/field-report/app-demo.mp4" type="video/mp4">
+        </video>
+        <video autoplay loop muted playsinline style="width: 100%; display: block; border-radius: var(--radius);">
+          <source src="../../assets/video/field-report/field-report-share.mp4" type="video/mp4">
+        </video>
       </div>
 
-      <div class="cs-ba" style="margin-top: 0.5px;">
-        <div class="cs-ba__col">
-          <div class="cs-ba__label">Share</div>
-          <div class="cs-video-embed">
-            <video autoplay loop muted playsinline>
-              <source src="../My Old Portfolio/video/field-report-share.mp4" type="video/mp4">
-            </video>
-          </div>
-        </div>
-        <div class="cs-ba__col">
-          <div class="cs-ba__label">Output</div>
-          <img src="../../assets/images/field-report/fieldreport011.jpg" alt="The formatted PDF — field research ready for the debrief">
-        </div>
-      </div>
-
-      <div class="cs-two-col" style="margin-top: 2.5rem; align-items: center;">
+      <div class="cs-two-col" style="margin-top: 2.5rem; align-items: center; grid-template-columns: 1fr 2fr;">
         <div>
           <div class="section-label" style="margin-bottom: 0.75rem;">Craft detail</div>
           <p class="body-text">I added deliberate moments of playfulness — small interactions that made the app feel like it belonged in the studio, not just on it.</p>
@@ -350,7 +225,7 @@
         <div>
           <div class="cs-video-embed">
             <video autoplay loop muted playsinline>
-              <source src="../My Old Portfolio/video/field-report-fun.mp4" type="video/mp4">
+              <source src="../../assets/video/field-report/field-report-fun.mp4" type="video/mp4">
             </video>
           </div>
         </div>
@@ -366,36 +241,35 @@
 
       <div class="reveal">
         <div class="section-label">Outcome</div>
-        <h2 class="section-title">Ambiguity<br>turned into product</h2>
+        <h2 class="section-title">Ambiguity<br><em>turned into product</em></h2>
         <div class="divider"></div>
       </div>
 
-      <div class="fr-outcome-statement reveal">
-        <p>Field Report was adopted as an <strong>in-house tool at IDEO</strong> and used by design teams on live client work. It was later presented at <strong>IxDC Shanghai 2012</strong> as a practical example of design tools that embed a firm's philosophy into daily practice.</p>
-        <p>But the more important outcome was what this project proved: that I could take a deliberately open brief, resist the urge to jump to a solution, identify what the actual problem was — and then build something real. <strong>Not a prototype. A shipped product that people chose to use.</strong></p>
-      </div>
-
-      <div class="cs-two-col outcomes-main reveal" style="align-items: start; margin-top: 2rem;">
-        <div class="cs-testimonial cs-testimonial--terra">
-          <p class="cs-testimonial__quote cs-testimonial__quote--large">"I have been WAITING for this."</p>
-          <p class="cs-testimonial__attr">— IDEOer</p>
-        </div>
-        <div class="outcomes-quotes cs-testimonial-grid" style="grid-template-columns: 1fr; gap: 1rem;">
-          <div class="cs-testimonial cs-testimonial--light">
-            <p class="cs-testimonial__quote">"A nice resource for those teams about to head into field!"</p>
-            <p class="cs-testimonial__attr">— IDEOer</p>
-          </div>
-          <div class="cs-testimonial cs-testimonial--light">
-            <p class="cs-testimonial__quote">"I like that it jumps you right into building your first interview. I learn what it is as I use it."</p>
-            <p class="cs-testimonial__attr">— IDEOer</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="cs-img-grid-2 reveal" style="margin-top: 2rem;">
+      <div class="cs-two-col reveal">
         <img src="../../assets/images/field-report/finalpresent.jpg" alt="Live demo in front of IDEOers at the end of the internship">
+        <div>
+          <p class="body-text">Field Report was adopted as an <strong>in-house tool at IDEO</strong> and used by design teams on live client work. It was later presented at <strong>IxDC Shanghai 2012</strong>.</p>
+          <p class="body-text">More importantly, it proved that <strong>I could define the right problem — and build a product that people chose to use.</strong></p>
+        </div>
+      </div>
+
+      <div class="reveal" style="margin-top: 2rem;">
         <img src="../../assets/images/field-report/ixdcpresent.png" alt="Presented at IxDC Shanghai 2012">
       </div>
+
+      
+      <div class="cs-testimonial-grid reveal" style="margin-top: 2rem;">
+        <div class="cs-testimonial cs-testimonial--light">
+          <p class="cs-testimonial__quote">"I like that it jumps you right into building your first interview. I learn what it is as I use it."</p>
+          <p class="cs-testimonial__attr">— IDEOer</p>
+        </div>
+        <div class="cs-testimonial cs-testimonial--terra">
+          <p class="cs-testimonial__quote" style="font-size: 1.5rem;">"I have been WAITING for this."</p>
+          <p class="cs-testimonial__attr">— IDEOer</p>
+        </div>
+      </div>
+
+      
 
     </div>
   </section>
@@ -423,6 +297,21 @@
   </footer>
 
   <script src="../../assets/js/main.js"></script>
+  <script>
+    // Validation section parallax
+    const frParallaxSection = document.querySelector('.fr-parallax');
+    const frParallaxBg      = document.querySelector('.fr-parallax__bg');
+
+    function updateFrParallax() {
+      if (!frParallaxSection || !frParallaxBg) return;
+      const rect   = frParallaxSection.getBoundingClientRect();
+      const offset = -rect.top * 0.4;
+      frParallaxBg.style.transform = `translateY(${offset}px)`;
+    }
+
+    window.addEventListener('scroll', updateFrParallax, { passive: true });
+    updateFrParallax();
+  </script>
 
 </body>
 </html>
