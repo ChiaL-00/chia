@@ -83,14 +83,13 @@ em { font-style: italic; color: var(--accent-mid); }
 
 /* ── IMG / VIDEO ── */
 img, video { border-radius: var(--radius); }
-.img-full  { width: 100%; display: block; }
 
 /* ── OBSERVATION ROWS ── */
 .fr-obs-list {
   display: flex;
   flex-direction: column;
   gap: 1.5px;
-  margin-top: 2.5rem;
+  margin-top: 3rem;
   background: rgba(255,255,255,0.06);
 }
 .fr-obs-row {
@@ -121,7 +120,6 @@ img, video { border-radius: var(--radius); }
 .cs-hero__left   { background: var(--dark); padding: 5rem 4rem; justify-content: flex-end; gap: 2rem; }
 .cs-hero__tag    { color: var(--accent-mid); margin-bottom: 0.5rem; }
 .cs-hero__title  { font-weight: 700;}
-.cs-hero__accent-word { color: var(--accent-mid); font-weight: 600; }
 
 .cs-hero__right  { background: var(--accent); align-items: flex-start; }
 .cs-hero__problem-label { color: rgba(255,255,255,0.6); }
@@ -129,36 +127,15 @@ img, video { border-radius: var(--radius); }
 .cs-hero__problem h2 strong { font-weight: 600; }
 
 /* ══════════════════════════════════════════════
-   BRIEF CARD
-   ══════════════════════════════════════════════ */
-
-.fr-brief-card         { background: var(--dark); padding: 2.5rem; border-radius: var(--radius); }
-.fr-brief-card__label  { display: block; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent-mid); font-weight: 500; margin-bottom: 1.25rem; }
-.fr-brief-card__quote  { font-family: var(--serif); font-size: 1.4rem; font-weight: 400; color: var(--white); line-height: 1.45; margin: 0 0 0.75rem; font-style: italic; }
-.fr-brief-card__sub    { font-size: 0.85rem; color: var(--text-on-dark); margin: 0; }
-
-/* ══════════════════════════════════════════════
    PAIN CARDS (dark grid — terracotta accents)
    ══════════════════════════════════════════════ */
 
-.cs-pain-grid         { background: none; gap: 1.5px; }
 .cs-pain-card         { background: var(--dark-surface); gap: 0.75rem; padding: 2rem; flex-direction: column; display: flex; }
 .cs-pain-card:hover   { background: var(--dark-surface-hover); }
 .cs-pain-number       { color: var(--accent-mid); }
 .cs-pain-title        { font-size: 1rem; font-weight: 600; color: var(--white); }
 .cs-pain-desc         { font-size: 0.9rem; color: var(--text-on-dark); }
 .cs-pain-desc strong  { color: var(--white); font-weight: 600; }
-.cs-pain-quote        {
-  font-style: italic; font-size: 0.85rem; color: var(--accent-light);
-  border-left: none; border-top: 1px solid var(--dark-surface-hover);
-  padding-left: 0; padding-top: 1rem; margin-top: auto;
-}
-
-/* ══════════════════════════════════════════════
-   CALLOUT TEXT (dark sections)
-   ══════════════════════════════════════════════ */
-
-.cs-callout-text { font-size: 1.6rem; color: var(--white); line-height: 1.3; margin-top: 0.5rem; }
 
 /* ══════════════════════════════════════════════
    VIDEO EMBED
@@ -167,35 +144,6 @@ img, video { border-radius: var(--radius); }
 .cs-video-embed              { position: relative; padding-bottom: 75%; height: 0; overflow: hidden; border-radius: var(--radius); }
 .cs-video-embed video,
 .cs-video-embed iframe       { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-
-/* ══════════════════════════════════════════════
-   FEATURE ROW (icon + text)
-   ══════════════════════════════════════════════ */
-
-.fr-feature-row  { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
-.fr-feature      { display: flex; align-items: flex-start; gap: 1.5rem; }
-.fr-feature__icon {
-  width: 40px; height: 40px; flex-shrink: 0;
-  background: var(--accent-light); border-radius: var(--radius);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.2rem;
-}
-.fr-feature__text h4 { font-size: 0.95rem; font-weight: 600; color: var(--dark); margin-bottom: 0.25rem; }
-.fr-feature__text p  { font-size: 0.88rem; color: var(--mid); line-height: 1.6; margin: 0; }
-
-/* ══════════════════════════════════════════════
-   PROCESS GRID (3-column steps)
-   ══════════════════════════════════════════════ */
-
-.fr-process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 2.5rem; }
-.fr-process-step {
-  background: var(--dark-surface);
-  padding: 1.75rem;
-  border-top: 3px solid var(--accent-mid);
-}
-.fr-process-step__num  { font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-mid); margin-bottom: 0.75rem; }
-.fr-process-step h4    { font-size: 0.95rem; font-weight: 600; color: var(--white); margin-bottom: 0.5rem; }
-.fr-process-step p     { font-size: 0.85rem; color: var(--text-on-dark); line-height: 1.6; margin: 0; }
 
 /* ══════════════════════════════════════════════
    TESTIMONIAL OVERRIDES
@@ -216,49 +164,6 @@ img, video { border-radius: var(--radius); }
 .cs-outcomes .section-label { color: var(--accent); opacity: 1; }
 .cs-outcomes .section-title { color: var(--dark); }
 .cs-outcomes .divider   { background: var(--accent); }
-.outcomes-main          { grid-template-columns: 1fr 2fr; }
-.outcomes-quotes        { grid-template-columns: repeat(3, 1fr); margin-top: 1.5rem; }
-
-/* ══════════════════════════════════════════════
-   OBSERVATION LIST (section 02)
-   ══════════════════════════════════════════════ */
-
-.fr-obs-list {
-  display: flex;
-  flex-direction: column;
-  margin-top: 3rem;
-}
-.fr-obs-item {
-  display: grid;
-  grid-template-columns: 3.5rem 1fr;
-  gap: 2rem;
-  padding: 2.25rem 0;
-  border-top: 1px solid rgba(255,255,255,0.07);
-  align-items: start;
-}
-.fr-obs-item:last-child { border-bottom: 1px solid rgba(255,255,255,0.07); }
-.fr-obs-num {
-  font-size: 0.68rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--accent-mid);
-  padding-top: 0.3rem;
-  font-weight: 500;
-}
-.fr-obs-content h4 {
-  font-size: 1.15rem;
-  font-weight: 500;
-  color: var(--white);
-  margin-bottom: 0.6rem;
-  letter-spacing: -0.01em;
-}
-.fr-obs-content p {
-  font-size: 0.9rem;
-  color: var(--text-on-dark);
-  line-height: 1.8;
-  margin: 0;
-  max-width: 68ch;
-}
 
 /* ══════════════════════════════════════════════
    DECISION STRIP (section 03)
@@ -334,11 +239,7 @@ img, video { border-radius: var(--radius); }
   .cs-two-col            { grid-template-columns: 1fr; gap: 2rem; }
   .cs-img-grid-2,
   .cs-img-grid-3         { grid-template-columns: 1fr; }
-  .fr-process-grid       { grid-template-columns: 1fr; }
-  .outcomes-main         { grid-template-columns: 1fr; }
-  .outcomes-quotes       { grid-template-columns: 1fr; }
   .fr-parallax           { height: 300px; }
   .fr-decision .container { grid-template-columns: 1fr; gap: 2rem; }
   .fr-decision__left     { position: static; }
-  .fr-decision__num      { display: none; }
 }
