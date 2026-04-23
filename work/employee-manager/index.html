@@ -98,35 +98,19 @@
       </div>
     </section>
 
-    <section class="section cs-section--dark">
+    <section class="section cs-section--dark em-problem-section">
       <div class="container">
-        <div>
-          <div class="section-label cs-label-on-dark">01 — The problem</div>
-          <h2 class="section-title cs-text-white">Five actors, three platforms, <em>zero shared view</em></h2>
-          <div class="divider divider--light"></div>
-        </div>
-        <div class="system-grid">
+        <div class="cs-two-col cs-two-col--2-1" style="align-items: stretch;">
           <div>
-            <p class="body-text cs-text-on-dark">Onboarding was distributed across the employee app, client app, Deel admin, Support, Customer Success, and a spreadsheet that only Ops could really interpret. That meant every question, every delay, and every edge case flowed back to Ops.</p>
-            <div class="flow-grid">
-              <div class="flow-card">
-                <div class="flow-card__label">What broke</div>
-                <h3>No common source of truth</h3>
-                <p>Employees and clients could not reliably see where onboarding stood. Support and CS could not answer with confidence. Ops became the only team with real visibility.</p>
-              </div>
-              <div class="flow-card">
-                <div class="flow-card__label">Why it mattered</div>
-                <h3>High stakes, low resilience</h3>
-                <p>In EOR, onboarding is where compliance, trust, and speed are established. Miss a visa review or contract step, and the issue is no longer UX friction — it becomes legal and operational risk.</p>
-              </div>
-            </div>
+            <div class="section-label cs-label-on-dark">01 — The problem</div>
+            <h2 class="section-title cs-text-white">When the business runs on spreadsheets <br><em>scale hits a ceiling</em></h2>
+            <div class="divider divider--light"></div>
+            <p class="body-text cs-text-on-dark">Onboarding worked — but only because Ops manually held everything together. The spreadsheet became the system of record, but only Ops could interpret it.</p>
+            <p class="body-text cs-text-on-dark">As the business expanded across countries, each onboarding introduced more compliance rules, more coordination, and more manual work.</p>
+            <p class="body-text cs-text-on-dark"><strong>The system wasn’t just slow — it was structurally unsustainable.</strong></p>
           </div>
-          <div class="placeholder-stack">
-            <div class="em-placeholder em-placeholder--dark">
-              <div class="em-placeholder__label">Placeholder image</div>
-              <div class="em-placeholder__title">Stakeholder / system map</div>
-              <div class="em-placeholder__desc">Use this area for the “5 actors · 3 + 1 platforms · 0 shared view” visual.</div>
-            </div>
+          <div class="em-bottleneck-wrap">
+            <img class="em-bottleneck-img" src="../../assets/images/employee-manager/bottleneck.png" alt="Ops bottleneck system map">
           </div>
         </div>
       </div>
@@ -386,5 +370,27 @@
       <p class="footer-note">Employee Manager case study webpage draft — placeholder images ready for replacement.</p>
     </div>
   </footer>
+
+<script>
+  // Bottleneck image — scroll up from bottom, stop when section top hits nav
+  const problemSection = document.querySelector('.em-problem-section');
+  const bottleneckImg  = document.querySelector('.em-bottleneck-img');
+  const NAV_H = 64;
+
+  function updateBottleneck() {
+    if (!problemSection || !bottleneckImg) return;
+    const rect    = problemSection.getBoundingClientRect();
+    const viewH   = window.innerHeight;
+    const wrapH   = bottleneckImg.parentElement.offsetHeight;
+    // progress: 1 when section just enters viewport, 0 when section top hits nav
+    const progress = (rect.top - NAV_H) / (viewH - NAV_H);
+    const clamped  = Math.max(0, Math.min(1, progress));
+    // offset = wrapH pushes image fully below the visible wrap area
+    bottleneckImg.style.transform = `translateY(${wrapH * clamped}px)`;
+  }
+
+  window.addEventListener('scroll', updateBottleneck, { passive: true });
+  updateBottleneck();
+</script>
 </body>
 </html>

@@ -151,6 +151,7 @@ img, video { width: 100%; display: block; border-radius: 4px; }
   align-items: start;
   margin-top: 3rem;
 }
+.cs-two-col--2-1 { grid-template-columns: 2fr 1fr; }
 
 .cs-img-grid-2 {
   display: grid;

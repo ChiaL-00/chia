@@ -33,8 +33,6 @@ h1, h2, h3, h4 { font-family: var(--serif); }
 .divider { background: var(--accent); }
 .divider--light { background: var(--accent-mid); opacity: 1 !important; }
 .body-text strong { color: var(--dark); font-weight: 700; }
-.cs-section--dark { background: var(--dark); }
-.cs-section--dark .body-text { color: var(--text-on-dark); }
 .cs-section--dark .section-title,
 .cs-section--dark .cs-principle-title,
 .cs-section--dark .metric-number,
@@ -42,6 +40,7 @@ h1, h2, h3, h4 { font-family: var(--serif); }
 .cs-section--dark .logic-card h3,
 .cs-section--dark .body-text strong { color: var(--white); }
 .cs-section--dark .section-label { color: var(--accent-mid); }
+.cs-section--dark .section-title em { color: var(--accent-mid); }
 .cs-section--dark .divider { background: var(--accent-mid); }
 nav { background: rgba(247,244,252,0.92); }
 .nav-logo { font-family: var(--serif); }
@@ -62,6 +61,18 @@ nav { background: rgba(247,244,252,0.92); }
   font-size: clamp(1.45rem, 2.3vw, 2.2rem);
   max-width: 24ch;
   color: var(--white);
+}
+.em-problem-section { overflow: hidden; }
+.em-bottleneck-wrap {
+  position: relative;
+  /* no overflow: hidden — image can spill into section padding below */
+}
+.em-bottleneck-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  will-change: transform;
 }
 .cs-fq-dot { background: var(--accent); }
 .cs-fq-dot-row::after { background: var(--accent); }
@@ -302,4 +313,5 @@ nav { background: rgba(247,244,252,0.92); }
   .impact-grid,
   .system-grid { grid-template-columns: 1fr; }
   .impact-metrics { grid-template-columns: 1fr; }
+  .em-bottleneck-wrap { display: none; }
 }
