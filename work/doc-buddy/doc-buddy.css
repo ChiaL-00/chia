@@ -303,9 +303,7 @@ blockquote {
 }
 .cs-testimonial__attr {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
   letter-spacing: 0.06em;
-  text-transform: uppercase;
   margin-top: 1.5rem;
   margin-bottom: 0;
 }
