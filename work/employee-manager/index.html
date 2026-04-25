@@ -100,7 +100,7 @@
 
     <section class="section cs-section--dark em-problem-section">
       <div class="container">
-        <div class="cs-two-col cs-two-col--2-1" style="align-items: stretch;">
+        <div class="cs-two-col cs-two-col--2-1" style="align-items: stretch; margin-top: 0;">
           <div>
             <div class="section-label cs-label-on-dark">01 — The problem</div>
             <h2 class="section-title cs-text-white">When the business runs on spreadsheets <br><em>scale hits a ceiling</em></h2>
@@ -120,103 +120,44 @@
       <div class="container">
         <div>
           <div class="section-label">02 — Strategy</div>
-          <h2 class="section-title">Not just a new tool for Ops — <em>a faster onboarding system overall</em></h2>
+          <h2 class="section-title">Removing the bottleneck <br><em>from both ends</em></h2>
           <div class="divider"></div>
         </div>
-        <div class="cs-two-col">
-          <div>
-            <p class="body-text">Of course Ops needed a better internal tool. But the system was not only constrained by Ops capacity — it was also constrained by how easily employees and clients could move through onboarding without getting stuck.</p>
-            <p class="body-text">So I approached the problem from both sides: improve internal throughput for Ops, while reducing friction across employee and client experiences so fewer cases stall or escalate in the first place.</p>
+        <div class="em-strategy-body">
+          <p class="body-text">Ops clearly needed better tooling than spreadsheet. But fixing Ops alone wouldn’t solve it.</p>
+          <p class="body-text">The real question was: <br><strong>how do we increase total onboarding capacity — not just Ops throughput?</strong></p>
+          <div class="em-strategy-quote">
+            <p><strong>If onboarding gets stuck for 20 minutes at every step, no amount of Ops efficiency will save you.</strong></p>
+            <div class="em-strategy-quote__attr">Design principle</div>
           </div>
-          <div>
-            <div class="quote-card">
-              <div class="quote-card__quote">Design onboarding as a self-serve system — not an Ops-supported workflow.</div>
-              <div class="quote-card__attr">Core product stance</div>
-            </div>
-          </div>
-        </div>
-        <div class="surface-grid">
-          <div class="surface-card">
-            <h3>Employee</h3>
-            <p>Clarify the next step, due dates, and required inputs so people can complete onboarding without guessing.</p>
-          </div>
-          <div class="surface-card">
-            <h3>Client</h3>
-            <p>Show accurate progress and shared task state so client teams can track onboarding without escalating.</p>
-          </div>
-          <div class="surface-card">
-            <h3>Ops</h3>
-            <p>Build a workspace that lets specialists review, decide, and move through operational queues quickly.</p>
-          </div>
+          <p class="body-text">So I redesigned the employee onboarding experience, the client tracking experience, and the Ops admin <strong>together.</strong></p>
+          <p class="body-text"><strong>3 surfaces. 8 weeks. 1 system.</strong></p>
         </div>
       </div>
     </section>
 
     <section class="section cs-section--dark">
       <div class="container">
-        <div>
-          <div class="section-label cs-label-on-dark">03 — Key design decision</div>
-          <h2 class="section-title cs-text-white">Why I did <em>not</em> copy Offboarding Manager</h2>
-          <div class="divider divider--light"></div>
-        </div>
-        <div class="flow-grid">
-          <div class="flow-card">
-            <div class="flow-card__label">Offboarding Manager</div>
-            <h3>Finish one case end-to-end</h3>
-            <p>Ops usually take one employee and work through the whole case. Tasks are connected and sequential — you cannot calculate severance before understanding leave taken, notice, and local rules.</p>
-            <ul>
-              <li>One employee at a time</li>
-              <li>Dependencies between steps</li>
-              <li>Deep work on a single case</li>
-            </ul>
+        <div class="cs-strategy" style="margin-top: 0;">
+          <div class="cs-strategy__intro">
+            <div class="section-label cs-label-on-dark">03 — Insight</div>
+            <h2 class="section-title cs-text-white">Why <em>not</em> reuse Offboarding Manager</h2>
+            <div class="divider divider--light"></div>
           </div>
-          <div class="flow-card">
-            <div class="flow-card__label">Onboarding Manager</div>
-            <h3>Clear the same type of task across many cases</h3>
-            <p>Onboarding has many employees moving through similar steps in parallel. Ops do not want to “finish John” first — they want to review all pending visa cases, then move to the next queue.</p>
-            <ul>
-              <li>Many employees in flight at once</li>
-              <li>Parallel progress across tasks</li>
-              <li>Queue-based operational work</li>
-            </ul>
-          </div>
-        </div>
-        <div style="margin-top: 2rem;">
-          <p class="body-text cs-text-on-dark">That insight shaped the rest of the product. Reusing Offboarding Manager would have been faster, but it would have optimised for the wrong way of working.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section cs-section--white">
-      <div class="container">
-        <div>
-          <div class="section-label">04 — Structure</div>
-          <h2 class="section-title">A structure built around <em>what needs to be done</em></h2>
-          <div class="divider"></div>
-        </div>
-        <div class="system-grid">
           <div>
-            <div class="logic-card">
-              <span class="kicker">How Ops move</span>
-              <h3>Status becomes the entry point</h3>
-              <p class="body-text">Instead of starting from a person record and drilling down, Employee Manager starts from the work queue. Status is where the action happens: awaiting review, awaiting employee submit, compliance rejected, awaiting countersign.</p>
-            </div>
-            <div class="logic-card" style="margin-top: 1rem;">
-              <span class="kicker">Supporting layers</span>
-              <h3>Task, lifecycle, and country add structure</h3>
-              <p class="body-text">Once Ops are in the right queue, task type, contract lifecycle, and country provide the context they need to work safely and fast. The structure supports specialist workflows without forcing them to jump between people.</p>
-            </div>
-          </div>
-          <div class="placeholder-stack">
-            <div class="em-placeholder">
+            <p class="body-text cs-text-on-dark">Before Employee Manager, I had designed Offboarding Manager — an internal tool for Ops that worked well and was already in production.
+            It would have been the fastest path to reuse it.</p>
+            <p class="body-text cs-text-on-dark">And at first glance, it made sense — onboarding and offboarding share the same users and similar task structures.</p>
+            <div class="em-placeholder em-placeholder--dark" style="margin-top: 1.5rem;">
               <div class="em-placeholder__label">Placeholder image</div>
-              <div class="em-placeholder__title">Navigation architecture</div>
-              <div class="em-placeholder__desc">Replace with the “Navigate like an Ops” visual showing country, lifecycle, task, and status.</div>
+              <div class="em-placeholder__title">Image title</div>
+              <div class="em-placeholder__desc">Replace with the relevant visual.</div>
             </div>
-            <div class="em-placeholder">
-              <div class="em-placeholder__label">Placeholder image</div>
-              <div class="em-placeholder__title">Actual product UI</div>
-              <div class="em-placeholder__desc">Replace with the admin interface screenshot where the list stays visible and the queue remains intact.</div>
+            <p class="body-text cs-text-on-dark" style="margin-top: 1rem;">But in practice, Ops approach them very differently.</p>
+            <p class="body-text cs-text-on-dark"><strong>Offboarding is sequential </strong> — Ops completes one employee end to end.<br>
+            <strong>Onboarding is parallel </strong>— Ops clears one type of task across many employees.</p>
+            <div class="em-strategy-quote em-strategy-quote--dark" style="margin-top: 1.5rem;">
+              <p class="cs-text-on-dark"><strong>Depth-first vs breadth-first — means copying the same model would optimise for the wrong behaviour.</strong></p>
             </div>
           </div>
         </div>
@@ -226,102 +167,105 @@
     <section class="section cs-section--white">
       <div class="container">
         <div>
-          <div class="section-label">05 — Designing the workflow</div>
-          <h2 class="section-title">The system moves with Ops — <em>not the other way around</em></h2>
+          <div class="section-label">04 — The Designing</div>
+          <h2 class="section-title">A system build around <br><em>what needs to be done</em></h2>
           <div class="divider"></div>
         </div>
         <div class="cs-two-col">
-          <div>
-            <p class="body-text">One of the biggest inefficiencies in the original workflow was context switching. Approve a visa, then leave the current view, find the employee again, open the next step, and continue. The system kept making people relocate their work.</p>
-            <p class="body-text">Employee Manager changed that. After making a decision, Ops can move directly into the next relevant action for the same employee — or stay in the current queue and continue reviewing. Either way, they remain inside the same operational context.</p>
-            <blockquote>“Really? You can go directly to send the contract?”</blockquote>
-            <p class="body-text">That reaction from Ops told us the handoff flow was not just convenient — it made the tool feel like it actually understood their job.</p>
+          <div class="em-placeholder">
+            <div class="em-placeholder__label">Placeholder image</div>
+            <div class="em-placeholder__title">System structure diagram</div>
           </div>
-          <div class="placeholder-stack">
-            <div class="em-placeholder">
-              <div class="em-placeholder__label">Placeholder image</div>
-              <div class="em-placeholder__title">Task handoff flow</div>
-              <div class="em-placeholder__desc">Use for the before / after sequence that shows approval leading directly into contract signing.</div>
-            </div>
-            <div class="em-placeholder">
-              <div class="em-placeholder__label">Placeholder image</div>
-              <div class="em-placeholder__title">Status-driven detail panel</div>
-              <div class="em-placeholder__desc">Use for the side panel showing different fields and actions for visa review vs rejected compliance docs.</div>
-            </div>
+          <div>
+            <div class="cs-tag">Structure</div>
+            <h3 class="cs-principle-title">A system structured around actions, not people</h3>
+            <ul class="body-text" style="padding-left: 1.2em; margin: 0.75rem 0 0; display: flex; flex-direction: column; gap: 0.5rem;">
+              <li><strong>Status</strong> is the core operational layer, where all work is surfaced, grouped, and acted on</li>
+              <li><strong>Tasks</strong> and <strong>contract lifecycle</strong> define the structure behind each status, governing what needs to happen and in what order</li>
+              <li><strong>Country</strong> sits at the top layer, reflecting how Ops is organised and the country-specific knowledge required for onboarding</li>
+            </ul>
           </div>
         </div>
+        <div class="em-placeholder" style="margin-top: 2rem;">
+          <div class="em-placeholder__label">Placeholder image</div>
+          <div class="em-placeholder__title">Full-width image</div>
+        </div>
+        <div class="cs-principle">
+          <div class="cs-tag">Workflow</div>
+          <h3 class="cs-principle-title">The system moves with Ops' workflow</h3>
+          <ul class="body-text" style="padding-left: 1.2em; margin: 0.75rem 0 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li>Ops can clear the same task across employees without re-navigation</li>
+            <li>Work flows forward to the next step or across the same queue, no need to search, assign, or track what comes next</li>
+            <li><strong>Completing a task moves Ops directly to the next step</strong> , e.g. visa approval to contract preparation</li>
+            <li>Ops stays in the workflow instead of switching views</li>
+          </ul>
+       
+        <div class="cs-img-grid-2">
+          <div class="em-placeholder">
+            <div class="em-placeholder__label">Placeholder image</div>
+            <div class="em-placeholder__title">Task handoff flow</div>
+            <div class="em-placeholder__desc">Use for the before / after sequence that shows approval leading directly into contract signing.</div>
+          </div>
+          <div class="em-placeholder">
+            <div class="em-placeholder__label">Placeholder image</div>
+            <div class="em-placeholder__title">Status-driven detail panel</div>
+            <div class="em-placeholder__desc">Use for the side panel showing different fields and actions for visa review vs rejected compliance docs.</div>
+          </div>
+        </div>
+        <div class="em-strategy-quote">
+          <p><strong>Really? You can go directly to send the contract? That's awesome.</strong></p>
+          <div class="em-strategy-quote__attr">Ops validation</div>
+        </div>
+        <div class="cs-principle">
+          <div class="cs-tag">System</div>
+          <h3 class="cs-principle-title">Three surfaces, one shared reality</h3>
+          <ul class="body-text" style="padding-left: 1.2em; margin: 0.75rem 0 0; display: flex; flex-direction: column; gap: 0.5rem;">
+            <li>Employee, client, and Deel admin are built on the <strong>same underlying task model</strong></li>
+            <li>Each surface exposes the same system from a different perspective</li>
+            <li>Everyone is looking at the same state of progress — not reconciling between tools</li>
+          </ul>
+          <div class="em-placeholder" style="margin-top: 1.5rem;">
+            <div class="em-placeholder__label">Placeholder image</div>
+            <div class="em-placeholder__title">Three surfaces, one task model</div>
+          </div>
+        </div>
+      </div>
       </div>
     </section>
 
     <section class="section cs-section--dark">
       <div class="container">
         <div>
-          <div class="section-label cs-label-on-dark">06 — Shared visibility</div>
-          <h2 class="section-title cs-text-white">Three surfaces, one underlying <em>task reality</em></h2>
+          <div class="section-label cs-label-on-dark">05 — Impact</div>
+          <h2 class="section-title cs-text-white">Scaling onboarding <em>beyond</em> <br> Ops capacity</h2>
           <div class="divider divider--light"></div>
-        </div>
-        <div class="surface-grid">
-          <div class="surface-card">
-            <h3>Employee view</h3>
-            <p>See required tasks, due dates, and completion state in a way that reduces uncertainty and drop-off.</p>
-          </div>
-          <div class="surface-card">
-            <h3>Client tracker</h3>
-            <p>Track employee progress with the same underlying checklist so the client is not dependent on manual status updates.</p>
-          </div>
-          <div class="surface-card">
-            <h3>Admin / Ops</h3>
-            <p>See the same task state through an operational lens — prioritised, filterable, and ready for action.</p>
-          </div>
-        </div>
-        <div class="system-grid" style="margin-top: 2rem;">
-          <div>
-            <p class="body-text cs-text-on-dark">This mattered because it aligned the whole system. Employees, clients, and Ops were no longer looking at different versions of onboarding. They were looking at the same task model, shaped differently for their needs.</p>
-          </div>
-          <div>
-            <div class="em-placeholder em-placeholder--dark">
-              <div class="em-placeholder__label">Placeholder image</div>
-              <div class="em-placeholder__title">3 platform, 1 shared view</div>
-              <div class="em-placeholder__desc">Replace with the composite visual comparing employee, client, and admin representations of the same onboarding task state.</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section cs-section--white">
-      <div class="container">
-        <div>
-          <div class="section-label">07 — Impact</div>
-          <h2 class="section-title">Operational gains that <em>changed the capacity curve</em></h2>
-          <div class="divider"></div>
         </div>
         <div class="impact-grid">
-          <div class="impact-metrics">
-            <div class="impact-metric">
+          <div class="impact-metrics impact-metrics--dark">
+            <div class="impact-metric impact-metric--dark">
               <div class="impact-metric__value">4 → 2 days</div>
               <div class="impact-metric__label">Ops effort per onboarding</div>
-              <div class="impact-metric__desc">Reducing context switching and structuring work around queues cut the time required to process onboarding.</div>
+              <div class="impact-metric__desc">By reducing context switching and structuring work around queues</div>
             </div>
-            <div class="impact-metric">
+            <div class="impact-metric impact-metric--dark">
               <div class="impact-metric__value">50%</div>
               <div class="impact-metric__label">Fewer breaches</div>
-              <div class="impact-metric__desc">Ops leadership reported better SLA adherence and prioritisation after Employee Manager launched.</div>
+              <div class="impact-metric__desc">Ops leadership reported better SLA adherence and prioritisation after Employee Manager launched</div>
             </div>
-            <div class="impact-metric">
-              <div class="impact-metric__value">87%+</div>
+            <div class="impact-metric impact-metric--dark">
+              <div class="impact-metric__value">88%+</div>
               <div class="impact-metric__label">Onboarding CSAT</div>
-              <div class="impact-metric__desc">Customer satisfaction stayed consistently strong while the system scaled far beyond its original operating conditions.</div>
+              <div class="impact-metric__desc">Customer satisfaction stayed consistently strong while the system scaled far beyond its original operating conditions</div>
             </div>
-            <div class="impact-metric">
+            <div class="impact-metric impact-metric--dark">
               <div class="impact-metric__value">20× MRR</div>
               <div class="impact-metric__label">Business growth supported</div>
-              <div class="impact-metric__desc">EOR revenue multiplied without the Ops team scaling proportionally, showing that the system held operationally as the business expanded.</div>
+              <div class="impact-metric__desc">EOR revenue multiplied without the Ops team scaling proportionally</div>
             </div>
           </div>
           <div>
             <div class="quote-card">
-              <div class="quote-card__quote">“EM helped prevent and improve breaches by 50% — we are now more compliant with SLA and prioritisation of tasks.”</div>
+              <div class="quote-card__quote">"EM helped prevent and improve breaches by 50% — we are now more compliant with SLA and prioritisation of tasks."</div>
               <div class="quote-card__attr">Ops Director</div>
             </div>
           </div>

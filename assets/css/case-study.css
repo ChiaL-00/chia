@@ -398,7 +398,7 @@ img, video { width: 100%; display: block; border-radius: 4px; }
 .cs-strategy {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  gap: 5rem;
+  gap: 3rem;
   margin-top: 3rem;
   align-items: start;
 }
