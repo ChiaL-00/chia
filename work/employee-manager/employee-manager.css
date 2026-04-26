@@ -14,11 +14,17 @@
   --mid: #5d5968;
   --light: #f7f4fc;
   --white: #ffffff;
-  --serif: 'Fraunces', Georgia, serif;
-  --sans: 'Manrope', system-ui, sans-serif;
+  --serif: 'Source Serif 4', Georgia, serif;
+  --sans: 'Source Sans 3', system-ui, sans-serif;
 }
 body { font-family: var(--sans); background: var(--light); }
-h1, h2, h3, h4 { font-family: var(--serif); }
+h1, h2, h3, h4 {
+  font-family: var(--serif);
+  font-optical-sizing: auto;  /* activates Source Serif 4's opsz axis */
+}
+/* Weight hierarchy — all 400 is too flat */
+h1, h2 { font-weight: 400; }
+h3, h4  { font-weight: 600; }
 .section-label {
   color: var(--accent);
 }
@@ -28,7 +34,7 @@ h1, h2, h3, h4 { font-family: var(--serif); }
 }
 .section-title em {
   color: var(--accent);
-  font-style: normal;
+  font-style: italic;
 }
 .divider { background: var(--accent); }
 .divider--light { background: var(--accent-mid); opacity: 1 !important; }
@@ -44,6 +50,21 @@ h1, h2, h3, h4 { font-family: var(--serif); }
 .cs-section--dark .divider { background: var(--accent-mid); }
 nav { background: rgba(247,244,252,0.92); }
 .nav-logo { font-family: var(--serif); }
+.cs-meta-value { font-weight: 400; }
+/* Line-height + measure corrections for Source Sans 3 */
+.body-text { font-weight: 400; line-height: 1.65; max-width: 65ch; }
+/* Line-heights for display type — headings inherit body 1.7 without this */
+.cs-hero__title        { line-height: 1.08; }
+.cs-hero__problem h2   { line-height: 1.25; }
+.section-title         { line-height: 1.15; }
+.cs-principle-title    { line-height: 1.3; }  /* case-study.css sets 1.5 — too open */
+.flow-card h3          { line-height: 1.25; }
+.flow-card p           { line-height: 1.65; }
+/* Tabular nums for metric values so digits align */
+.impact-metric__value,
+.metric-number { font-variant-numeric: tabular-nums; }
+/* Testimonial quote — case-study.css sets 1.8 which is too loose for Source Serif 4 */
+.cs-testimonial__quote { line-height: 1.6; }
 .nav-links a[aria-current="page"] { border-bottom-color: var(--accent); }
 .cs-hero__left {
   background: linear-gradient(180deg, #19181d 0%, #241f31 100%);
@@ -57,9 +78,7 @@ nav { background: rgba(247,244,252,0.92); }
   color: rgba(255,255,255,0.6);
 }
 .cs-hero__problem h2 {
-  font-family: var(--serif);
   font-size: clamp(1.45rem, 2.3vw, 2.2rem);
-  max-width: 24ch;
   color: var(--white);
 }
 .em-problem-section { overflow: hidden; }
@@ -100,16 +119,13 @@ nav { background: rgba(247,244,252,0.92); }
 }
 .metric-number {
   display: block;
-  margin-top: 0.35rem;
   font-family: var(--serif);
   font-size: clamp(1.6rem, 3vw, 2.4rem);
   color: var(--dark);
   line-height: 1.1;
 }
 .metric-sub {
-  margin-top: 0.45rem;
   font-size: 0.92rem;
-  line-height: 1.55;
   color: var(--mid);
 }
 .system-grid {
