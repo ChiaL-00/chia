@@ -148,10 +148,9 @@
             <p class="body-text cs-text-on-dark">Before Employee Manager, I had designed Offboarding Manager — an internal tool for Ops that worked well and was already in production.
             It would have been the fastest path to reuse it.</p>
             <p class="body-text cs-text-on-dark">And at first glance, it made sense — onboarding and offboarding share the same users and similar task structures.</p>
-            <div class="em-placeholder em-placeholder--dark" style="margin-top: 1.5rem;">
-              <div class="em-placeholder__label">Placeholder image</div>
-              <div class="em-placeholder__title">Image title</div>
-              <div class="em-placeholder__desc">Replace with the relevant visual.</div>
+            <div class="em-insight-reveal" style="margin-top: 1.5rem; position: relative;">
+              <img src="../../assets/images/employee-manager/insight-pre.png" alt="Before insight">
+              <img src="../../assets/images/employee-manager/insight.png" alt="Insight diagram" class="em-insight-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.6s ease;">
             </div>
             <p class="body-text cs-text-on-dark" style="margin-top: 1rem;">But in practice, Ops approach them very differently.</p>
             <p class="body-text cs-text-on-dark"><strong>Offboarding is sequential </strong> — Ops completes one employee end to end.<br>
@@ -167,7 +166,7 @@
     <section class="section cs-section--white">
       <div class="container">
         <div>
-          <div class="section-label">04 — The Designing</div>
+          <div class="section-label">04 — The Design</div>
           <h2 class="section-title">A system build around <br><em>what needs to be done</em></h2>
           <div class="divider"></div>
         </div>
@@ -186,10 +185,7 @@
             </ul>
           </div>
         </div>
-        <div class="em-placeholder" style="margin-top: 2rem;">
-          <div class="em-placeholder__label">Placeholder image</div>
-          <div class="em-placeholder__title">Full-width image</div>
-        </div>
+        <img src="../../assets/images/employee-manager/nav-UI.png" alt="Navigation UI structure diagram" style="margin-top: 2rem;">
         <div class="cs-principle">
           <div class="cs-tag">Workflow</div>
           <h3 class="cs-principle-title">The system moves with Ops' workflow</h3>
@@ -201,16 +197,8 @@
           </ul>
        
         <div class="cs-img-grid-2">
-          <div class="em-placeholder">
-            <div class="em-placeholder__label">Placeholder image</div>
-            <div class="em-placeholder__title">Task handoff flow</div>
-            <div class="em-placeholder__desc">Use for the before / after sequence that shows approval leading directly into contract signing.</div>
-          </div>
-          <div class="em-placeholder">
-            <div class="em-placeholder__label">Placeholder image</div>
-            <div class="em-placeholder__title">Status-driven detail panel</div>
-            <div class="em-placeholder__desc">Use for the side panel showing different fields and actions for visa review vs rejected compliance docs.</div>
-          </div>
+          <video src="../../assets/video/employee-manager/list-workflow.mp4" autoplay loop muted playsinline></video>
+          <video src="../../assets/video/employee-manager/handoff-workflow.mp4" autoplay loop muted playsinline></video>
         </div>
         <div class="em-strategy-quote">
           <p>"<strong>Really? You can go directly to send the contract? That's awesome.</strong>"</p>
@@ -224,10 +212,7 @@
             <li>Each surface exposes the same system from a different perspective</li>
             <li>Everyone is looking at the same state of progress — not reconciling between tools</li>
           </ul>
-          <div class="em-placeholder" style="margin-top: 1.5rem;">
-            <div class="em-placeholder__label">Placeholder image</div>
-            <div class="em-placeholder__title">Three surfaces, one task model</div>
-          </div>
+          <img src="../../assets/images/employee-manager/3surfaces.png" alt="Three surfaces, one task model" style="margin-top: 1.5rem; box-shadow: none;">
         </div>
       </div>
       </div>
@@ -334,6 +319,19 @@
 
   window.addEventListener('scroll', updateBottleneck, { passive: true });
   updateBottleneck();
+
+  // Insight reveal — fade in insight.png when image top hits top of viewport
+  // Insight reveal — fade in insight.png when section top hits top of viewport
+  const insightSection = document.querySelectorAll('.cs-section--dark')[1]; // 2nd dark section = insight
+  const insightOverlay = document.querySelector('.em-insight-overlay');
+  if (insightSection && insightOverlay) {
+    function updateInsight() {
+      const top = insightSection.getBoundingClientRect().top;
+      insightOverlay.style.opacity = top <= 0 ? '1' : '0';
+    }
+    window.addEventListener('scroll', updateInsight, { passive: true });
+    updateInsight();
+  }
 </script>
 </body>
 </html>

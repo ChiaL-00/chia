@@ -18,6 +18,8 @@
   --sans: 'Source Sans 3', system-ui, sans-serif;
 }
 body { font-family: var(--sans); background: var(--light); }
+/* Image edge — prevents radius disappearing when image bg matches page bg */
+img { box-shadow: 0 0 0 1px rgba(0,0,0,0.06); }
 h1, h2, h3, h4 {
   font-family: var(--serif);
   font-optical-sizing: auto;  /* activates Source Serif 4's opsz axis */
