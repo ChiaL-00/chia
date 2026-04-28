@@ -89,7 +89,7 @@
                   <div class="cs-fq-dot"></div>
                   <span class="cs-fq-moment">Proof</span>
                 </div>
-                <span class="metric-number">4 years</span>
+                <span class="metric-number">3 years+</span>
                 <div class="metric-sub">Core architecture remained in use without structural redesign</div>
               </div>
             </div>
@@ -153,8 +153,9 @@
               <img src="../../assets/images/employee-manager/insight.png" alt="Insight diagram" class="em-insight-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.6s ease;">
             </div>
             <p class="body-text cs-text-on-dark" style="margin-top: 1rem;">But in practice, Ops approach them very differently.</p>
-            <p class="body-text cs-text-on-dark"><strong>Offboarding is sequential </strong> — Ops completes one employee end to end.<br>
-            <strong>Onboarding is parallel </strong>— Ops clears one type of task across many employees.</p>
+            <p class="body-text cs-text-on-dark"><strong>Tasks in offboarding is sequential </strong> — You need to know how many days of annual leave John has taken
+              before you can calculate his severance. Ops completes one employee end to end.<br>
+            <strong>Tasks in onboarding is mostly parallel </strong>— Ops wants to clear one task type across all employees, like reviewing all pending visa cases.</p>
             <div class="em-strategy-quote em-strategy-quote--dark" style="margin-top: 1.5rem;">
               <p class="cs-text-on-dark"><strong>Depth-first vs breadth-first — means copying the same model would optimise for the wrong behaviour.</strong></p>
             </div>
@@ -233,12 +234,16 @@
               <div class="impact-metric__desc">By reducing context switching and structuring work around queues</div>
             </div>
             <div class="impact-metric impact-metric--dark">
-              <div class="impact-metric__value">50%</div>
+              <div class="impact-metric__value"
+                   data-ticker="50"
+                   data-ticker-from="10"
+                   data-ticker-slow-at="40"
+                   data-ticker-suffix="%">10%</div>
               <div class="impact-metric__label">Fewer breaches</div>
               <div class="impact-metric__desc">Ops leadership reported better SLA adherence and prioritisation after Employee Manager launched</div>
             </div>
             <div class="impact-metric impact-metric--dark">
-              <div class="impact-metric__value">88%+</div>
+              <div class="impact-metric__value" data-ticker="88" data-ticker-from="60" data-ticker-slow-at="85" data-ticker-suffix="%+">50%+</div>
               <div class="impact-metric__label">Onboarding CSAT</div>
               <div class="impact-metric__desc">Customer satisfaction stayed consistently strong while the system scaled far beyond its original operating conditions</div>
             </div>
@@ -299,39 +304,6 @@
   </footer>
 
 <script src="../../assets/js/main.js"></script>
-<script>
-  // Bottleneck image — scroll up from bottom, stop when section top hits nav
-  const problemSection = document.querySelector('.em-problem-section');
-  const bottleneckImg  = document.querySelector('.em-bottleneck-img');
-  const NAV_H = 64;
-
-  function updateBottleneck() {
-    if (!problemSection || !bottleneckImg) return;
-    const rect    = problemSection.getBoundingClientRect();
-    const viewH   = window.innerHeight;
-    const wrapH   = bottleneckImg.parentElement.offsetHeight;
-    // progress: 1 when section just enters viewport, 0 when section top hits nav
-    const progress = (rect.top - NAV_H) / (viewH - NAV_H);
-    const clamped  = Math.max(0, Math.min(1, progress));
-    // offset = wrapH pushes image fully below the visible wrap area
-    bottleneckImg.style.transform = `translateY(${wrapH * clamped}px)`;
-  }
-
-  window.addEventListener('scroll', updateBottleneck, { passive: true });
-  updateBottleneck();
-
-  // Insight reveal — fade in insight.png when image top hits top of viewport
-  // Insight reveal — fade in insight.png when section top hits top of viewport
-  const insightSection = document.querySelectorAll('.cs-section--dark')[1]; // 2nd dark section = insight
-  const insightOverlay = document.querySelector('.em-insight-overlay');
-  if (insightSection && insightOverlay) {
-    function updateInsight() {
-      const top = insightSection.getBoundingClientRect().top;
-      insightOverlay.style.opacity = top <= 0 ? '1' : '0';
-    }
-    window.addEventListener('scroll', updateInsight, { passive: true });
-    updateInsight();
-  }
-</script>
+<script src="employee-manager.js"></script>
 </body>
 </html>
