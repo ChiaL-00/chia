@@ -56,6 +56,28 @@ function initTicker(el) {
 
 document.querySelectorAll('[data-ticker]').forEach(initTicker);
 
+// Layer stack animation — CSS transition, reversible on scroll up
+(function initLayerAnimation() {
+  const stack = document.getElementById('em-layers-stack');
+  const navUI = document.getElementById('em-nav-ui');
+  if (!stack || !navUI) return;
+
+  const isMobile = window.matchMedia('(max-width: 768px)').matches;
+
+  if (isMobile) {
+    // Toggle on scroll: animate when top hits viewport top, reverse when above
+    window.addEventListener('scroll', function() {
+      const atOrPast = navUI.getBoundingClientRect().top <= 0;
+      stack.classList.toggle('is-animated', atOrPast);
+    }, { passive: true });
+  } else {
+    // Toggle when 50% of nav-UI enters/leaves viewport
+    new IntersectionObserver(function(entries) {
+      stack.classList.toggle('is-animated', entries[0].intersectionRatio >= 0.5);
+    }, { threshold: 0.5 }).observe(navUI);
+  }
+}());
+
 // Insight reveal — fade in overlay when section top hits top of viewport
 const insightSection = document.querySelectorAll('.cs-section--dark')[1];
 const insightOverlay = document.querySelector('.em-insight-overlay');
