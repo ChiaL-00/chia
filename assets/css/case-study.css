@@ -752,7 +752,9 @@ blockquote {
   .cs-two-col,
   .cs-strategy,
   .cs-testimonial-grid,
-  .cs-outcomes-grid { grid-template-columns: 1fr; }
+  .cs-outcomes-grid,
+  .cs-img-grid-2,
+  .cs-img-grid-3 { grid-template-columns: 1fr; }
 
   /* Persona */
   .cs-persona { grid-template-columns: 1fr; }

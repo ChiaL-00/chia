@@ -11,9 +11,9 @@
   <link rel="stylesheet" href="../../assets/css/case-study.css">
   <link rel="stylesheet" href="employee-manager.css">
 </head>
-<body>
+<body class="em-page">
   <nav>
-    <a class="nav-logo" href="#">Chia Lin</a>
+    <a class="nav-logo" href="../../index.html">Chia Lin</a>
     <span class="nav-project-title visible">Employee Manager</span>
     <a class="nav-back-top" href="#top">Back to top</a>
   </nav>
@@ -30,7 +30,7 @@
           </div>
           <div class="cs-meta-item">
             <span class="cs-meta-label">Timeline</span>
-            <span class="cs-meta-value">8-week MVP · 3 sufaces</span>
+            <span class="cs-meta-value">8-week MVP · 3 surfaces</span>
           </div>
           <div class="cs-meta-item">
             <span class="cs-meta-label">Industry</span>
@@ -102,7 +102,7 @@
       <div class="container">
         <div class="cs-two-col cs-two-col--2-1" style="align-items: stretch; margin-top: 0;">
           <div>
-            <div class="section-label cs-label-on-dark">01 — The problem</div>
+            <div class="section-label">01 — The problem</div>
             <h2 class="section-title cs-text-white">When the business runs on spreadsheets <br><em>scale hits a ceiling</em></h2>
             <div class="divider divider--light"></div>
             <p class="body-text cs-text-on-dark">Onboarding worked — but only because Ops manually held everything together. The spreadsheet became the system of record, but only Ops could interpret it.</p>
@@ -140,7 +140,7 @@
       <div class="container">
         <div class="cs-strategy" style="margin-top: 0;">
           <div class="cs-strategy__intro">
-            <div class="section-label cs-label-on-dark">03 — Insight</div>
+            <div class="section-label">03 — Insight</div>
             <h2 class="section-title cs-text-white">Why <em>not</em> reuse Offboarding Manager</h2>
             <div class="divider divider--light"></div>
           </div>
@@ -168,7 +168,7 @@
       <div class="container">
         <div>
           <div class="section-label">04 — The Design</div>
-          <h2 class="section-title">A system build around <br><em>what needs to be done</em></h2>
+          <h2 class="section-title">A system built around <br><em>what needs to be done</em></h2>
           <div class="divider"></div>
         </div>
         <div class="cs-two-col">
@@ -211,15 +211,22 @@
             <li>Ops stays in the workflow instead of switching views</li>
           </ul>
        
-        <div class="cs-img-grid-2">
-          <video src="../../assets/video/employee-manager/list-workflow.mp4" autoplay loop muted playsinline></video>
-          <video src="../../assets/video/employee-manager/handoff-workflow.mp4" autoplay loop muted playsinline></video>
+          <div class="cs-img-grid-2">
+            <figure class="em-video-fig">
+              <video src="../../assets/video/employee-manager/list-workflow.mp4" autoplay loop muted playsinline></video>
+              <figcaption>Ops clears the same task across all employees in one queue — no re-navigation between records</figcaption>
+            </figure>
+            <figure class="em-video-fig">
+              <video src="../../assets/video/employee-manager/handoff-workflow.mp4" autoplay loop muted playsinline></video>
+              <figcaption>Completing a task advances directly to the next step — e.g. visa approval straight to contract preparation</figcaption>
+            </figure>
+          </div>
+          <div class="em-strategy-quote">
+            <p>"<strong>Really? You can go directly to send the contract? That's awesome.</strong>"</p>
+            <div class="em-strategy-quote__attr">— Ops validation</div>
+          </div>
         </div>
-        <div class="em-strategy-quote">
-          <p>"<strong>Really? You can go directly to send the contract? That's awesome.</strong>"</p>
-          <div class="em-strategy-quote__attr">— Ops validation</div>
-        </div>
-        <div class="cs-principle">
+        <div>
           <div class="cs-tag">System</div>
           <h3 class="cs-principle-title">Three surfaces, one shared reality</h3>
           <ul class="body-text" style="padding-left: 1.2em; margin: 0.75rem 0 0; display: flex; flex-direction: column; gap: 0.5rem;">
@@ -236,7 +243,7 @@
     <section class="section cs-section--dark">
       <div class="container">
         <div>
-          <div class="section-label cs-label-on-dark">05 — Impact</div>
+          <div class="section-label">05 — Impact</div>
           <h2 class="section-title cs-text-white">Scaling onboarding <em>beyond</em> <br> Ops capacity</h2>
           <div class="divider divider--light"></div>
         </div>
@@ -252,12 +259,12 @@
                    data-ticker="50"
                    data-ticker-from="10"
                    data-ticker-slow-at="40"
-                   data-ticker-suffix="%">10%</div>
+                   data-ticker-suffix="%">50%</div>
               <div class="impact-metric__label">Fewer breaches</div>
               <div class="impact-metric__desc">Ops leadership reported better SLA adherence and prioritisation after Employee Manager launched</div>
             </div>
             <div class="impact-metric impact-metric--dark">
-              <div class="impact-metric__value" data-ticker="88" data-ticker-from="60" data-ticker-slow-at="85" data-ticker-suffix="%+">50%+</div>
+              <div class="impact-metric__value" data-ticker="88" data-ticker-from="60" data-ticker-slow-at="85" data-ticker-suffix="%+">88%+</div>
               <div class="impact-metric__label">Onboarding CSAT</div>
               <div class="impact-metric__desc">Customer satisfaction stayed consistently strong while the system scaled far beyond its original operating conditions</div>
             </div>
@@ -293,12 +300,6 @@
             The system I designed in 2022 still powers the product at 3,000+ onboardings per month,<strong> without structural redesign.</strong> <br>
             It became a reference point for other product lines, and reduced Ops onboarding training from multi-platform walkthroughs to simply: log in to Employee Manager.</p>
           <p class="body-text">Even as new features were added on top, the underlying structure held.</p>
-          <div class="em-placeholder" style="margin-top: 1.5rem;">
-            <div class="em-placeholder__label">Placeholder image</div>
-            <div class="em-placeholder__title">Lasting impact / design reference</div>
-            <div class="em-placeholder__desc">Use for adoption quotes, follow-on product references, or a composite of later internal screens proving continuity.</div>
-          </div>
-        </div>
       </div>
     </section>
 

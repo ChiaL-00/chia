@@ -1,3 +1,5 @@
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // Bottleneck image — scroll up from bottom, stop when section top hits nav
 const problemSection = document.querySelector('.em-problem-section');
 const bottleneckImg  = document.querySelector('.em-bottleneck-img');
@@ -13,8 +15,10 @@ function updateBottleneck() {
   bottleneckImg.style.transform = `translateY(${wrapH * clamped}px)`;
 }
 
-window.addEventListener('scroll', updateBottleneck, { passive: true });
-updateBottleneck();
+if (!reducedMotion) {
+  window.addEventListener('scroll', updateBottleneck, { passive: true });
+  updateBottleneck();
+}
 
 // Ticker — reusable number count-up with a slow-down phase near the target.
 // Usage: add these data attributes to any element:
@@ -54,10 +58,14 @@ function initTicker(el) {
   }, { threshold: 0.5 }).observe(el);
 }
 
-document.querySelectorAll('[data-ticker]').forEach(initTicker);
+if (!reducedMotion) {
+  document.querySelectorAll('[data-ticker]').forEach(initTicker);
+}
 
 // Layer stack animation — CSS transition, reversible on scroll up
+// Skip entirely when user prefers reduced motion (CSS also disables the transition)
 (function initLayerAnimation() {
+  if (reducedMotion) return;
   const stack = document.getElementById('em-layers-stack');
   const navUI = document.getElementById('em-nav-ui');
   if (!stack || !navUI) return;
@@ -82,10 +90,14 @@ document.querySelectorAll('[data-ticker]').forEach(initTicker);
 const insightSection = document.querySelectorAll('.cs-section--dark')[1];
 const insightOverlay = document.querySelector('.em-insight-overlay');
 if (insightSection && insightOverlay) {
-  function updateInsight() {
-    const top = insightSection.getBoundingClientRect().top;
-    insightOverlay.style.opacity = top <= 0 ? '1' : '0';
+  if (reducedMotion) {
+    insightOverlay.style.opacity = '1';
+  } else {
+    function updateInsight() {
+      const top = insightSection.getBoundingClientRect().top;
+      insightOverlay.style.opacity = top <= 0 ? '1' : '0';
+    }
+    window.addEventListener('scroll', updateInsight, { passive: true });
+    updateInsight();
   }
-  window.addEventListener('scroll', updateInsight, { passive: true });
-  updateInsight();
 }
