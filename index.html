@@ -98,20 +98,19 @@
   /* ── HERO — split frame ── */
   .hero {
     display: grid;
-    grid-template-columns: minmax(280px, 1fr) 2.4fr;
+    grid-template-columns: 2.4fr minmax(280px, 1fr);
     min-height: 90vh;
     border-bottom: 1px solid var(--rule);
   }
-  .hero-left {
+  .hero-right {
     padding: 4rem 3rem;
-    border-right: 1px solid var(--rule);
     display: flex;
     flex-direction: column;
     background: var(--bg-soft);
     position: relative;
     overflow: hidden;
   }
-  .hero-left::after {
+  .hero-right::after {
     content: '';
     position: absolute;
     right: -30%; bottom: -20%;
@@ -168,7 +167,7 @@
     color: var(--ink);
   }
 
-  .hero-right {
+  .hero-left {
     padding: 4rem 3rem;
     display: flex;
     flex-direction: column;
@@ -799,12 +798,12 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 1000px) {
     .hero { grid-template-columns: 1fr; min-height: 0; }
-    .hero-left {
+    .hero-right {
       border-right: none;
       border-bottom: 1px solid var(--rule);
       padding: 3rem 1.5rem;
     }
-    .hero-right { padding: 3rem 1.5rem 4rem; }
+    .hero-left { padding: 3rem 1.5rem 4rem; }
     .work-grid { grid-template-columns: 1fr; }
     .work-card { min-height: 0; padding: 2rem 1.75rem; }
     .work-card .thumb { margin: 0 -1.75rem 1.5rem; }
@@ -848,21 +847,9 @@
 
 <!-- HERO -->
 <header class="hero" id="top">
-  <aside class="hero-left">
-    <div class="hero-quote">
-      <span class="mark">“</span>
-      <p>Solving it isn’t the hard part, we’re usually solving <em>the wrong thing</em>.</p>
-    </div>
-
-    <div class="hero-sign">
-      <span class="name">Yun-Chia Lin</span>
-      <span>London</span>
-    </div>
-  </aside>
-
-  <section class="hero-right">
+  <section class="hero-left">
     <div>
-      <div class="hero-eyebrow">Product Designer</div>
+      <div class="hero-eyebrow">Design Portfolio</div>
       <h1 class="hero-title">
         Most systems aren’t complex<br>
         They’re just badly put together
@@ -870,6 +857,18 @@
     </div>
 
   </section>
+
+  <aside class="hero-right">
+    <div class="hero-quote">
+      <span class="mark">“</span>
+      <p>Solving it isn’t the hard part, we’re usually solving <em>the wrong thing</em>.</p>
+    </div>
+
+    <div class="hero-sign">
+      <span class="name">Yun-Chia Lin</span>
+      <span>Product Designer</span>
+    </div>
+  </aside>
 </header>
 
 <!-- SELECTED WORK — INDEX-style head -->
@@ -974,7 +973,7 @@
     <header class="head-inline reveal">
       <h2 class="title">Side <em>projects</em></h2>
       <span class="rule" aria-hidden="true"></span>
-      <p class="caption">Things I make for myself, on weekends — slower, more personal, and only loosely connected to the day job.</p>
+      <p class="caption">Things I built outside of work, it may need a second line</p>
     </header>
 
     <div class="side-grid">
@@ -983,10 +982,10 @@
           <span class="side-thumb-label">Hosting · since 2019</span>
         </div>
         <div class="side-body">
-          <span class="side-tag">Hospitality</span>
-          <h3 class="side-title">Airbnb — A two-bedroom flat in Bermondsey</h3>
+          <span class="side-tag">Service Design</span>
+          <h3 class="side-title">Airbnb hosting</h3>
           <p class="side-desc">Hosting a small Airbnb has been a long-running design exercise: information architecture for a guidebook, service design for arrivals, and the unending negotiation between linen budgets and reviews.</p>
-          <span class="side-cta">Visit listing <span class="arrow">→</span></span>
+          <span class="side-cta">Visit <span class="arrow">→</span></span>
         </div>
       </a>
 
