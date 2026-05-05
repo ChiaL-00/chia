@@ -19,7 +19,7 @@
      Type:    Source Serif 4 + Source Sans 3
      ───────────────────────────────────────── */
   :root {
-    --bg:          #eef0f2;   /* cool blue-grey off-white */
+    --bg:          oklch(98% 0 0);
     --bg-soft:     #e3e6ea;
     --paper:       #f5f6f8;   /* lighter cool paper */
     --ink:         #14171c;   /* near black, slight blue */
@@ -44,7 +44,6 @@
     text-rendering: optimizeLegibility;
   }
   a { color: inherit; text-decoration: none; }
-  img { display: block; max-width: 100%; }
 
   /* ── NAV ── */
   nav.site-nav {
@@ -247,9 +246,7 @@
 
   /* ── Section head — INDEX style (Selected Work) ── */
   .head-index {
-    margin-bottom: 3rem;
-    padding-bottom: 1.5rem;
-    border-bottom: 1px solid var(--rule);
+    margin-bottom: 2rem;
   }
   .head-index .body {
     display: flex;
@@ -288,22 +285,14 @@
     text-align: left;
   }
   .head-statement .tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.7rem;
+    display: block;
     font-size: 0.72rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--accent);
     font-weight: 500;
     margin-bottom: 2rem;
-  }
-  .head-statement .tag::before,
-  .head-statement .tag::after {
-    content: '';
-    width: 24px; height: 1px;
-    background: var(--accent);
-    opacity: 0.6;
+    padding-left: 0.4rem;
   }
   .head-statement .title {
     font-family: var(--serif);
@@ -342,7 +331,6 @@
   .head-inline .caption {
     font-family: var(--serif);
     font-style: italic;
-    font-size: 0.95rem;
     color: var(--ink-soft);
     max-width: 32ch;
     text-align: right;
@@ -353,13 +341,12 @@
   .work-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 2px;
-    background: var(--rule);
-    border: 1px solid var(--rule);
+    gap: 2rem;
   }
   .work-card {
     background: var(--paper);
     padding: 2.5rem 2.5rem 2.25rem;
+    border-radius: 4px;
     display: grid;
     grid-template-rows: auto 1fr auto;
     transition: background 0.4s ease;
@@ -399,19 +386,16 @@
     letter-spacing: -0.01em;
   }
   .work-card .desc {
-    font-size: 0.92rem;
     color: var(--ink-soft);
     line-height: 1.6;
     max-width: 42ch;
   }
   .work-card .meta {
     margin-top: 1.5rem;
-    padding-top: 1.25rem;
-    border-top: 1px solid var(--rule);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -431,7 +415,7 @@
   .work-card.feature {
     grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: 1fr 1.1fr;
+    grid-template-columns: 2fr 3fr;
     gap: 0;
     padding: 0;
     min-height: 0;
@@ -474,6 +458,7 @@
   .work-card.feature .desc { font-size: 1rem; max-width: 50ch; }
 
   /* ── ABOUT ── */
+  #about { background: var(--paper); }
   .about-wrap {
     display: grid;
     grid-template-columns: 1.1fr 1fr;
@@ -540,13 +525,14 @@
     display: block;
     background: var(--paper);
     padding: 0;
-    border: 1px solid var(--rule);
-    transition: transform 0.4s ease, border-color 0.3s ease;
+    border-radius: 4px;
+    box-shadow: 0 0 0 rgba(20, 23, 28, 0);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
     overflow: hidden;
   }
   .side-card:hover {
     transform: translateY(-3px);
-    border-color: var(--accent);
+    box-shadow: 0 8px 12px rgba(20, 23, 28, 0.1);
   }
   .side-thumb {
     aspect-ratio: 16 / 9;
@@ -554,7 +540,6 @@
     place-items: center;
     position: relative;
     overflow: hidden;
-    border-bottom: 1px solid var(--rule);
   }
   .side-thumb.airbnb {
     background:
@@ -597,17 +582,16 @@
     letter-spacing: -0.01em;
   }
   .side-desc {
-    font-size: 0.93rem;
+    font-size: 1rem;
     color: var(--ink-soft);
     line-height: 1.6;
-    max-width: 42ch;
   }
   .side-cta {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     margin-top: 1.5rem;
-    font-size: 0.74rem;
+    font-size: 0.7rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     font-weight: 500;
@@ -694,7 +678,7 @@
 
   /* ── ARCHIVE CARD (legacy / smaller projects — horizontal, lighter weight) ── */
   .archive-label {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -703,7 +687,7 @@
     display: flex;
     align-items: center;
     gap: 0.85rem;
-    opacity: 0.85;
+    opacity: 1;
   }
   .archive-label::before {
     content: '';
@@ -711,17 +695,17 @@
   }
   .archive-card {
     display: grid;
-    grid-template-columns: 280px 1fr auto;
-    gap: 2.25rem;
-    align-items: center;
-    padding: 1.25rem 1.5rem 1.25rem 1.25rem;
-    border: 1px solid var(--rule);
+    grid-template-columns: 1fr 2fr auto;
+    gap: 2rem;
+    align-items: start;
+    padding: 1.5rem 2.5rem;
+    border-radius: 4px;
     background: transparent;
     color: var(--ink-soft);
     transition: background 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
   }
   .archive-card.reveal { opacity: 0; transform: translateY(24px); }
-  .archive-card.reveal.visible { opacity: 0.72; transform: none; }
+  .archive-card.reveal.visible { opacity: 1; transform: none; }
   .archive-card.reveal.visible:hover { opacity: 1; }
   .archive-card:hover {
     background: color-mix(in srgb, var(--paper) 60%, transparent);
@@ -758,7 +742,7 @@
     min-width: 0;
   }
   .archive-card .tag {
-    font-size: 0.66rem;
+    font-size: 0.7rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -766,7 +750,7 @@
   }
   .archive-card .title {
     font-family: var(--serif);
-    font-size: 1.25rem;
+    font-size: 1.55rem;
     line-height: 1.3;
     color: var(--ink-soft);
     font-weight: 400;
@@ -775,13 +759,12 @@
   }
   .archive-card:hover .title { color: var(--ink); }
   .archive-card .desc {
-    font-size: 0.85rem;
     color: var(--ink-muted);
     line-height: 1.55;
     max-width: 48ch;
   }
   .archive-card .arrow {
-    font-size: 0.85rem;
+    font-size: 0.7rem;
     letter-spacing: 0.16em;
     text-transform: uppercase;
     color: var(--ink-muted);
@@ -876,8 +859,7 @@
   <div class="container">
     <header class="head-index reveal">
       <div class="body">
-        <div class="tag">§ Selected Work</div>
-        <h2 class="title">Four projects where careful design <em>changed how the work felt.</em></h2>
+        <div class="tag">Selected Work</div>
       </div>
     </header>
 
@@ -890,13 +872,14 @@
         </div>
         <div class="body">
           <div>
-            <div class="feature-tag">Featured Project · Enterprise</div>
+            <div class="feature-tag">Enterprise SaaS · EOR</div>
             <h3 class="title">Employee Manager</h3>
-            <p class="desc">An internal tool reduced from forty-three screens to seven — without losing a single capability ops actually used. A long, careful exercise in subtraction: shadowing operators, mapping decision points, and rebuilding the system around the handful of moments that actually carry the work.</p>
+            <p class="desc">
+              Rebuilding the operational backbone of EOR onboarding — from spreadsheet dependency to a global platform supporting 3,000+ onboardings per month</p>
           </div>
           <div class="meta">
-            <span>Enterprise · Web · Operations</span>
-            <span class="read">Read case study <span class="arrow">→</span></span>
+            <span>Web · Global HR infrustracture</span>
+            <span class="read">Read <span class="arrow">→</span></span>
           </div>
         </div>
       </a>
@@ -907,7 +890,7 @@
         <h3 class="title">Driver App Redesign</h3>
         <p class="desc">An Android app used daily by 5,000+ professional drivers — rebuilt around glanceability, job intelligence, and on-road communication.</p>
         <div class="meta">
-          <span>UX / UI · Mobile · Transport</span>
+          <span>Mobile · Transport</span>
           <span class="read">Read <span class="arrow">→</span></span>
         </div>
       </a>
@@ -915,10 +898,10 @@
       <!-- 03 — Doc Buddy -->
       <a class="work-card reveal" data-delay="2" href="work/doc-buddy/index.html">
         <div class="thumb"><span class="thumb-label">Doc Buddy</span></div>
-        <h3 class="title">Doc Buddy</h3>
-        <p class="desc">A clinician-facing companion that turns dense patient records into a calm, scannable shift handover.</p>
+        <h3 class="title">IBM Doc Buddy</h3>
+        <p class="desc">Turning a “make it prettier” request into a shipped app and a shared decision-making tool for technical teams</p>
         <div class="meta">
-          <span>Healthcare · Web</span>
+          <span>Mobile · Enterprise</span>
           <span class="read">Read <span class="arrow">→</span></span>
         </div>
       </a>
@@ -929,12 +912,12 @@
     <div class="archive-label reveal">From the archive</div>
     <a class="archive-card reveal" data-delay="1" href="work/field-report/index.html">
       <div class="thumb">
-        <span class="thumb-label">Field Report · 2014</span>
+        <span class="thumb-label">Field Report</span>
       </div>
       <div class="body">
-        <span class="tag">Mobile · 2014 · Early career</span>
+        <span class="tag">Mobile · Early career · IDEO</span>
         <h3 class="title">Field Report</h3>
-        <p class="desc">A reporting flow built for the back of a van. An early-career project I'm still fond of — designed for one-handed use, glove-friendly tap targets, and the realities of patchy 3G.</p>
+        <p class="desc">Helping field observations become easier to capture, organise, and communicate back to the team</p>
       </div>
       <span class="arrow">Read <span>→</span></span>
     </a>
@@ -946,14 +929,14 @@
   <div class="container">
     <header class="head-statement reveal">
       <div class="tag">About</div>
-      <h2 class="title">A decade quietly improving the <em>boring, important</em> parts of software.</h2>
+      <h2 class="title">A friend once told me I should probably work at NASA...</h2>
     </header>
 
     <div class="about-wrap">
       <div class="about-left reveal">
-        <p>I'm a product designer based in London. I've spent ten years working on the kind of software people don't choose to use — they have to.</p>
-        <p>That constraint is what I find interesting. When the user can't walk away, every misstep compounds. Good design here isn't about delight; it's about <em>reducing friction in jobs people are paid to do</em>, and giving them a tool that respects their attention.</p>
-        <p>Most of my work has been research-led: contextual interviews, ride-alongs, shift observations. I prefer to design from evidence rather than instinct, and I'm happiest in cross-functional teams where engineering and ops have a real voice in the room.</p>
+        <p>I studied computer science and thought I would become an engineer. I didn’t. <em> I just found debugging humans more interesting ;)</em></p>
+        <p>I now design products, mostly in complex B2B systems. Started in Shanghai in 2012, now based in London. </p>
+        <p>Outside of work, I read a lot of cookbooks. An unexpected side effect is that I can usually figure out menus in French, Italian, Spanish, and Japanese. People think I speak the language. <em> I don’t.</em> Outside restaurants, I’m mostly useless.</p>
       </div>
 
       <div class="about-right reveal" data-delay="1">
@@ -977,27 +960,27 @@
     </header>
 
     <div class="side-grid">
-      <a class="side-card reveal" href="airbnb-hosting.html">
+      <a class="side-card reveal" href="#">
+        <div class="side-thumb doodle">
+          <span class="side-thumb-label">Travel diaries · 2005–present</span>
+        </div>
+        <div class="side-body">
+          <span class="side-tag">Personal</span>
+          <h3 class="side-title">A doodle journal since 1998</h3>
+          <p class="side-desc">A long-running record of thoughts, patterns, moods, and observations — part memory system, part self-designed research archive</p>
+          <span class="side-cta">Browse<span class="arrow">→</span></span>
+        </div>
+      </a>
+
+      <a class="side-card reveal" data-delay="1" href="airbnb-hosting.html">
         <div class="side-thumb airbnb">
           <span class="side-thumb-label">Hosting · since 2019</span>
         </div>
         <div class="side-body">
           <span class="side-tag">Service Design</span>
           <h3 class="side-title">Airbnb hosting</h3>
-          <p class="side-desc">Hosting a small Airbnb has been a long-running design exercise: information architecture for a guidebook, service design for arrivals, and the unending negotiation between linen budgets and reviews.</p>
+          <p class="side-desc">Communication, arrival rituals, local guidance, translated instructions, and small moments of care — designed before I had the vocabulary for service design</p>
           <span class="side-cta">Visit <span class="arrow">→</span></span>
-        </div>
-      </a>
-
-      <a class="side-card reveal" data-delay="1" href="#">
-        <div class="side-thumb doodle">
-          <span class="side-thumb-label">Travel diaries · 2005–present</span>
-        </div>
-        <div class="side-body">
-          <span class="side-tag">Personal</span>
-          <h3 class="side-title">Doodle Journals — Twenty years of illustrated travel diaries</h3>
-          <p class="side-desc">Since 2005 I've kept hand-drawn journals from every trip — New York, Tokyo, Lisbon, the small Welsh towns. Loose ink, watercolour, marginalia. The least art-directed thing I do, and probably the most honest.</p>
-          <span class="side-cta">Browse archive <span class="arrow">→</span></span>
         </div>
       </a>
     </div>
@@ -1008,7 +991,7 @@
 <section class="contact" id="contact">
   <div class="container">
     <div class="reveal">
-      <div class="contact-eyebrow">— Contact</div>
+      <div class="contact-eyebrow">Contact</div>
       <h2 class="contact-headline">Have something<br>worth doing<br><em>properly?</em></h2>
     </div>
     <div class="contact-list reveal" data-delay="1">
