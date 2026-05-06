@@ -281,7 +281,7 @@
 
   /* ── Section head — STATEMENT style (About) ── */
   .head-statement {
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     text-align: left;
   }
   .head-statement .tag {
@@ -298,7 +298,7 @@
     font-family: var(--serif);
     font-weight: 400;
     font-size: clamp(2.2rem, 5.2vw, 4.6rem);
-    line-height: 1.04;
+    line-height: 1.12;
     letter-spacing: -0.02em;
     max-width: 18ch;
   }
@@ -463,7 +463,7 @@
     display: grid;
     grid-template-columns: 1.1fr 1fr;
     gap: 4rem;
-    align-items: start;
+    align-items: stretch;
   }
   .about-left p {
     font-family: var(--serif);
@@ -480,10 +480,19 @@
   .about-left p em { font-style: italic; color: var(--accent); }
 
   .about-right {
-    display: flex;
-    flex-direction: column;
+    position: relative;
     background: var(--paper);
-    border: 1px solid var(--rule);
+    overflow: visible;
+  }
+  .about-right img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 80%;
+    width: auto;
+    max-width: none;
+    display: block;
   }
   .about-right .row {
     display: grid;
@@ -794,6 +803,8 @@
     .work-card.feature .thumb { aspect-ratio: 16/10; min-height: 0; }
     .work-card.feature .body { padding: 2rem 1.75rem; min-height: 0; }
     .about-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+    .about-right { display: block; overflow: hidden; }
+    .about-right img { position: static; transform: none; width: 100%; height: auto; }
     .side-grid { grid-template-columns: 1fr; }
     .contact .container { grid-template-columns: 1fr; gap: 2.5rem; }
     .container { padding: 0 1.5rem; }
@@ -819,7 +830,7 @@
 
 <!-- NAV -->
 <nav class="site-nav" id="siteNav">
-  <a class="nav-logo" href="#top"><span class="mark">YL</span> Yun-Chia Lin</a>
+  <a class="nav-logo" href="#top"><span class="mark">YL</span> Chia L</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
@@ -915,7 +926,7 @@
         <span class="thumb-label">Field Report</span>
       </div>
       <div class="body">
-        <span class="tag">Mobile · Early career · IDEO</span>
+        <span class="tag">iOS · Early career · IDEO</span>
         <h3 class="title">Field Report</h3>
         <p class="desc">Helping field observations become easier to capture, organise, and communicate back to the team</p>
       </div>
@@ -927,24 +938,19 @@
 <!-- ABOUT — STATEMENT-style head -->
 <section class="section" id="about">
   <div class="container">
-    <header class="head-statement reveal">
-      <div class="tag">About</div>
-      <h2 class="title">A friend once told me I should probably work at NASA...</h2>
-    </header>
-
     <div class="about-wrap">
       <div class="about-left reveal">
+        <div class="head-statement">
+          <div class="tag">About</div>
+          <h2 class="title">A friend once told me I should probably work at NASA...</h2>
+        </div>
         <p>I studied computer science and thought I would become an engineer. I didn’t. <em> I just found debugging humans more interesting ;)</em></p>
         <p>I now design products, mostly in complex B2B systems. Started in Shanghai in 2012, now based in London. </p>
         <p>Outside of work, I read a lot of cookbooks. An unexpected side effect is that I can usually figure out menus in French, Italian, Spanish, and Japanese. People think I speak the language. <em> I don’t.</em> Outside restaurants, I’m mostly useless.</p>
       </div>
 
       <div class="about-right reveal" data-delay="1">
-        <div class="row"><div class="k">Based in</div><div class="v">London, UK<small>Available remote / hybrid across UK + Europe</small></div></div>
-        <div class="row"><div class="k">Practising since</div><div class="v">2015<small>10 years on shipped product</small></div></div>
-        <div class="row"><div class="k">Sectors</div><div class="v">Transport · Healthcare · Operations<small>SaaS, internal tools, B2B</small></div></div>
-        <div class="row"><div class="k">Approach</div><div class="v">Research-led, systems-aware<small>Field studies before sketches</small></div></div>
-        <div class="row"><div class="k">Currently</div><div class="v">Independent &amp; open<small>Q3 2026 onwards</small></div></div>
+        <img src="assets/images/home/about_img.png" alt="About photo">
       </div>
     </div>
   </div>
@@ -979,7 +985,7 @@
         <div class="side-body">
           <span class="side-tag">Service Design</span>
           <h3 class="side-title">Airbnb hosting</h3>
-          <p class="side-desc">Communication, arrival rituals, local guidance, translated instructions, and small moments of care — designed before I had the vocabulary for service design</p>
+          <p class="side-desc">Communication, arrival rituals, local guidance, translated instructions, small moments of care, and lots of fun</p>
           <span class="side-cta">Visit <span class="arrow">→</span></span>
         </div>
       </a>
