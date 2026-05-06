@@ -411,6 +411,28 @@
   .work-card:hover { background: color-mix(in srgb, var(--accent-soft) 35%, var(--paper)); }
   .work-card:hover .meta .read .arrow { transform: translateX(6px); }
 
+  /* overflow image — lets the thumb img bleed down over the text block */
+  .work-card.overflow-img .thumb {
+    overflow: visible;
+    z-index: 2;
+    position: relative;
+  }
+  .work-card.overflow-img .thumb img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 130%;
+    object-fit: cover;
+    object-position: top center;
+  }
+  .work-card.overflow-img .title,
+  .work-card.overflow-img .desc,
+  .work-card.overflow-img .meta {
+    position: relative;
+    z-index: 1;
+  }
+  .work-card.overflow-img .title { margin-top: 3.5rem; }
+
   /* feature card spans both cols */
   .work-card.feature {
     grid-column: 1 / -1;
@@ -897,10 +919,10 @@
       </a>
 
       <!-- 02 — Driver App -->
-      <a class="work-card reveal" data-delay="1" href="work/driver-app/index.html">
-        <div class="thumb"><span class="thumb-label">Driver App</span></div>
+      <a class="work-card overflow-img reveal" data-delay="1" href="work/driver-app/index.html">
+        <div class="thumb"><img src="assets/images/home/test-driver.png" alt="Driver App Redesign preview"></div>
         <h3 class="title">Driver App Redesign</h3>
-        <p class="desc">An Android app used daily by 5,000+ professional drivers — rebuilt around glanceability, job intelligence, and on-road communication.</p>
+        <p class="desc">Redesigning the driver experience for one of London’s largest private hire fleets, built around B2B operations</p>
         <div class="meta">
           <span>Mobile · Transport</span>
           <span class="read">Read <span class="arrow">→</span></span>
