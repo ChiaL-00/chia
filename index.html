@@ -356,7 +356,6 @@
   .work-card .thumb {
     aspect-ratio: 16 / 10;
     margin: 0 -2.5rem 1.75rem;
-    background: var(--accent-soft);
     background-image:
       repeating-linear-gradient(
         45deg,
@@ -412,12 +411,14 @@
   .work-card:hover .meta .read .arrow { transform: translateX(6px); }
 
   /* overflow image — lets the thumb img bleed down over the text block */
-  .work-card.overflow-img .thumb {
+  .work-card.overflow-img .thumb,
+  .archive-card.overflow-img .thumb {
     overflow: visible;
     z-index: 2;
     position: relative;
   }
-  .work-card.overflow-img .thumb img {
+  .work-card.overflow-img .thumb img,
+  .archive-card.overflow-img .thumb img {
     position: absolute;
     top: 0; left: 0;
     width: 100%;
@@ -432,6 +433,11 @@
     z-index: 1;
   }
   .work-card.overflow-img .title { margin-top: 1rem; }
+  .archive-card.overflow-img .body,
+  .archive-card.overflow-img .arrow {
+    position: relative;
+    z-index: 1;
+  }
 
   /* feature card spans both cols */
   .work-card.feature {
@@ -935,8 +941,8 @@
       </a>
 
       <!-- 03 — Doc Buddy -->
-      <a class="work-card reveal" data-delay="2" href="work/doc-buddy/index.html">
-        <div class="thumb"><span class="thumb-label">Doc Buddy</span></div>
+      <a class="work-card overflow-img reveal" data-delay="2" href="work/doc-buddy/index.html">
+        <div class="thumb"><img src="assets/images/home/docbuddy-cover.png" alt="IBM Doc Buddy preview"></div>
         <h3 class="title">IBM Doc Buddy</h3>
         <p class="desc">Turning a “make it prettier” request into a shipped app and a shared decision-making tool for technical teams</p>
         <div class="meta">
@@ -949,9 +955,9 @@
 
     <!-- Archive — older work, lighter visual weight -->
     <div class="archive-label reveal">From the archive</div>
-    <a class="archive-card reveal" data-delay="1" href="work/field-report/index.html">
+    <a class="archive-card overflow-img reveal" data-delay="1" href="work/field-report/index.html">
       <div class="thumb">
-        <span class="thumb-label">Field Report</span>
+        <img src="assets/images/home/fieldreport-cover.png" alt="Field Report preview">
       </div>
       <div class="body">
         <span class="tag">iOS · Early career · IDEO</span>
