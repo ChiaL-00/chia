@@ -25,6 +25,32 @@
 html { scroll-behavior: smooth; }
 img { display: block; max-width: 100%; border-radius: 4px; }
 
+/* ── SKIP LINK ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 9999;
+  padding: 0.75rem 1.25rem;
+  background: var(--dark);
+  color: var(--white);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 0 0 4px 4px;
+  transition: top 0.2s ease;
+}
+.skip-link:focus { top: 0; }
+
+/* ── FOCUS VISIBLE ── */
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* ── LAYOUT UTILITIES ── */
 .container {
   max-width: 1100px;

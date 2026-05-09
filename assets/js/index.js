@@ -3,6 +3,17 @@ const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 8);
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
 
+const copyBtn = document.querySelector('.copy-email-btn');
+if (copyBtn) {
+  copyBtn.addEventListener('click', () => {
+    navigator.clipboard.writeText('designsmith.c@gmail.com').then(() => {
+      const v = copyBtn.querySelector('.v');
+      v.textContent = 'Copied!';
+      setTimeout(() => { v.textContent = 'Copy my email'; }, 2000);
+    });
+  });
+}
+
 const io = new IntersectionObserver((entries) => {
   entries.forEach((e) => {
     if (e.isIntersecting) {
@@ -14,56 +25,58 @@ const io = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
 
-(function () {
-  const MOBILE_BP = 1000;
-  const section = document.getElementById('about');
-  const img = document.querySelector('.about-right img');
-  if (!section || !img) return;
+if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  (function () {
+    const MOBILE_BP = 1000;
+    const section = document.getElementById('about');
+    const img = document.querySelector('.about-right img');
+    if (!section || !img) return;
 
-  let startOffset = 0;
-  let rafId = null;
-  let scheduled = false;
+    let startOffset = 0;
+    let rafId = null;
+    let scheduled = false;
 
-  function isMobile() { return window.innerWidth <= MOBILE_BP; }
+    function isMobile() { return window.innerWidth <= MOBILE_BP; }
 
-  function measure() {
-    img.style.transform = 'translate(-50%, -50%)';
-    const containerRect = img.parentElement.getBoundingClientRect();
-    const imgRect = img.getBoundingClientRect();
-    startOffset = containerRect.right - imgRect.left;
-  }
-
-  function paint() {
-    scheduled = false;
-    if (isMobile()) return;
-    const sectionRect = section.getBoundingClientRect();
-    const winH = window.innerHeight;
-    const raw = (winH - sectionRect.top) / winH;
-    const progress = Math.min(1, Math.max(0, raw));
-    const offset = startOffset * (1 - progress);
-    img.style.transform = `translate(calc(-50% + ${offset}px), -50%)`;
-  }
-
-  function schedule() {
-    if (scheduled) return;
-    scheduled = true;
-    rafId = requestAnimationFrame(paint);
-  }
-
-  window.addEventListener('load', () => {
-    if (isMobile()) return;
-    measure();
-    paint();
-  });
-  window.addEventListener('scroll', schedule, { passive: true });
-  window.addEventListener('resize', () => {
-    if (rafId) cancelAnimationFrame(rafId);
-    scheduled = false;
-    if (isMobile()) {
-      img.style.transform = '';
-      return;
+    function measure() {
+      img.style.transform = 'translate(-50%, -50%)';
+      const containerRect = img.parentElement.getBoundingClientRect();
+      const imgRect = img.getBoundingClientRect();
+      startOffset = containerRect.right - imgRect.left;
     }
-    measure();
-    paint();
-  }, { passive: true });
-})();
+
+    function paint() {
+      scheduled = false;
+      if (isMobile()) return;
+      const sectionRect = section.getBoundingClientRect();
+      const winH = window.innerHeight;
+      const raw = (winH - sectionRect.top) / winH;
+      const progress = Math.min(1, Math.max(0, raw));
+      const offset = startOffset * (1 - progress);
+      img.style.transform = `translate(calc(-50% + ${offset}px), -50%)`;
+    }
+
+    function schedule() {
+      if (scheduled) return;
+      scheduled = true;
+      rafId = requestAnimationFrame(paint);
+    }
+
+    window.addEventListener('load', () => {
+      if (isMobile()) return;
+      measure();
+      paint();
+    });
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      scheduled = false;
+      if (isMobile()) {
+        img.style.transform = '';
+        return;
+      }
+      measure();
+      paint();
+    }, { passive: true });
+  })();
+}

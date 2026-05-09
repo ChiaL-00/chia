@@ -8,7 +8,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;500;600&amp;family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&amp;display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="stylesheet" href="assets/css/index.css">
@@ -16,16 +16,20 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link">Skip to content</a>
+
 <!-- NAV -->
 <nav class="site-nav" id="siteNav">
   <a class="nav-logo" href="#top">Chia L</a>
   <ul class="nav-links">
     <li><a href="#work">Work</a></li>
     <li><a href="#about">About</a></li>
-    <li><a href="#side">Sides</a></li>
+    <li><a href="#side">Side</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
+
+<main id="main-content">
 
 <!-- HERO -->
 <header class="hero" id="top">
@@ -65,9 +69,9 @@
     <div class="work-grid">
 
       <!-- 01 — Employee Manager (featured) -->
-      <a class="work-card feature reveal" href="work/employee-manager/index.html">
+      <a class="work-card feature reveal" href="work/employee-manager/index.html" aria-label="Employee Manager — Enterprise SaaS case study">
         <div class="thumb thumb-feature">
-          <img src="assets/images/home/em-cover.png" alt="Employee Manager preview">
+          <img src="assets/images/home/em-cover.png" alt="Employee Manager preview" loading="lazy">
         </div>
         <div class="body">
           <div>
@@ -78,30 +82,30 @@
           </div>
           <div class="meta">
             <span>Web · Global HR infrastructure</span>
-            <span class="read">Read <span class="arrow">→</span></span>
+            <span class="read">Read <span class="arrow" aria-hidden="true">→</span></span>
           </div>
         </div>
       </a>
 
       <!-- 02 — Driver App -->
-      <a class="work-card overflow-img reveal" data-delay="1" href="work/driver-app/index.html">
-        <div class="thumb"><img src="assets/images/home/driver-cover.png" alt="Driver App Redesign preview"></div>
+      <a class="work-card overflow-img reveal" data-delay="1" href="work/driver-app/index.html" aria-label="Driver App Redesign — Mobile Transport case study">
+        <div class="thumb"><img src="assets/images/home/driver-cover.png" alt="Driver App Redesign preview" loading="lazy"></div>
         <h3 class="title">Driver App Redesign</h3>
         <p class="desc">Redesigning the driver experience for one of London’s largest private hire fleets, built around B2B operations</p>
         <div class="meta">
           <span>Mobile · Transport</span>
-          <span class="read">Read <span class="arrow">→</span></span>
+          <span class="read">Read <span class="arrow" aria-hidden="true">→</span></span>
         </div>
       </a>
 
       <!-- 03 — Doc Buddy -->
-      <a class="work-card overflow-img reveal" data-delay="2" href="work/doc-buddy/index.html">
-        <div class="thumb"><img src="assets/images/home/docbuddy-cover.png" alt="IBM Doc Buddy preview"></div>
+      <a class="work-card overflow-img reveal" data-delay="2" href="work/doc-buddy/index.html" aria-label="IBM Doc Buddy — Mobile Enterprise case study">
+        <div class="thumb"><img src="assets/images/home/docbuddy-cover.png" alt="IBM Doc Buddy preview" loading="lazy"></div>
         <h3 class="title">IBM Doc Buddy</h3>
         <p class="desc">Turning a “make it prettier” request into a shipped app and a shared decision-making tool for technical teams</p>
         <div class="meta">
           <span>Mobile · Enterprise</span>
-          <span class="read">Read <span class="arrow">→</span></span>
+          <span class="read">Read <span class="arrow" aria-hidden="true">→</span></span>
         </div>
       </a>
 
@@ -109,16 +113,16 @@
 
     <!-- Archive — older work, lighter visual weight -->
     <div class="archive-label reveal">From the archive</div>
-    <a class="archive-card overflow-img reveal" data-delay="1" href="work/field-report/index.html">
+    <a class="archive-card overflow-img reveal" data-delay="1" href="work/field-report/index.html" aria-label="Field Report — iOS IDEO case study">
       <div class="thumb">
-        <img src="assets/images/home/fieldreport-cover.png" alt="Field Report preview">
+        <img src="assets/images/home/fieldreport-cover.png" alt="Field Report preview" loading="lazy">
       </div>
       <div class="body">
         <span class="tag">iOS · Early career · IDEO</span>
         <h3 class="title">Field Report</h3>
         <p class="desc">Helping field observations become easier to capture, organise, and communicate back to the team</p>
       </div>
-      <span class="arrow">Read <span>→</span></span>
+      <span class="arrow">Read <span aria-hidden="true">→</span></span>
     </a>
   </div>
 </section>
@@ -138,7 +142,7 @@
       </div>
 
       <div class="about-right reveal" data-delay="1">
-        <img src="assets/images/home/about_img.png" alt="Debugging on human is more interesting">
+        <img src="assets/images/home/about_img.png" alt="Debugging on human is more interesting" loading="lazy">
       </div>
     </div>
   </div>
@@ -156,8 +160,8 @@
     <div class="side-grid">
       <div class="side-card reveal">
         <div class="side-thumb doodle">
-          <img src="assets/images/home/doodle-cover.png" alt="Doodle journal">
-          <div class="wip-overlay"><span>In progress</span></div>
+          <img src="assets/images/home/doodle-cover.png" alt="Doodle journal" loading="lazy">
+          <div class="wip-overlay" aria-hidden="true"><span>In progress</span></div>
         </div>
         <div class="side-body">
           <span class="side-tag">Personal</span>
@@ -169,8 +173,8 @@
 
       <div class="side-card reveal" data-delay="1">
         <div class="side-thumb airbnb">
-          <img src="assets/images/home/airbnb-cover.png" alt="Airbnb hosting">
-          <div class="wip-overlay"><span>In progress</span></div>
+          <img src="assets/images/home/airbnb-cover.png" alt="Airbnb hosting" loading="lazy">
+          <div class="wip-overlay" aria-hidden="true"><span>In progress</span></div>
         </div>
         <div class="side-body">
           <span class="side-tag">Service Design</span>
@@ -191,17 +195,19 @@
       <h2 class="contact-headline">Have something<br>worth doing<br><em>properly?</em></h2>
     </div>
     <div class="contact-list reveal" data-delay="1">
-      <button class="copy-email-btn" onclick="var v=this.querySelector('.v');navigator.clipboard.writeText('designsmith.c@gmail.com').then(()=>{v.textContent='Copied!';setTimeout(()=>v.textContent='Copy my email',2000)})">
+      <button class="copy-email-btn" type="button" aria-label="Copy email address to clipboard">
         <span class="k">Email</span>
-        <span class="v">Copy my email</span>
+        <span class="v" aria-live="polite">Copy my email</span>
       </button>
-      <a href="https://linkedin.com/in/yunchialin" target="_blank" rel="noopener">
+      <a href="https://linkedin.com/in/yunchialin" target="_blank" rel="noopener" aria-label="LinkedIn profile (opens in new tab)">
         <span class="k">LinkedIn</span>
         <span class="v">/in/yun-chia-lin</span>
       </a>
     </div>
   </div>
 </section>
+
+</main>
 
 <footer>
   <div class="container">
