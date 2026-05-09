@@ -592,9 +592,13 @@
   }
   .side-thumb.doodle {
     background: #f3f4f6;
-    background-image:
-      linear-gradient(transparent 23px, color-mix(in srgb, var(--ink-muted) 28%, transparent) 23px, color-mix(in srgb, var(--ink-muted) 28%, transparent) 24px, transparent 24px);
-    background-size: 100% 24px;
+  }
+  .side-thumb.doodle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
   }
   .side-thumb-label {
     position: relative; z-index: 1;
@@ -998,7 +1002,7 @@
     <div class="side-grid">
       <a class="side-card reveal" href="#">
         <div class="side-thumb doodle">
-          <span class="side-thumb-label">Travel diaries · 2005–present</span>
+          <img src="assets/images/home/doodle-cover.png" alt="Doodle journal">
         </div>
         <div class="side-body">
           <span class="side-tag">Personal</span>
