@@ -68,6 +68,7 @@ nav.site-nav {
   background: color-mix(in srgb, var(--bg) 92%, transparent);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  border-bottom: none;
   box-shadow: none;
   transition: box-shadow 0.3s ease, padding 0.3s ease;
 }

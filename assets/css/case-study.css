@@ -784,3 +784,160 @@ blockquote {
   .cs-night-grid { grid-template-columns: 1fr; }
   .cs-night-img-col { width: 66%; margin: 0 auto; }
 }
+
+
+/* ── MOVED FROM style.css — Case-study base styles ── */
+
+:root {
+  --serif: 'Playfair Display', Georgia, serif;
+  --sans:  'DM Sans', system-ui, sans-serif;
+}
+
+/* Body */
+body {
+  background: var(--light);
+  color: var(--dark);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Nav */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 3rem;
+  background: var(--light);
+  border-bottom: 1px solid rgba(0,0,0,0.08);
+  backdrop-filter: blur(8px);
+  transition: box-shadow 0.3s, transform 0.35s ease;
+}
+nav.scrolled    { box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+nav.nav--hidden { transform: translateY(-100%); }
+.nav-project-title {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--dark);
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+.nav-project-title.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.nav-back-top {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-back-top:hover { color: var(--dark); }
+.nav-logo {
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: 1rem;
+  color: var(--dark);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Source Sans 3', system-ui, sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mid);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover,
+.nav-links a[aria-current="page"] { color: var(--dark); }
+.nav-links a[aria-current="page"] {
+  border-bottom: 2px solid var(--yellow);
+  padding-bottom: 2px;
+}
+
+/* Project nav */
+.project-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+.project-nav__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1.5rem 3rem;
+  text-decoration: none;
+  color: var(--dark);
+  transition: background 0.2s ease;
+}
+.project-nav__item:hover { background: var(--light); }
+.project-nav__item--next {
+  text-align: right;
+  border-left: 1px solid rgba(0,0,0,0.08);
+}
+.project-nav__label {
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mid);
+  font-weight: 500;
+  opacity: 0.6;
+}
+.project-nav__title {
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--dark);
+}
+.project-nav__arrow {
+  font-size: 1.2rem;
+  color: var(--mid);
+  margin-top: 0.2rem;
+}
+
+/* Footer */
+footer {
+  background: var(--dark);
+  padding: 2.5rem 0;
+  text-align: center;
+}
+footer p {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.25);
+  letter-spacing: 0.08em;
+}
+footer a {
+  color: var(--yellow);
+  text-decoration: none;
+}
+footer a:hover { text-decoration: underline; }
+
+/* Responsive */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+}
+@media (max-width: 600px) {
+  .nav-links { gap: 1.25rem; }
+  .project-nav { grid-template-columns: 1fr; }
+  .project-nav__item--next {
+    text-align: left;
+    border-left: none;
+    border-top: 1px solid rgba(0,0,0,0.08);
+  }
+}
