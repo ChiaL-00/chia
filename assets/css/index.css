@@ -910,7 +910,8 @@ footer { padding: 1.75rem 0; background: var(--ink); }
   .work-card { min-height: 0; padding: 2rem 1.75rem; }
   .work-card .thumb { margin: 0 -1.75rem 1.5rem; }
   .work-card.feature { grid-template-columns: 1fr; grid-column: 1 / -1; }
-  .work-card.feature .thumb { aspect-ratio: 16/10; min-height: 0; }
+  .work-card.feature .thumb { aspect-ratio: auto; min-height: 0; }
+  .work-card.feature .thumb img { position: static; height: auto; object-fit: unset; }
   .work-card.feature .body { padding: 2rem 1.75rem; min-height: 0; }
   .about-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
   .about-right { display: block; overflow: hidden; }
