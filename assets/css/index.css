@@ -512,6 +512,10 @@ nav.site-nav.scrolled {
   gap: 4rem;
   align-items: stretch;
 }
+.about-left {
+  position: relative;
+  z-index: 1;
+}
 .about-left p {
   font-family: var(--serif);
   font-size: var(--text-lg);
@@ -524,7 +528,7 @@ nav.site-nav.scrolled {
   color: var(--ink);
   line-height: 1.4;
 }
-.about-left p em { font-style: italic; color: var(--accent); }
+.about-left p em { font-style: italic; }
 
 .about-right {
   position: relative;
@@ -747,7 +751,7 @@ a.side-card:hover {
   letter-spacing: -0.02em;
   font-weight: 400;
 }
-.contact-headline em { font-style: italic; color: color-mix(in srgb, var(--contrast) 65%, var(--paper)); }
+.contact-headline em { font-style: italic; color: color-mix(in srgb, var(--contrast) 80%, var(--paper)); }
 .contact-list { display: flex; flex-direction: column; }
 .contact-list a {
   display: flex;
@@ -761,7 +765,7 @@ a.side-card:hover {
   font-size: var(--text-xs);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.55);
+  color: var(--paper);
   font-weight: 500;
 }
 .contact-list .v {
