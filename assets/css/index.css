@@ -361,8 +361,6 @@ nav.site-nav.scrolled {
   min-height: 420px;
 }
 .work-card .thumb {
-  aspect-ratio: 16 / 10;
-  margin: 0 -2.5rem 1.75rem;
   background-image:
     repeating-linear-gradient(
       45deg,
@@ -417,34 +415,33 @@ nav.site-nav.scrolled {
 .work-card:hover { transform: translateY(-3px); box-shadow: 0 8px 12px rgba(20, 23, 28, 0.1); }
 .work-card:hover .meta .read .arrow { transform: translateX(6px); }
 
-/* overflow image — lets the thumb img bleed down over the text block */
-.work-card.overflow-img .thumb,
-.archive-card.overflow-img .thumb {
-  overflow: visible;
-  z-index: 2;
-  position: relative;
+/* overflow-img: no card padding + no negative-margin thumb (Safari compat)
+   Padding moves onto text elements; thumb sits flush at top of card.
+   grid-template-rows reset to all-auto so title row doesn't get 1fr expansion. */
+.work-card.overflow-img {
+  padding: 0;
+  grid-template-rows: auto auto auto auto;
+  min-height: 0;
+  align-content: start;
+}
+.work-card.overflow-img .thumb {
+  overflow: hidden;
+  border-radius: 4px 4px 0 0;
 }
 .work-card.overflow-img .thumb img,
 .archive-card.overflow-img .thumb img {
-  position: absolute;
-  top: 0; left: 0;
   width: 100%;
-  height: 130%;
-  object-fit: cover;
-  object-position: top center;
+  height: auto;
+  display: block;
 }
 .work-card.overflow-img .title,
 .work-card.overflow-img .desc,
 .work-card.overflow-img .meta {
-  position: relative;
-  z-index: 1;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
-.work-card.overflow-img .title { margin-top: 1rem; }
-.archive-card.overflow-img .body,
-.archive-card.overflow-img .arrow {
-  position: relative;
-  z-index: 1;
-}
+.work-card.overflow-img .title { padding-top: 1.75rem; }
+.work-card.overflow-img .meta { padding-bottom: 2.25rem; }
 
 /* feature card spans both cols */
 .work-card.feature {
@@ -456,8 +453,6 @@ nav.site-nav.scrolled {
   min-height: 0;
 }
 .work-card.feature .thumb {
-  margin: 0;
-  aspect-ratio: auto;
   min-height: 100%;
   height: 100%;
 }
@@ -904,7 +899,10 @@ footer { padding: 1.75rem 0; background: var(--ink); }
   .hero-left { padding: 3rem 1.5rem 4rem; }
   .work-grid { grid-template-columns: 1fr; }
   .work-card { min-height: 0; padding: 2rem 1.75rem; }
-  .work-card .thumb { margin: 0 -1.75rem 1.5rem; }
+  .work-card.overflow-img .title,
+  .work-card.overflow-img .desc,
+  .work-card.overflow-img .meta { padding-left: 1.75rem; padding-right: 1.75rem; }
+  .work-card.overflow-img .title { padding-top: 1.5rem; }
   .work-card.feature { grid-template-columns: 1fr; grid-column: 1 / -1; }
   .work-card.feature .thumb { aspect-ratio: auto; min-height: 0; }
   .work-card.feature .thumb img { position: static; height: auto; object-fit: unset; }
