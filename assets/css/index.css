@@ -7,7 +7,7 @@
   --bg:          oklch(98% 0 0);
   --bg-soft:     #e3e6ea;
   --paper:       #f5f6f8;   /* lighter cool paper */
-  --ink:         #14171c;   /* near black, slight blue */
+  --ink:         #08192D;
   --ink-soft:    #454a52;
   --ink-muted:   #858a92;
   --rule:        #c8ccd3;
@@ -119,7 +119,6 @@ nav.site-nav.scrolled {
   padding: 4rem 3rem;
   display: flex;
   flex-direction: column;
-  background: var(--bg-soft);
   position: relative;
   overflow: hidden;
 }
@@ -129,6 +128,20 @@ nav.site-nav.scrolled {
   z-index: 1;
   margin-top: auto;
   margin-bottom: 1.25rem;
+  animation: hero-rise linear both;
+  animation-timeline: scroll(root);
+  animation-range: 0px 420px;
+}
+
+.hero-sign {
+  animation: hero-rise linear both;
+  animation-timeline: scroll(root);
+  animation-range: 60px 480px;
+}
+
+@keyframes hero-rise {
+  from { transform: translateY(180px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
 }
 .hero-quote .mark {
   font-family: var(--serif);
@@ -814,7 +827,7 @@ footer { padding: 1.75rem 0; background: var(--ink); }
   align-items: start;
   padding: 1.5rem 2.5rem 1.5rem 0;
   border-radius: 4px;
-  background: transparent;
+  background: var(--paper);
   color: var(--ink-soft);
   box-shadow: 0 0 0 rgba(20, 23, 28, 0);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
