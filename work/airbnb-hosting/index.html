@@ -329,13 +329,12 @@
 
     .photo--duo-wide {
       max-width: 1100px;
-      margin: 3rem auto;
+      margin: 2rem auto 3rem;
       padding: 0 3rem;
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1rem;
+      gap: 2rem;
     }
-    .photo--duo-wide figure.photo { min-height: 320px; }
 
     /* ══════════════════════════════════════════════════════
        ARTIFACT — full-bleed, stage-coloured, with exhibit label
@@ -402,6 +401,81 @@
       color: var(--ink-soft);
     }
     .artifact__aside p strong { color: var(--ink); font-style: normal; font-weight: 500; }
+
+    /* Full-bleed parallax — 80vh window, image scrolls slower than page */
+    .artifact--full-bleed {
+      padding: 0;
+      margin: 2.4rem 0;
+      height: 75vh;
+      overflow: hidden;
+      position: relative;
+      /* Named scroll timeline tied to this section's viewport intersection */
+      view-timeline-name: --parallax;
+      view-timeline-axis: block;
+    }
+    .artifact--full-bleed .artifact__stage,
+    .artifact--full-bleed .artifact__media {
+      max-width: none;
+      padding: 0;
+      height: 100%;
+    }
+    .artifact--full-bleed .artifact__media figure.photo {
+      border-radius: 0;
+      height: 100%;
+      min-height: unset;
+      overflow: hidden;
+      background: none;
+    }
+    .artifact--full-bleed .artifact__media figure.photo::before {
+      display: none;
+    }
+    .artifact--full-bleed .artifact__media figure.photo img {
+      width: 100%;
+      height: 130%;
+      object-fit: cover;
+      object-position: center center;
+      display: block;
+      will-change: transform;
+      animation: parallax-scroll linear both;
+      animation-timeline: --parallax;
+      animation-range: cover 0% cover 100%;
+    }
+    @keyframes parallax-scroll {
+      from { transform: translateY(10%); }
+      to   { transform: translateY(-10%); }
+    }
+
+    /* Mobile: natural height, full width, no parallax */
+    @media (max-width: 768px) {
+      .artifact--full-bleed {
+        margin: 0;
+        padding: 0;
+        height: auto;
+        overflow: visible;
+      }
+      .artifact--full-bleed .artifact__stage,
+      .artifact--full-bleed .artifact__media {
+        height: auto;
+      }
+      .artifact--full-bleed .artifact__media figure.photo {
+        height: auto;
+        min-height: unset;
+        overflow: visible;
+      }
+      .artifact--full-bleed .artifact__media figure.photo img {
+        width: 100%;
+        height: auto;
+        animation: none;
+        transform: none;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .artifact--full-bleed .artifact__media figure.photo img {
+        height: 100%;
+        animation: none;
+        transform: translateY(-5%);
+      }
+    }
 
     /* Artifact duo — two objects side by side, exhibit-style */
     .artifact-duo .artifact__stage {
@@ -470,16 +544,15 @@
 
     /* ── ASIDE BLOCKQUOTE (inline script) ─────────────── */
     blockquote.aside {
+      background: var(--light);
       font-family: var(--serif);
       font-style: italic;
-      font-weight: 300;
       font-size: 1.18rem;
       line-height: 1.6;
       color: var(--ink-soft);
       padding: 0.5rem 0 0.5rem 1.5rem;
       border-left: 2px solid var(--brand);
-      margin: 1.8rem 0;
-      max-width: 60ch;
+      margin: 2rem 0 3rem;
     }
 
     /* ── SECTION RULES ──────────────────────────────── */
@@ -655,7 +728,7 @@
       .chapter { grid-template-columns: 1fr; gap: 0.4rem; }
       .photo--duo, .photo--duo-wide { grid-template-columns: 1fr; }
 
-      .artifact { padding: 3.5rem 0; margin: 3rem 0; }
+      .artifact { padding: 0; margin: 2rem 0; }
       .artifact__stage, .artifact__intro { padding: 0 1.5rem; }
       .artifact--note .artifact__stage { grid-template-columns: 1fr; gap: 1.5rem; }
       .artifact-duo .artifact__stage { grid-template-columns: 1fr; }
@@ -767,7 +840,7 @@
          ══════════════════════════════════════════════════ -->
     <div class="chapter">
       <span class="chapter__num">02</span>
-      <h2 class="chapter__title">The Point <em>We Meet</em></h2>
+      <h2 class="chapter__title">The <em>Onboarding</em></h2>
     </div>
 
     <div class="column">
@@ -775,29 +848,28 @@
         After the request was confirmed, I sent the message of how to arrive. Guests could either take the metro or a taxi. I included the address <strong>in Chinese</strong>, and asked guests to screenshot it for the taxi driver. By either metro or taxi, I picked them up — at the metro station, or the drop-off spot of the taxi.
       </p>
       <p>
-        I always feel a big bless if I don't have to seek the door number by myself when I'm travelling, so I wanted every guest of mine to feel the same. And to add some playfulness for the room  :]
+        I always feel a big bless if I don't have to seek the door number by myself when I'm travelling, so I wanted every guest of mine to feel the same.
+      </p>
+      <p>
+        And to add some playfulness for the room...
       </p>
     </div>
 
     <!-- ARTIFACT — Surprise (full-bleed) -->
-    <section class="artifact">
+    <section class="artifact artifact--full-bleed">
       <div class="artifact__stage">
         <div class="artifact__media">
           <figure class="photo" data-label="A small playful surprise in the guest room">
             <img src="../../assets/images/airbnb-hosting/surprise.jpg" alt="A small playful surprise arranged in the guest room" onerror="this.style.display='none'">
           </figure>
         </div>
-        <div class="artifact__caption"></div>
       </div>
     </section>
 
     <div class="column">
       <p>
-        Wi-fi is everything, so I prepared the instructions, together with some Shanghai travel pamphlets. A mug for drinking water, a glass for the bathroom — for tooth-brushing. On arrival, I'd simply introduce the apartment:
+        <strong>Wi-fi is everything</strong>, so I prepared the instructions, together with some Shanghai travel pamphlets. A mug for drinking water, a glass for the bathroom — for tooth-brushing. 
       </p>
-      <blockquote class="aside">
-        “This is your room — there is the kitchen, the bathroom. Feel free to use the fridge, and just put everything you need in the bathroom. My room is there — only if you want to clean it for me, otherwise please do not enter  ;)”
-      </blockquote>
     </div>
 
     <div class="photo--duo-wide">
@@ -810,32 +882,24 @@
     </div>
 
     <div class="column">
+      <p>On arrival, I'd simply introduce the apartment:</p>
+      <blockquote class="aside">
+        “This is your room — there is the kitchen, the bathroom. Feel free to use the fridge, and just put everything you need in the bathroom. My room is there — only if you want to clean it for me, otherwise please do not enter  ;)”
+      </blockquote>
       <p>
         If a guest had time, I would walk them around the neighbourhood — how to get food, daily goods, and public transportation. Since most guests didn't read Chinese, I attached <strong>translations</strong> beside the air-conditioner remote and the washing machine.
       </p>
     </div>
 
     <!-- ARTIFACT — Translations (exhibit duo) -->
-    <section class="artifact artifact-duo">
-      <div class="artifact__stage">
-        <div class="artifact__item">
-          <div class="artifact__media">
-            <figure class="photo" data-label="AC remote with English translations">
-              <img src="../../assets/images/airbnb-hosting/translation.jpg" alt="Air conditioner remote with English translations taped beside the buttons" onerror="this.style.display='none'">
-            </figure>
-          </div>
-          <div class="artifact__caption"></div>
-        </div>
-        <div class="artifact__item">
-          <div class="artifact__media">
-            <figure class="photo" data-label="Washing machine with English labels">
-              <img src="../../assets/images/airbnb-hosting/translation-2.jpg" alt="Washing machine with English labels added" onerror="this.style.display='none'">
-            </figure>
-          </div>
-          <div class="artifact__caption"></div>
-        </div>
-      </div>
-    </section>
+    <div class="photo--duo-wide">
+      <figure class="photo" data-label="AC remote with English translations">
+        <img src="../../assets/images/airbnb-hosting/translation.jpg" alt="Air conditioner remote with English translations taped beside the buttons" onerror="this.style.display='none'">
+      </figure>
+      <figure class="photo" data-label="Washing machine with English labels">
+        <img src="../../assets/images/airbnb-hosting/translation-2.jpg" alt="Washing machine with English labels added" onerror="this.style.display='none'">
+      </figure>
+    </div>
 
     <!-- ══════════════════════════════════════════════════
          CHAPTER 03 — DURING THE STAY
