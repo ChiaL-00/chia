@@ -217,6 +217,25 @@
       background: var(--paper-stage);
       padding: 0 0 4rem;
     }
+    .section-band--paper { background: var(--paper); }
+
+    /* ── MAP SPLIT — 3:1 image + aside ─────────────────── */
+    .map-split {
+      max-width: 1100px;
+      margin: 2rem auto 3rem;
+      padding: 0 3rem;
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+    .map-split .artifact__aside { align-self: end; }
+    @media (max-width: 900px) {
+      .map-split {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+      }
+    }
     .section-band .chapter {
       margin-top: 0;
       padding-top: 6rem;
@@ -243,7 +262,7 @@
       font-family: var(--serif);
       font-weight: 400;
       font-size: clamp(2rem, 3.6vw, 2.8rem);
-      line-height: 1.1;
+      line-height: 1.2;
       letter-spacing: -0.01em;
     }
     .chapter__title em { font-style: italic; font-weight: 300; }
@@ -263,7 +282,6 @@
         var(--paper-deep);
       border-radius: 2px;
       overflow: hidden;
-      min-height: 220px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -305,10 +323,9 @@
     /* ── PHOTO CONTAINERS ────────────────────────────────── */
     .photo--col {
       max-width: 1100px;
-      margin: 2.5rem auto;
+      margin: 0 auto;
       padding: 0 3rem;
     }
-    .photo--col figure.photo { min-height: 320px; }
 
     .photo--wide {
       max-width: 1100px;
@@ -386,7 +403,6 @@
     }
     .artifact__aside-mark {
       font-family: var(--serif);
-      font-style: italic;
       font-size: 1.6rem;
       color: var(--brand);
       line-height: 1;
@@ -395,7 +411,6 @@
     .artifact__aside p {
       font-family: var(--serif);
       font-style: italic;
-      font-weight: 300;
       font-size: 1rem;
       line-height: 1.6;
       color: var(--ink-soft);
@@ -816,7 +831,7 @@
     <section class="section-band">
       <div class="chapter">
         <span class="chapter__num">01</span>
-        <h2 class="chapter__title"><em>Before</em> We Meet</h2>
+        <h2 class="chapter__title"><em>Before</em> we meet</h2>
       </div>
 
       <div class="column">
@@ -904,78 +919,69 @@
     <!-- ══════════════════════════════════════════════════
          CHAPTER 03 — DURING THE STAY
          ══════════════════════════════════════════════════ -->
-    <div class="chapter">
-      <span class="chapter__num">03</span>
-      <h2 class="chapter__title">During <em>the Stay</em></h2>
-    </div>
-
-    <div class="column">
-      <p>
-        I made a <strong>point-of-interest map</strong> of Shanghai and hung it beside the door. It indicated the restaurants I liked and some spots — like laser tag or museum places — that may not be seen on the guidebook. And I invited guests to help enrich the map.
-      </p>
-    </div>
-
-    <!-- ARTIFACT — Shanghai Map (full-bleed, marginalia) -->
-    <section class="artifact artifact--note">
-      <div class="artifact__intro">
-        <span class="chapter__num">★</span>
-        <h3 class="chapter__title" style="font-size: clamp(1.6rem, 2.8vw, 2.2rem);">The Shanghai map <em>by the door</em></h3>
+    <section class="section-band section-band--paper">
+      <div class="chapter">
+        <span class="chapter__num">03</span>
+        <h2 class="chapter__title">Shanghai, curated
+          <br>
+          <em>just for you</em></h2>
       </div>
-      <div class="artifact__stage">
-        <div class="artifact__media">
-          <figure class="photo" data-label="Hand-drawn Shanghai map by the front door">
-            <img src="../../assets/images/airbnb-hosting/map.jpg" alt="Hand-drawn Shanghai map with restaurants, museums, and quirky local spots" onerror="this.style.display='none'">
-          </figure>
-          <div class="artifact__caption"></div>
-        </div>
+
+      <div class="column">
+        <p>
+        <strong>I made a point-of-interest map</strong> of Shanghai and hung it beside the door.
+        </p>
+      </div>
+
+      <!-- MAP SPLIT — 3:1 -->
+      <div class="map-split">
+        <figure class="photo" data-label="Hand-drawn Shanghai map by the front door">
+          <img src="../../assets/images/airbnb-hosting/map.jpg" alt="Hand-drawn Shanghai map with restaurants, museums, and quirky local spots" onerror="this.style.display='none'">
+        </figure>
         <aside class="artifact__aside">
           <span class="artifact__aside-mark">↳</span>
           <p>
-            <strong>A living map.</strong> Every guest was invited to add a pin. Some marked the bar they discovered the night before; some marked the dumpling place they couldn't stop talking about.
+            <strong>Crowd sourcing the fun</strong>  
+            <br>
+            The map indicated the restaurants I liked and some spots — like laser tag or museum places — that may not be seen on the guidebook. Guests are invited to help enrich the map.
           </p>
         </aside>
       </div>
-    </section>
 
-    <div class="column">
-      <p>
-        And I also love to drop off greeting notes <em>unexpectedly</em> for guests.
-      </p>
-    </div>
+      <div class="column">
+        <p>
+          And I also love to drop off greeting notes <em>unexpectedly</em> for guests.
+        </p>
+      </div>
 
-    <div class="photo--duo-wide">
-      <figure class="photo" data-label="A note on the fridge">
-        <img src="../../assets/images/airbnb-hosting/fridge.jpg" alt="A small note left on the fridge" onerror="this.style.display='none'">
-      </figure>
-      <figure class="photo" data-label="A touch of home">
-        <img src="../../assets/images/airbnb-hosting/touch-of-home.jpg" alt="A small touch of home — a postcard or note" onerror="this.style.display='none'">
-      </figure>
-    </div>
+      <div class="photo--duo-wide">
+        <figure class="photo" data-label="A note on the fridge">
+          <img src="../../assets/images/airbnb-hosting/fridge.jpg" alt="A small note left on the fridge" onerror="this.style.display='none'">
+        </figure>
+        <figure class="photo" data-label="A touch of home">
+          <img src="../../assets/images/airbnb-hosting/touch-of-home.jpg" alt="A small touch of home — a postcard or note" onerror="this.style.display='none'">
+        </figure>
+      </div>
 
-    <div class="column">
-      <p>
-        If our schedules fit, I enjoyed hanging out with guests, exchanging our thoughts on everything. I also collected magazines or newspapers in English related to Shanghai travel for guests — if I happened to see one — to help them have the best travel around Shanghai.
-      </p>
-    </div>
+      <div class="column">
+        <p>
+          If our schedules fit, I enjoyed hanging out with guests, exchanging our thoughts on everything. I also collected magazines or newspapers in English related to Shanghai travel for guests — if I happened to see one — to help them have the best travel around Shanghai.
+        </p>
+      </div>
 
-    <div class="photo--duo-wide">
-      <figure class="photo" data-label="English Shanghai magazines collected for guests">
-        <img src="../../assets/images/airbnb-hosting/information.jpg" alt="Stack of English-language magazines about Shanghai" onerror="this.style.display='none'">
-      </figure>
-      <figure class="photo" data-label="Post-its from past guests">
-        <img src="../../assets/images/airbnb-hosting/postits.jpg" alt="Wall of post-its left by past guests" onerror="this.style.display='none'">
-      </figure>
-    </div>
+      <div class="photo--duo-wide">
+        <figure class="photo" data-label="English Shanghai magazines collected for guests">
+          <img src="../../assets/images/airbnb-hosting/information.jpg" alt="Stack of English-language magazines about Shanghai" onerror="this.style.display='none'">
+        </figure>
+        <figure class="photo" data-label="Post-its from past guests">
+          <img src="../../assets/images/airbnb-hosting/postits.jpg" alt="Wall of post-its left by past guests" onerror="this.style.display='none'">
+        </figure>
+      </div>
 
-    <!-- ARTIFACT — Review highlights (full-bleed) -->
-    <section class="artifact">
-      <div class="artifact__stage">
-        <div class="artifact__media">
-          <figure class="photo" data-label="Airbnb review highlights">
-            <img src="../../assets/images/airbnb-hosting/review-highlight-screenshot.png" alt="Screenshot of highlighted reviews from Airbnb" onerror="this.style.display='none'">
-          </figure>
-        </div>
-        <div class="artifact__caption"></div>
+      <div class="photo--col">
+        <figure class="photo" data-label="Airbnb review highlights">
+          <img src="../../assets/images/airbnb-hosting/review-highlight-screenshot.png" alt="Screenshot of highlighted reviews from Airbnb" onerror="this.style.display='none'">
+        </figure>
       </div>
     </section>
 
