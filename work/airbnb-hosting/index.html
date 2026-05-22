@@ -217,7 +217,6 @@
       background: var(--paper-stage);
       padding: 0 0 4rem;
     }
-    .section-band--paper { background: var(--paper); }
 
     /* ── MAP SPLIT — 3:1 image + aside ─────────────────── */
     .map-split {
@@ -230,6 +229,30 @@
       align-items: start;
     }
     .map-split .artifact__aside { align-self: end; }
+
+    /* ── TEXT-PHOTO SPLIT — 1:1 ─────────────────────────── */
+    .text-photo-split {
+      max-width: 1100px;
+      margin: 0 auto 3rem;
+      padding: 0 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    .text-photo-split .col-text { display: flex; flex-direction: column; gap: 1.4rem; }
+    .text-photo-split .col-text p {
+      font-size: 1.1rem;
+      line-height: 1.75;
+      max-width: 65ch;
+      margin: 0;
+    }
+    @media (max-width: 900px) {
+      .text-photo-split {
+        grid-template-columns: 1fr;
+        padding: 0 1.5rem;
+      }
+    }
     @media (max-width: 900px) {
       .map-split {
         grid-template-columns: 1fr;
@@ -416,6 +439,14 @@
       color: var(--ink-soft);
     }
     .artifact__aside p strong { color: var(--ink); font-style: normal; font-weight: 500; }
+    .artifact__aside a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-decoration-color: var(--brand);
+      text-underline-offset: 3px;
+      transition: color 0.15s;
+    }
+    .artifact__aside a:hover { color: var(--brand); }
 
     /* Full-bleed parallax — 80vh window, image scrolls slower than page */
     .artifact--full-bleed {
@@ -538,7 +569,6 @@
       line-height: 1.4;
       color: var(--ink);
       margin-bottom: 1.2rem;
-      max-width: 52ch;
       margin-left: auto;
       margin-right: auto;
     }
@@ -576,10 +606,9 @@
        THOUGHTS ON HOSTING — gets its own visual weight
        ══════════════════════════════════════════════════════ */
     .thoughts {
-      background: var(--ink);
-      color: rgba(255,255,255,0.85);
-      padding: 7rem 0;
-      margin-top: 5rem;
+      background: var(--paper-deep);
+      color: var(--ink);
+      padding: 6rem 0;
     }
     .thoughts__inner {
       max-width: 1100px;
@@ -600,7 +629,7 @@
       font-weight: 300;
       font-size: clamp(2.2rem, 4vw, 3.2rem);
       line-height: 1.1;
-      color: #fff;
+      color: var(--ink);
       letter-spacing: -0.01em;
       margin-bottom: 2.5rem;
     }
@@ -610,12 +639,12 @@
       font-weight: 300;
       font-size: 1.18rem;
       line-height: 1.75;
-      color: rgba(255,255,255,0.82);
+      color: var(--ink);
       margin-bottom: 1.4rem;
       max-width: 65ch;
     }
-    .thoughts p em { font-style: italic; color: rgba(255,255,255,0.7); }
-    .thoughts p strong { color: #fff; font-weight: 500; }
+    .thoughts p em { font-style: italic; color: var(--ink); }
+    .thoughts p strong { color: var(--ink); font-weight: 500; }
     .reflect-list {
       list-style: none;
       counter-reset: r;
@@ -625,15 +654,15 @@
       counter-increment: r;
       position: relative;
       padding: 1.2rem 0 1.2rem 3.5rem;
-      border-top: 1px solid rgba(255,255,255,0.12);
+      border-top: 1px solid var(--rule);
       font-family: var(--serif);
       font-weight: 300;
       font-size: 1.12rem;
       line-height: 1.6;
-      color: rgba(255,255,255,0.88);
+      color: var(--ink);
       max-width: 75ch;
     }
-    .reflect-list li:last-child { border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .reflect-list li:last-child { border-bottom: 1px solid var(--rule); }
     .reflect-list li::before {
       content: '0' counter(r);
       position: absolute;
@@ -645,31 +674,41 @@
       color: var(--brand);
       font-weight: 400;
     }
-    .reflect-list li em { font-style: italic; color: rgba(255,255,255,0.65); }
+    .reflect-list li em { font-style: italic; color: var(--ink); }
 
     /* ══════════════════════════════════════════════════════
-       SIGN-OFF
+       CLOSING
        ══════════════════════════════════════════════════════ */
-    .signoff {
-      max-width: 1100px;
-      margin: 6rem auto 5rem;
-      padding: 0 3rem;
+    .closing {
+      background: var(--ink);
+      padding: 7rem 0;
       text-align: center;
     }
-    .signoff__thanks {
+    .closing__text {
       font-family: var(--serif);
+      font-size: clamp(1.2rem, 2.4vw, 1.75rem);
+      font-weight: 400;
+      color: #fff;
       font-style: italic;
-      font-weight: 300;
-      font-size: clamp(3rem, 6vw, 5rem);
-      line-height: 1;
-      color: var(--ink);
-      margin-bottom: 0.8rem;
+      max-width: 48ch;
+      margin: 0 auto;
+      line-height: 1.65;
     }
-    .signoff__name {
+    .closing__second {
+      margin-top: 1.5rem;
       font-family: var(--serif);
+      font-size: 1.1rem;
+      color: #fff;
       font-style: italic;
-      color: var(--ink-soft);
-      font-size: 1rem;
+    }
+    .closing__thanks {
+      margin-top: 2.5rem;
+      font-family: var(--sans);
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.2);
+      font-weight: 500;
     }
 
     /* ══════════════════════════════════════════════════════
@@ -728,7 +767,7 @@
     @media (max-width: 900px) {
       nav.cs-nav { padding: 1rem 1.5rem; }
       .pullquote__mark { margin-bottom: -2rem; }
-      .hero__inner, .column, .chapter, .pullquote, .signoff,
+      .hero__inner, .column, .chapter, .pullquote, .closing,
       .photo--col, .photo--duo, .photo--duo-wide {
         padding-left: 1.5rem; padding-right: 1.5rem;
       }
@@ -993,32 +1032,19 @@
       <h2 class="chapter__title">Farewell</h2>
     </div>
 
-    <div class="column">
-      <p>
-        I would write a short letter and leave it at the house if I left earlier than the guest. Or hide it somewhere if the guest left earlier than me. And I'd try to help with their departure — like booking a taxi to the airport.
-      </p>
-      <p>
-        If you were the guest who needed to catch up flight early in the morning — which always means <em>chaos and starving</em> — I would prepare some food and pack it with the letter, handing it to you right before you jump on the taxi  ;)
-      </p>
-    </div>
-
-    <!-- ARTIFACT — Farewell letter (full-bleed, marginalia) -->
-    <section class="artifact artifact--note">
-      <div class="artifact__stage">
-        <div class="artifact__media">
-          <figure class="photo" data-label="Farewell letter, handwritten">
-            <img src="../../assets/images/airbnb-hosting/farewell-letter.jpg" alt="Farewell letter handwritten for a guest" onerror="this.style.display='none'">
-          </figure>
-          <div class="artifact__caption"></div>
-        </div>
-        <aside class="artifact__aside">
-          <span class="artifact__aside-mark">↳</span>
-          <p>
-            Sometimes left on the table, sometimes hidden inside the pamphlet. <strong>For the 5am-flight guests</strong>, it travelled with a packed breakfast.
-          </p>
-        </aside>
+    <div class="text-photo-split">
+      <div class="col-text">
+        <p>
+          I would write a short letter and leave it at the house if I left earlier than the guest. Or hide it somewhere if the guest left earlier than me. And I'd try to help with their departure — like booking a taxi to the airport.
+        </p>
+        <p>
+          If you were the guest who needed to catch up flight early in the morning — which always means <em>chaos and starving</em> — I would prepare some food and pack it with the letter, handing it to you right before you jump on the taxi  ;)
+        </p>
       </div>
-    </section>
+      <figure class="photo" data-label="Farewell letter, handwritten">
+        <img src="../../assets/images/airbnb-hosting/farewell-letter.jpg" alt="Farewell letter handwritten for a guest" onerror="this.style.display='none'">
+      </figure>
+    </div>
 
     <div class="column">
       <p>
@@ -1026,27 +1052,18 @@
       </p>
     </div>
 
-    <!-- ARTIFACT — Guest book duo -->
-    <section class="artifact artifact-duo">
-      <div class="artifact__stage">
-        <div class="artifact__item">
-          <div class="artifact__media">
-            <figure class="photo" data-label="The guest book — every guest signed">
-              <img src="../../assets/images/airbnb-hosting/guest-book.jpg" alt="A guest book filled with signatures and notes" onerror="this.style.display='none'">
-            </figure>
-          </div>
-          <div class="artifact__caption"></div>
-        </div>
-        <div class="artifact__item">
-          <div class="artifact__media">
-            <figure class="photo" data-label="An afternoon with a guest">
-              <img src="../../assets/images/airbnb-hosting/interaction-with-guest.jpg" alt="Chia spending time with a guest" onerror="this.style.display='none'">
-            </figure>
-          </div>
-          <div class="artifact__caption"></div>
-        </div>
-      </div>
-    </section>
+    <div class="map-split">
+      <figure class="photo" data-label="An afternoon with a guest">
+        <img src="../../assets/images/airbnb-hosting/interaction-with-guest.jpeg" alt="Chia spending time with a guest" onerror="this.style.display='none'">
+      </figure>
+      <aside class="artifact__aside">
+        <span class="artifact__aside-mark">↳</span>
+        <p>
+          Just for the record, I've caught up with Star Wars in 2021 ;)
+        </p>
+        <p>For more interactions with guests, you can visit my <a href="https://www.patreon.com/posts/airbnb-hosting-158959346?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link" target="_blank" rel="noopener noreferrer">Patreon</a>.</p>
+      </aside>
+    </div>
 
     <!-- ── CLOSING LINE ─────────────────────────────── -->
     <div class="pullquote">
@@ -1072,17 +1089,17 @@
         <li>How to let guests self check-in, or help them arrange the time before we meet?</li>
         <li>Maybe letting guests make the bed by themselves to show the sheets are fresh — <em>definitely not because I am bad at it</em>  ;)</li>
       </ol>
-      <p>
-        Somehow it's a weird feeling to be a host: when check-out comes, it could mean you may <strong>NEVER</strong> see the person again — someone you used to stay with for 24/7. Sometimes this thought just breaks my heart  :-/
-      </p>
     </div>
   </section>
 
-  <!-- ── SIGN-OFF ─────────────────────────────────── -->
-  <div class="signoff">
-    <p class="signoff__thanks">Thanks  :)</p>
-    <p class="signoff__name">— Chia</p>
-  </div>
+  <!-- ── CLOSING ──────────────────────────────────── -->
+  <section class="closing">
+    <div>
+      <p class="closing__text">Somehow it's a strange feeling to be a host: at check-out, it could mean you may never see this person again — someone you shared your home with for days.</p>
+      <p class="closing__second">Sometimes this thought just breaks my heart :-/</p>
+      <p class="closing__thanks">Thanks :)</p>
+    </div>
+  </section>
 
   <!-- ══════════════════════════════════════════════════
        PROJECT NAV
