@@ -11,7 +11,7 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 // ── NAV: PROJECT TITLE FADE IN AFTER HERO ──
 const navTitle = document.querySelector('.nav-project-title');
-const hero     = document.querySelector('.cs-hero');
+const hero     = document.querySelector('.cs-hero, .hero');
 if (navTitle && hero) {
   const heroObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

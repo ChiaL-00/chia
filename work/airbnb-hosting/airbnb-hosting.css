@@ -1,0 +1,10 @@
+:root {
+  --brand:       #F52525;
+  --paper:       #FFFFFB;
+  --paper-deep:  #ece8de;
+  --paper-stage: #efece4;
+  --ink:         #1a1a18;
+  --ink-soft:    #4a4a44;
+  --ink-faint:   #8a8a82;
+  --rule:        rgba(0,0,0,0.08);
+}
