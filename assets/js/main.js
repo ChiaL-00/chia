@@ -1,3 +1,10 @@
+// ── IMAGE ERROR FALLBACK ──
+document.querySelectorAll('figure.photo img').forEach(img => {
+  img.addEventListener('error', () => {
+    img.closest('figure').classList.add('photo--error');
+  });
+});
+
 // ── REVEAL ON SCROLL ──
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -15,7 +22,9 @@ const hero     = document.querySelector('.cs-hero, .hero');
 if (navTitle && hero) {
   const heroObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-      navTitle.classList.toggle('visible', !entry.isIntersecting);
+      const show = !entry.isIntersecting;
+      navTitle.classList.toggle('visible', show);
+      navTitle.setAttribute('aria-hidden', show ? 'false' : 'true');
     });
   }, { threshold: 0 });
   heroObserver.observe(hero);

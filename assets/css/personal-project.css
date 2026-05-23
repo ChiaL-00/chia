@@ -12,6 +12,7 @@
      --ink-soft    (secondary text)
      --ink-faint   (tertiary / placeholder text)
      --rule        (divider colour)
+     --closing-bg  (closing section background — optional, defaults to --ink)
    ══════════════════════════════════════════════════════════ */
 
 /* ── BASE ──────────────────────────────────────────────── */
@@ -272,6 +273,14 @@ figure.photo img {
   height: auto;
   display: block;
 }
+figure.photo.photo--error img { display: none; }
+figure.photo.photo--error::before {
+  content: "Something's wrong with this image :(";
+  text-transform: none;
+  font-style: italic;
+  letter-spacing: 0;
+  color: rgba(0,0,0,0.4);
+}
 figcaption {
   font-family: var(--sans);
   font-size: 0.78rem;
@@ -293,7 +302,13 @@ figcaption em { font-style: italic; }
   margin: 3rem auto;
   padding: 0 3rem;
 }
-.photo--wide figure.photo { min-height: 0; background: none; }
+.photo--wide figure.photo {
+  min-height: 0;
+  background: none;
+  overflow: visible;
+  flex-direction: column;
+  align-items: stretch;
+}
 .photo--duo {
   max-width: 1100px;
   margin: 2.5rem auto;
@@ -334,7 +349,7 @@ figcaption em { font-style: italic; }
       transparent, transparent 12px,
       rgba(0,0,0,0.045) 12px, rgba(0,0,0,0.045) 13px
     ),
-    #e6e2d6;
+    var(--paper-deep);
 }
 .artifact__caption {
   margin-top: 1rem;
@@ -385,8 +400,6 @@ figcaption em { font-style: italic; }
   height: 75vh;
   overflow: hidden;
   position: relative;
-  view-timeline-name: --parallax;
-  view-timeline-axis: block;
 }
 .artifact--full-bleed .artifact__stage,
 .artifact--full-bleed .artifact__media {
@@ -404,15 +417,33 @@ figcaption em { font-style: italic; }
 .artifact--full-bleed .artifact__media figure.photo::before { display: none; }
 .artifact--full-bleed .artifact__media figure.photo img {
   width: 100%;
-  height: 130%;
+  height: 100%;
   object-fit: cover;
   object-position: center center;
   display: block;
-  will-change: transform;
-  animation: parallax-scroll linear both;
-  animation-timeline: --parallax;
-  animation-range: cover 0% cover 100%;
 }
+
+/* Scroll-driven parallax — Chrome 115+; degrades to static crop elsewhere */
+@supports (animation-timeline: scroll()) {
+  .artifact--full-bleed {
+    view-timeline-name: --parallax;
+    view-timeline-axis: block;
+  }
+  .artifact--full-bleed .artifact__media figure.photo img {
+    height: 130%;
+    will-change: transform;
+    animation: parallax-scroll linear both;
+    animation-timeline: --parallax;
+    animation-range: cover 0% cover 100%;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .artifact--full-bleed .artifact__media figure.photo img {
+      height: 100%;
+      animation: none;
+    }
+  }
+}
+
 @keyframes parallax-scroll {
   from { transform: translateY(10%); }
   to   { transform: translateY(-10%); }
@@ -423,9 +454,6 @@ figcaption em { font-style: italic; }
   .artifact--full-bleed .artifact__media { height: auto; }
   .artifact--full-bleed .artifact__media figure.photo { height: auto; min-height: unset; overflow: visible; }
   .artifact--full-bleed .artifact__media figure.photo img { width: 100%; height: auto; animation: none; transform: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .artifact--full-bleed .artifact__media figure.photo img { height: 100%; animation: none; transform: translateY(-5%); }
 }
 
 /* Artifact duo — two objects side by side */
@@ -584,7 +612,9 @@ blockquote.aside {
    CLOSING
    ══════════════════════════════════════════════════════════ */
 .closing {
-  background: #1C1C1C;
+  --closing-text:       var(--white, #fff);
+  --closing-text-muted: rgba(255,255,255,0.38);
+  background: var(--closing-bg, var(--ink));
   padding: 7rem 0;
   text-align: center;
 }
@@ -592,7 +622,7 @@ blockquote.aside {
   font-family: var(--serif);
   font-size: clamp(1.2rem, 2.4vw, 1.75rem);
   font-weight: 400;
-  color: #fff;
+  color: var(--closing-text);
   font-style: italic;
   max-width: 48ch;
   margin: 0 auto;
@@ -602,7 +632,7 @@ blockquote.aside {
   margin-top: 1.5rem;
   font-family: var(--serif);
   font-size: 1.1rem;
-  color: #fff;
+  color: var(--closing-text);
   font-style: italic;
 }
 .closing__thanks {
@@ -611,7 +641,7 @@ blockquote.aside {
   font-size: 0.85rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.38);
+  color: var(--closing-text-muted);
   font-weight: 500;
 }
 
@@ -653,13 +683,14 @@ blockquote.aside {
 }
 
 footer.cs-footer {
+  --footer-text: rgba(255,255,255,0.45);
   background: var(--ink);
   padding: 2.5rem 0;
   text-align: center;
 }
 footer.cs-footer p {
   font-size: 0.8rem;
-  color: rgba(255,255,255,0.45);
+  color: var(--footer-text);
   letter-spacing: 0.06em;
 }
 footer.cs-footer a { color: var(--brand); text-decoration: none; }
