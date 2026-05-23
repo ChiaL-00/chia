@@ -584,10 +584,9 @@ blockquote.aside {
    CLOSING
    ══════════════════════════════════════════════════════════ */
 .closing {
-  background: var(--ink);
+  background: #1C1C1C;
   padding: 7rem 0;
   text-align: center;
-  border-bottom: 1px solid rgba(255,255,255,0.15);
 }
 .closing__text {
   font-family: var(--serif);
