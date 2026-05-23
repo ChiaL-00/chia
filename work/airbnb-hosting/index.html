@@ -683,6 +683,7 @@
       background: var(--ink);
       padding: 7rem 0;
       text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
     }
     .closing__text {
       font-family: var(--serif);
@@ -749,7 +750,7 @@
     }
 
     footer.cs-footer {
-      background: var(--dark);
+      background: var(--ink);
       padding: 2.5rem 0;
       text-align: center;
     }
@@ -1046,6 +1047,15 @@
       </figure>
     </div>
 
+    <div class="photo--duo-wide">
+      <figure class="photo" data-label="Guest book">
+        <img src="../../assets/images/airbnb-hosting/guest-book.jpg" alt="Guest book with signatures and messages" onerror="this.style.display='none'">
+      </figure>
+      <figure class="photo" data-label="Guest with camera" style="background: none;">
+        <img src="../../assets/images/airbnb-hosting/guest-camera.JPG" alt="Guest with camera" onerror="this.style.display='none'">
+      </figure>
+    </div>
+
     <div class="column">
       <p>
         Usually I would ask guests to sign their name in my notebook — they could also leave me a message if they liked.
@@ -1102,8 +1112,7 @@
   </section>
 
   <!-- ══════════════════════════════════════════════════
-       PROJECT NAV
-       ══════════════════════════════════════════════════ -->
+       PROJECT NAV — commented out until projects are ready
   <div class="project-nav">
     <a class="project-nav__item" href="../field-report/">
       <span class="project-nav__label">← Previous</span>
@@ -1114,6 +1123,7 @@
       <span class="project-nav__title">All Sides</span>
     </a>
   </div>
+       ══════════════════════════════════════════════════ -->
 
   <script>
     (function () {
@@ -1138,7 +1148,8 @@
   <!-- ── FOOTER ──────────────────────────────────── -->
   <footer class="cs-footer">
     <div class="container">
-      <p>Designed by <a href="../../index.html">Chia</a> &nbsp;·&nbsp; Product Designer &nbsp;·&nbsp; London</p>
+      <p>Designed by <a href="../../about.html">Chia</a> &nbsp;·&nbsp; Product Designer &nbsp;·&nbsp; London</p>
+      <p style="margin-top: 0.5rem; font-size: 0.7rem; opacity: 0.5;">All work is original and shown with permission where applicable.</p>
     </div>
   </footer>
 
