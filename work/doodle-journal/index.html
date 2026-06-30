@@ -175,15 +175,17 @@
     position: relative;
     padding-left: 2.75rem;
   }
-  .eras::before {
+  /* spine drawn between dots, not as one long line */
+  .era:not(:last-child)::after {
     content: '';
     position: absolute;
-    left: 5px;
-    top: 0.7rem;
-    bottom: 2rem;
+    left: calc(5px - 2.75rem);
+    top: calc(0.7rem + 11px);
+    bottom: -0.7rem;
     width: 1px;
     background: var(--rule);
   }
+  .era:last-child::before { background: var(--accent); border-color: var(--accent); }
   .era {
     position: relative;
     padding-bottom: 5.5rem;
@@ -552,6 +554,12 @@
           <button class="thumb" data-src="../../assets/images/doodle-journal/2025-1.JPG" data-caption="These aren't receipts. They're memories" aria-label="View spread 5 of 6"><span class="thumb__n">05</span></button>
           <button class="thumb" data-src="../../assets/images/doodle-journal/2025-2.JPG" data-caption="Dated July 2025" aria-label="View spread 6 of 6"><span class="thumb__n">06</span></button>
         </div>
+      </div>
+    </section>
+
+    <section class="era reveal">
+      <div class="era__head">
+        <span class="era__year">To be continued</span>
       </div>
     </section>
 
