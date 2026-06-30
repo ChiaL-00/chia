@@ -290,6 +290,22 @@
     overflow: visible;
     box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 12px 28px -22px rgba(40,32,20,0.5);
   }
+  /* fixed-height frame — images centred, no stretch, no jumping when switching */
+  .spread__frame--uniform {
+    height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: var(--paper-deep);
+  }
+  .spread__frame--uniform img {
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
   .spread__cta {
     display: flex;
     align-items: center;
@@ -482,13 +498,18 @@
         <span class="era__sub">High school</span>
       </div>
       <p class="era__caption"><span class="ph">Placeholder caption — a short line about this period goes here. One or two lines, no more.</span></p>
-      <div class="era__media">
+      <div class="era__media" data-gallery>
         <figure class="spread">
-          <div class="spread__frame">
-            <img alt="" hidden>
+          <div class="spread__frame spread__frame--uniform">
+            <img src="../../assets/images/doodle-journal/2008-1.png" alt="High school notebook spread, 2008">
           </div>
-          <figcaption>open notebook spread — drop photo here</figcaption>
+          <figcaption>High school notebook, 2008</figcaption>
         </figure>
+        <div class="era__thumbs">
+          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2008-1.png" data-caption="High school notebook, 2008" aria-label="View spread 1 of 3"><span class="thumb__n">01</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2008-2.jpg" data-caption="High school notebook, 2008" aria-label="View spread 2 of 3"><span class="thumb__n">02</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2008-3.jpg" data-caption="High school notebook, 2008" aria-label="View spread 3 of 3"><span class="thumb__n">03</span></button>
+        </div>
       </div>
     </section>
 
