@@ -17,7 +17,7 @@
      Doodle Journal — local overrides
      ───────────────────────────────────────── */
   :root {
-    --brand:       #b85b3c;
+    --brand:       #0B346E;
     --paper:       #FFFFFB;
     --paper-deep:  #ece8de;
     --paper-stage: #efece4;
@@ -27,12 +27,19 @@
     --rule:        #d8d2c4;
     --mono:        ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
 
+    /* secondary ink — a nod to the ballpoint-pen blue running through the actual
+       notebook pages; used only for interactive/hover moments, never for the
+       "current position" markers (those use --accent) */
+    --ink-blue:      oklch(42% 0.07 250);
+    --ink-blue-soft: oklch(42% 0.07 250 / 0.12);
+
     /* aliases used by local components */
     --bg:          #FFFFFB;
     --bg-deep:     #ece8de;
     --ink-muted:   #8a8a82;
     --rule-soft:   #e3ddd0;
-    --accent:      #b85b3c;
+    --accent:       #C73E3A;
+    --accent-shade: color-mix(in srgb, #C73E3A 70%, black);
   }
 
   html { scroll-behavior: smooth; }
@@ -42,6 +49,8 @@
   nav.nav--hidden { transform: none !important; }
 
   /* ── HERO (local overrides only) ── */
+  .hero__title,
+  .hero__title em { color: var(--brand); }
   .hero__dek { margin-bottom: 1.5rem; }
   .hero__intro {
     font-family: var(--serif);
@@ -105,8 +114,8 @@
     transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
   }
   .toc-rail:hover .toc-rail__year { opacity: 0.7; transform: none; }
-  .toc-rail a:hover .toc-rail__mark { width: 30px; background: var(--ink); opacity: 1; }
-  .toc-rail a:hover .toc-rail__year { opacity: 1; color: var(--ink); }
+  .toc-rail a:hover .toc-rail__mark { width: 30px; background: var(--accent-shade); opacity: 1; }
+  .toc-rail a:hover .toc-rail__year { opacity: 1; color: var(--accent-shade); }
   .toc-rail a.active .toc-rail__mark { width: 34px; background: var(--accent); opacity: 1; }
   .toc-rail a.active .toc-rail__year { opacity: 1; color: var(--accent); }
 
@@ -169,7 +178,9 @@
     padding: 0.6rem 0.7rem;
     border-radius: 7px;
     color: var(--ink-soft);
+    transition: background 0.15s ease;
   }
+  .toc-jump__panel a:hover { background: var(--ink-blue-soft); }
   .toc-jump__panel a:active { background: var(--bg); }
   .toc-jump__panel a.active { color: var(--accent); }
   .toc-jump__panel .yr { font-family: var(--serif); font-size: 1.1rem; }
@@ -271,7 +282,7 @@
     opacity: 0.6;
     transition: opacity 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   }
-  .thumb:hover { opacity: 1; }
+  .thumb:hover { opacity: 1; border-color: var(--ink-blue); }
   .thumb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .thumb.is-active {
     opacity: 1;
