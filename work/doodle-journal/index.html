@@ -38,6 +38,9 @@
   html { scroll-behavior: smooth; }
   [hidden] { display: none !important; }
 
+  /* keep nav pinned on this page so the sticky era__head has a stable offset to sit under */
+  nav.nav--hidden { transform: none !important; }
+
   /* ── HERO (local overrides only) ── */
   .hero__dek { margin-bottom: 1.5rem; }
   .hero__intro {
@@ -182,22 +185,25 @@
     content: '';
     position: absolute;
     left: calc(5px - 2.75rem);
-    top: calc(0.7rem + 11px);
+    top: calc(1.2rem + 11px);
     bottom: -0.7rem;
     width: 1px;
     background: var(--rule);
   }
-  .era:last-child::before { background: var(--accent); border-color: var(--accent); }
+  .era:last-child .era__dot { background: var(--accent); border-color: var(--accent); }
   .era {
     position: relative;
-    padding-bottom: 5.5rem;
   }
-  .era:last-child { padding-bottom: 0; }
-  .era::before {
-    content: '';
+  /* real content, not padding — padding-bottom isn't counted by the browser
+     when clamping how far a sticky child inside can travel, so the buffer
+     between eras has to be an actual element with height */
+  .era__spacer {
+    height: 5.5rem;
+  }
+  .era__dot {
     position: absolute;
     left: calc(-2.75rem + 1px);
-    top: 0.7rem;
+    top: 1.2rem;
     width: 11px;
     height: 11px;
     border-radius: 50%;
@@ -205,7 +211,7 @@
     border: 1px solid var(--ink-muted);
     transition: background 0.25s ease, border-color 0.25s ease;
   }
-  .era.seen::before { background: var(--accent); border-color: var(--accent); }
+  .era.seen .era__dot { background: var(--accent); border-color: var(--accent); }
 
   .era__head {
     display: flex;
@@ -213,6 +219,11 @@
     gap: 1.1rem;
     flex-wrap: wrap;
     margin-bottom: 0.4rem;
+    position: sticky;
+    top: 3.75rem;
+    z-index: 5;
+    background: var(--bg);
+    padding: 0.5rem 0;
   }
   .era__year {
     font-family: var(--serif);
@@ -355,8 +366,8 @@
     }
     body.rail-visible .toc-jump { opacity: 1; visibility: visible; pointer-events: auto; transform: none; }
     .eras { padding-left: 2rem; }
-    .era::before { left: calc(-2rem + 1px); }
-    .era { padding-bottom: 4rem; }
+    .era__dot { left: calc(-2rem + 1px); }
+    .era__spacer { height: 4rem; }
     .thumb { width: 72px; }
   }
   @media (max-width: 480px) {
@@ -429,6 +440,7 @@
 
     <section class="era reveal" id="y1998">
       <div class="era__head">
+        <span class="era__dot" aria-hidden="true"></span>
         <span class="era__year">1998</span>
         <span class="era__sub">The Beginning</span>
       </div>
@@ -441,10 +453,12 @@
           <figcaption>Dated 21 October 1998</figcaption>
         </figure>
       </div>
+      <div class="era__spacer" aria-hidden="true"></div>
     </section>
 
     <section class="era reveal" id="y2003">
       <div class="era__head">
+        <span class="era__dot" aria-hidden="true"></span>
         <span class="era__year">2003</span>
         <span class="era__sub">Between Homework and Doodles</span>
       </div>
@@ -466,10 +480,12 @@
           <button class="thumb" data-cta data-caption="" aria-label="See more on Patreon"><span class="thumb__n">More</span></button>
         </div>
       </div>
+      <div class="era__spacer" aria-hidden="true"></div>
     </section>
 
     <section class="era reveal" id="y2006">
       <div class="era__head">
+        <span class="era__dot" aria-hidden="true"></span>
         <span class="era__year">2006</span>
         <span class="era__sub">Before Google Maps</span>
       </div>
@@ -491,10 +507,12 @@
           <button class="thumb" data-src="../../assets/images/doodle-journal/2006-7.JPG" data-caption="Apparently not the ending" aria-label="View spread 7 of 7"><span class="thumb__n">07</span></button>
         </div>
       </div>
+      <div class="era__spacer" aria-hidden="true"></div>
     </section>
 
     <section class="era reveal" id="y2008">
       <div class="era__head">
+        <span class="era__dot" aria-hidden="true"></span>
         <span class="era__year">2008</span>
         <span class="era__sub">The Digital Experiment</span>
       </div>
@@ -512,10 +530,12 @@
           <button class="thumb" data-src="../../assets/images/doodle-journal/2008-3.jpg" data-caption="The cast kept growing, extended from family to friends" aria-label="View spread 3 of 3"><span class="thumb__n">03</span></button>
         </div>
       </div>
+      <div class="era__spacer" aria-hidden="true"></div>
     </section>
 
     <section class="era reveal" id="y2010s">
       <div class="era__head">
+        <span class="era__dot" aria-hidden="true"></span>
         <span class="era__year">2014</span>
         <span class="era__sub">A Bigger World</span>
       </div>
@@ -533,10 +553,12 @@
           <button class="thumb" data-src="../../assets/images/doodle-journal/2014-3.JPG" data-caption="Design camp from my first design job" aria-label="View spread 3 of 3"><span class="thumb__n">03</span></button>
         </div>
       </div>
+      <div class="era__spacer" aria-hidden="true"></div>
     </section>
 
     <section class="era reveal" id="y2024">
       <div class="era__head">
+        <span class="era__dot" aria-hidden="true"></span>
         <span class="era__year">2015–2025</span>
         <span class="era__sub">My Ongoing Collection of Tiny Nonsense</span>
       </div>
@@ -557,10 +579,12 @@
           <button class="thumb" data-src="../../assets/images/doodle-journal/2025-2.JPG" data-caption="Dated July 2025" aria-label="View spread 6 of 6"><span class="thumb__n">06</span></button>
         </div>
       </div>
+      <div class="era__spacer" aria-hidden="true"></div>
     </section>
 
     <section class="era reveal">
       <div class="era__head">
+        <span class="era__dot" aria-hidden="true"></span>
         <span class="era__year">To be continued</span>
       </div>
     </section>
@@ -626,8 +650,8 @@
   const navAnchors = [...document.querySelectorAll('.toc-rail a, .toc-jump a')];
   const spy = new IntersectionObserver((entries) => {
     entries.forEach((e) => {
+      e.target.classList.toggle('seen', e.isIntersecting);
       if (e.isIntersecting) {
-        e.target.classList.add('seen');
         navAnchors.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
       }
     });
