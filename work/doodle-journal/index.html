@@ -11,434 +11,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,300;1,8..60,400;1,8..60,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/css/style.css">
 <link rel="stylesheet" href="../../assets/css/personal-project.css">
-
-<style>
-  /* ─────────────────────────────────────────
-     Doodle Journal — local overrides
-     ───────────────────────────────────────── */
-  :root {
-    --brand:       #0B346E;
-    --paper:       #FFFFFB;
-    --paper-deep:  #ece8de;
-    --paper-stage: #efece4;
-    --ink:         #1a1a18;
-    --ink-soft:    #4a4a44;
-    --ink-faint:   #8a8a82;
-    --rule:        #d8d2c4;
-    --mono:        ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
-
-    /* secondary ink — a nod to the ballpoint-pen blue running through the actual
-       notebook pages; used only for interactive/hover moments, never for the
-       "current position" markers (those use --accent) */
-    --ink-blue:      oklch(42% 0.07 250);
-    --ink-blue-soft: oklch(42% 0.07 250 / 0.12);
-
-    /* aliases used by local components */
-    --bg:          #FFFFFB;
-    --bg-deep:     #ece8de;
-    --ink-muted:   #8a8a82;
-    --rule-soft:   #e3ddd0;
-    --accent:       #C73E3A;
-    --accent-shade: color-mix(in srgb, #C73E3A 70%, black);
-  }
-
-  html { scroll-behavior: smooth; }
-  [hidden] { display: none !important; }
-
-  /* the hero cover image intentionally bleeds past the right edge — clip it at
-     the viewport edge instead of letting it create a horizontal scrollbar.
-     "clip" (not "hidden") so it doesn't become a scroll container and break
-     the sticky era__head positioning further down the page. */
-  body { overflow-x: clip; }
-
-  /* keep nav pinned on this page so the sticky era__head has a stable offset to sit under */
-  nav.nav--hidden { transform: none !important; }
-
-  /* ── HERO (local overrides only) ── */
-  .hero__title,
-  .hero__title em { color: var(--brand); }
-  .hero__dek { margin-bottom: 1.5rem; }
-  .hero {
-    overflow: visible; /* let the cover image overflow past the hero without being clipped */
-  }
-  .hero__inner {
-    display: grid;
-    /* minmax(0, Nfr), not plain Nfr — otherwise the second track grows to fit
-       the cover image's full max-content width instead of the fr ratio */
-    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
-    align-items: start;
-    gap: 0 1rem;
-  }
-  .hero__cover {
-    height: auto;
-    min-width: 0; /* stop the grid track from growing to fit this item's width */
-    justify-self: start;
-    pointer-events: none;
-  }
-  /* fade only — no slide-up, unlike the site-wide .reveal default.
-     also drop the transform transition entirely: the scroll-linked slide-out
-     below sets transform continuously and needs it to apply instantly,
-     not ease over .reveal's 0.7s. */
-  .hero__cover.reveal,
-  .hero__cover.reveal.visible {
-    transform: none;
-    transition: opacity 0.7s ease;
-  }
-  .hero__intro {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-size: 1.18rem;
-    line-height: 1.75;
-    color: var(--ink);
-    margin-bottom: 3.5rem;
-  }
-  .hero__intro em { font-style: italic; color: var(--ink-soft); }
-
-  /* ── ARCHIVE LAYOUT ── */
-  .archive {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 3rem 3rem 3rem;
-  }
-
-  /* ── CONTENTS — margin tick-rail (fixed in the left margin) ── */
-  nav.toc-rail {
-    /* reset global nav overrides from style.css */
-    top: 50%;
-    left: 2.5rem;
-    right: auto;
-    background: transparent;
-    border-bottom: none;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    box-shadow: none;
-    padding: 0;
-    transform: translateY(-50%);
-    z-index: 40;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.15rem;
-  }
-  .toc-rail a {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 0.42rem 0;
-    color: var(--ink-muted);
-    text-decoration: none;
-  }
-  .toc-rail__mark {
-    width: 18px;
-    height: 2px;
-    border-radius: 2px;
-    background: var(--ink-muted);
-    flex: none;
-    opacity: 0.55;
-    transition: width 0.25s ease, background 0.25s ease, opacity 0.25s ease;
-  }
-  .toc-rail__year {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
-    white-space: nowrap;
-    opacity: 0;
-    transform: translateX(-4px);
-    transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
-  }
-  .toc-rail:hover .toc-rail__year { opacity: 0.7; transform: none; }
-  .toc-rail a:hover .toc-rail__mark { width: 30px; background: var(--accent-shade); opacity: 1; }
-  .toc-rail a:hover .toc-rail__year { opacity: 1; color: var(--accent-shade); }
-  .toc-rail a.active .toc-rail__mark { width: 34px; background: var(--accent); opacity: 1; }
-  .toc-rail a.active .toc-rail__year { opacity: 1; color: var(--accent); }
-
-  /* hidden until the top of the timeline scrolls into view */
-  .toc-rail {
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity 0.45s ease, visibility 0.45s ease;
-  }
-  body.rail-visible .toc-rail {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-  }
-
-  /* ── CONTENTS — floating button (mobile only) ── */
-  .toc-jump { display: none; }
-  .toc-jump__btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.6rem;
-    background: var(--ink);
-    color: var(--bg);
-    border: none;
-    border-radius: 100px;
-    cursor: pointer;
-    padding: 0.8rem 1.3rem;
-    font-family: var(--sans);
-    font-size: 0.82rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    box-shadow: 0 12px 30px -14px rgba(40,32,20,0.6);
-  }
-  .toc-jump__ix { display: flex; flex-direction: column; gap: 3px; }
-  .toc-jump__ix span { width: 15px; height: 1.5px; background: var(--bg); border-radius: 2px; }
-  .toc-jump__panel {
-    list-style: none;
-    position: absolute;
-    right: 0;
-    bottom: calc(100% + 0.6rem);
-    width: 232px;
-    padding: 0.5rem;
-    background: var(--paper);
-    border: 1px solid var(--rule);
-    border-radius: 12px;
-    box-shadow: 0 18px 40px -18px rgba(40,32,20,0.5);
-    opacity: 0;
-    transform: translateY(8px);
-    pointer-events: none;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-  }
-  .toc-jump.open .toc-jump__panel { opacity: 1; transform: none; pointer-events: auto; }
-  .toc-jump__panel li + li { border-top: 1px solid var(--rule-soft); }
-  .toc-jump__panel a {
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 1rem;
-    padding: 0.6rem 0.7rem;
-    border-radius: 7px;
-    color: var(--ink-soft);
-    transition: background 0.15s ease;
-  }
-  .toc-jump__panel a:hover { background: var(--ink-blue-soft); }
-  .toc-jump__panel a:active { background: var(--bg); }
-  .toc-jump__panel a.active { color: var(--accent); }
-  .toc-jump__panel .yr { font-family: var(--serif); font-size: 1.1rem; }
-  .toc-jump__panel .sub { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--ink-soft); }
-
-  /* ── TIMELINE / ERAS ── */
-  .eras {
-    position: relative;
-    padding-left: 2.75rem;
-  }
-  /* spine drawn between dots, not as one long line */
-  .era:not(:last-child)::after {
-    content: '';
-    position: absolute;
-    left: calc(5px - 2.75rem);
-    top: calc(1.2rem + 11px);
-    bottom: -0.7rem;
-    width: 1px;
-    background: var(--rule);
-  }
-  .era:last-child .era__dot { background: var(--accent); border-color: var(--accent); }
-  .era {
-    position: relative;
-  }
-  /* real content, not padding — padding-bottom isn't counted by the browser
-     when clamping how far a sticky child inside can travel, so the buffer
-     between eras has to be an actual element with height */
-  .era__spacer {
-    height: 5.5rem;
-  }
-  .era__dot {
-    position: absolute;
-    left: calc(-2.75rem + 1px);
-    top: 1.2rem;
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    background: var(--bg);
-    border: 1px solid var(--ink-muted);
-    transition: background 0.25s ease, border-color 0.25s ease;
-  }
-  .era.seen .era__dot { background: var(--accent); border-color: var(--accent); }
-
-  .era__head {
-    display: flex;
-    align-items: baseline;
-    gap: 1.1rem;
-    flex-wrap: wrap;
-    margin-bottom: 0.4rem;
-    position: sticky;
-    top: 3.75rem;
-    z-index: 5;
-    background: var(--bg);
-    padding: 0.5rem 0;
-  }
-  .era__year {
-    font-family: var(--serif);
-    font-size: clamp(2.6rem, 5vw, 4rem);
-    line-height: 0.95;
-  }
-  .era__sub {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: clamp(1.05rem, 1.6vw, 1.3rem);
-    color: var(--ink-soft);
-  }
-  .era__caption {
-    font-family: var(--sans);
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: var(--ink);
-    margin-bottom: 2rem;
-  }
-  .era__caption .ph {
-    color: var(--ink-muted);
-    font-style: italic;
-  }
-
-  /* ── MEDIA: one large spread + thumbnail strip ── */
-  .era__thumbs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.6rem;
-    margin-top: 0.9rem;
-  }
-  .thumb {
-    position: relative;
-    width: 86px;
-    aspect-ratio: 16 / 9;
-    flex: none;
-    padding: 0;
-    border: 1px solid var(--rule);
-    border-radius: 2px;
-    background: var(--paper);
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
-    overflow: hidden;
-    opacity: 0.6;
-    transition: opacity 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-  }
-  .thumb:hover { opacity: 1; border-color: var(--ink-blue); }
-  .thumb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  .thumb.is-active {
-    opacity: 1;
-    border-color: var(--accent);
-    box-shadow: 0 0 0 1px var(--accent);
-  }
-  .thumb__gutter {
-    position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
-    background: rgba(40,32,20,0.12); transform: translateX(-50%);
-  }
-  .thumb__n {
-    position: absolute; left: 5px; bottom: 3px;
-    font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.06em;
-    color: var(--ink-muted);
-  }
-  .thumb.is-active .thumb__n { color: var(--accent); }
-
-  /* ── NOTEBOOK SPREAD ── */
-  figure.spread { margin: 0; }
-  .spread__frame img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  .spread__frame {
-    position: relative;
-    border-radius: 2px;
-    overflow: visible;
-    box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 12px 28px -22px rgba(40,32,20,0.5);
-  }
-  /* fixed-height frame — images centred, no stretch, no jumping when switching */
-  .spread__frame--uniform {
-    height: 560px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    background: var(--paper-deep);
-  }
-  .spread__frame--uniform img {
-    width: auto;
-    height: auto;
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-  }
-  .spread__cta {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--paper-deep);
-    aspect-ratio: 4 / 3;
-    padding: 2rem;
-    text-align: center;
-  }
-  .spread__cta p {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 1.1rem;
-    line-height: 1.65;
-    color: var(--ink-soft);
-  }
-  .spread__cta a {
-    color: var(--accent);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-  figure.spread figcaption {
-    margin-top: 0.7rem;
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.04em;
-    color: var(--ink-soft);
-  }
-
-  /* ── CLOSING VIDEO — full-bleed, 16:9 ── */
-  .video-feature { width: 100%; }
-  .video-feature__frame {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background: var(--brand); /* placeholder — swap for a poster/first-frame once the clip is in */
-  }
-  .video-feature__video {
-    /* hidden by default — an empty <video controls> paints its own opaque
-       black box regardless of CSS background, hiding the placeholder colour.
-       JS below un-hides it once a real <source> is present. */
-    display: none;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .archive { padding: 0 1.25rem 4rem; }
-    /* mobile: drop the cover image, let the text take the full width */
-    .hero__inner { grid-template-columns: 1fr; }
-    .hero__cover { display: none; }
-    /* mobile: hide the margin rail, use a floating Contents button instead */
-    .toc-rail { display: none !important; }
-    .toc-jump {
-      display: block;
-      position: fixed;
-      right: 1.1rem;
-      bottom: 1.1rem;
-      z-index: 70;
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      transform: translateY(8px);
-      transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
-    }
-    body.rail-visible .toc-jump { opacity: 1; visibility: visible; pointer-events: auto; transform: none; }
-    .eras { padding-left: 2rem; }
-    .era__dot { left: calc(-2rem + 1px); }
-    .era__spacer { height: 4rem; }
-    .thumb { width: 72px; }
-  }
-  @media (max-width: 480px) {
-    .hero__meta { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
-  }
-</style>
+<link rel="stylesheet" href="doodle-journal.css">
 </head>
 <body id="top">
+
+<a href="#main-content" class="skip-link">Skip to content</a>
 
 <!-- NAV -->
 <nav id="siteNav">
@@ -463,7 +40,7 @@
           <span class="hero__meta-value">1998-present</span>
         </div>
         <div class="hero__meta-item">
-          <span class="hero__meta-label">Last update</span>
+          <span class="hero__meta-label">Last entry</span>
           <span class="hero__meta-value">Yesterday</span>
         </div>
       </div>
@@ -473,7 +50,7 @@
 </section>
 
 <!-- ARCHIVE -->
-<main class="archive">
+<main class="archive" id="main-content">
 
   <!-- CONTENTS — margin tick-rail -->
   <nav class="toc-rail" aria-label="Timeline contents">
@@ -507,7 +84,7 @@
     <section class="era" id="y1998">
       <div class="era__head">
         <span class="era__dot" aria-hidden="true"></span>
-        <span class="era__year">1998</span>
+        <h2 class="era__year">1998</h2>
         <span class="era__sub">The Beginning</span>
       </div>
       <p class="era__caption">Long before Instagram, comics lived on the backs of random pieces of paper.</p>
@@ -525,7 +102,7 @@
     <section class="era" id="y2003">
       <div class="era__head">
         <span class="era__dot" aria-hidden="true"></span>
-        <span class="era__year">2003</span>
+        <h2 class="era__year">2003</h2>
         <span class="era__sub">Between Homework and Doodles</span>
       </div>
       <p class="era__caption">In Taiwan, we had a weird thing called a 'school contact book'. We had to write in it EVERY DAY… parents and teacher would comment on my grades or sometimes my doodles 😂✏️🇹🇼<br>Here's my 12-year-old self trying to survive school life.</p>
@@ -540,9 +117,9 @@
           <figcaption>The red ink belongs to my teacher</figcaption>
         </figure>
         <div class="era__thumbs">
-          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2003-1.JPG" data-caption="The red ink belongs to my teacher" aria-label="View spread 1 of 4"><span class="thumb__n">01</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2003-2.JPG" data-caption="Apparently my homeroom teacher couldn't resist turning my doodles into a science problem" aria-label="View spread 2 of 4"><span class="thumb__n">02</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2003-3.JPG" data-caption="My parent joined" aria-label="View spread 3 of 4"><span class="thumb__n">03</span></button>
+          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2003-1.JPG" data-caption="The red ink belongs to my teacher" data-alt="School notebook spread, 2003, with red teacher annotations mixed among the doodles" aria-label="View spread 1 of 4"><span class="thumb__n">01</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2003-2.JPG" data-caption="Apparently my homeroom teacher couldn't resist turning my doodles into a science problem" data-alt="School notebook page where the teacher turned a doodle into a science diagram, 2003" aria-label="View spread 2 of 4"><span class="thumb__n">02</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2003-3.JPG" data-caption="My parent joined" data-alt="School notebook page with a handwritten note from a parent, 2003" aria-label="View spread 3 of 4"><span class="thumb__n">03</span></button>
           <button class="thumb" data-cta data-caption="" aria-label="See more on Patreon"><span class="thumb__n">More</span></button>
         </div>
       </div>
@@ -552,7 +129,7 @@
     <section class="era" id="y2006">
       <div class="era__head">
         <span class="era__dot" aria-hidden="true"></span>
-        <span class="era__year">2006</span>
+        <h2 class="era__year">2006</h2>
         <span class="era__sub">Before Google Maps</span>
       </div>
       <p class="era__caption">A time when souvenirs were glued into notebooks instead of saved to camera rolls.</p>
@@ -564,13 +141,13 @@
           <figcaption>Selected pages from my 2006 Japan journal</figcaption>
         </figure>
         <div class="era__thumbs">
-          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2006-1.JPG" data-caption="Selected pages from my 2006 Japan journal" aria-label="View spread 1 of 7"><span class="thumb__n">01</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2006-2.JPG" data-caption="Selected pages from my 2006 Japan journal" aria-label="View spread 2 of 7"><span class="thumb__n">02</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2006-3.JPG" data-caption="Still being chased by deer" aria-label="View spread 3 of 7"><span class="thumb__n">03</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2006-4.JPG" data-caption="Selected pages from my 2006 Japan journal" aria-label="View spread 4 of 7"><span class="thumb__n">04</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2006-5.JPG" data-caption="Signed by Chip and Dale" aria-label="View spread 5 of 7"><span class="thumb__n">05</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2006-6.JPG" data-caption="Selected pages from my 2006 Japan journal" aria-label="View spread 6 of 7"><span class="thumb__n">06</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2006-7.JPG" data-caption="Apparently not the ending" aria-label="View spread 7 of 7"><span class="thumb__n">07</span></button>
+          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2006-1.JPG" data-caption="Selected pages from my 2006 Japan journal" data-alt="Travel journal spread from a 2006 Japan trip, page 1" aria-label="View spread 1 of 7"><span class="thumb__n">01</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2006-2.JPG" data-caption="Selected pages from my 2006 Japan journal" data-alt="Travel journal spread from a 2006 Japan trip, page 2" aria-label="View spread 2 of 7"><span class="thumb__n">02</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2006-3.JPG" data-caption="Still being chased by deer" data-alt="Travel journal page describing being chased by deer in Japan, 2006" aria-label="View spread 3 of 7"><span class="thumb__n">03</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2006-4.JPG" data-caption="Selected pages from my 2006 Japan journal" data-alt="Travel journal spread from a 2006 Japan trip, page 4" aria-label="View spread 4 of 7"><span class="thumb__n">04</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2006-5.JPG" data-caption="Signed by Chip and Dale" data-alt="Travel journal page signed by Chip and Dale characters, 2006" aria-label="View spread 5 of 7"><span class="thumb__n">05</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2006-6.JPG" data-caption="Selected pages from my 2006 Japan journal" data-alt="Travel journal spread from a 2006 Japan trip, page 6" aria-label="View spread 6 of 7"><span class="thumb__n">06</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2006-7.JPG" data-caption="Apparently not the ending" data-alt="Final travel journal page from the 2006 Japan trip" aria-label="View spread 7 of 7"><span class="thumb__n">07</span></button>
         </div>
       </div>
       <div class="era__spacer" aria-hidden="true"></div>
@@ -579,7 +156,7 @@
     <section class="era" id="y2008">
       <div class="era__head">
         <span class="era__dot" aria-hidden="true"></span>
-        <span class="era__year">2008</span>
+        <h2 class="era__year">2008</h2>
         <span class="era__sub">The Digital Experiment</span>
       </div>
       <p class="era__caption">Back then, going digital meant scanners, graphic tablets, and a lot of patience. Still, nobody around me was safe from becoming a comic character.</p>
@@ -591,9 +168,9 @@
           <figcaption>The right hand side is the draft for another story</figcaption>
         </figure>
         <div class="era__thumbs">
-          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2008-1.jpg" data-caption="The right hand side is the draft for another story" aria-label="View spread 1 of 3"><span class="thumb__n">01</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2008-2.jpg" data-caption="The fully digitised story" aria-label="View spread 2 of 3"><span class="thumb__n">02</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2008-3.jpg" data-caption="The cast kept growing, extended from family to friends" aria-label="View spread 3 of 3"><span class="thumb__n">03</span></button>
+          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2008-1.jpg" data-caption="The right hand side is the draft for another story" data-alt="Notebook spread, 2008, hand-drawn comic beside a draft for another story" aria-label="View spread 1 of 3"><span class="thumb__n">01</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2008-2.jpg" data-caption="The fully digitised story" data-alt="Digitised version of the comic story, 2008" aria-label="View spread 2 of 3"><span class="thumb__n">02</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2008-3.jpg" data-caption="The cast kept growing, extended from family to friends" data-alt="Digital comic featuring family and friends as characters, 2008" aria-label="View spread 3 of 3"><span class="thumb__n">03</span></button>
         </div>
       </div>
       <div class="era__spacer" aria-hidden="true"></div>
@@ -602,7 +179,7 @@
     <section class="era" id="y2010s">
       <div class="era__head">
         <span class="era__dot" aria-hidden="true"></span>
-        <span class="era__year">2014</span>
+        <h2 class="era__year">2014</h2>
         <span class="era__sub">A Bigger World</span>
       </div>
       <p class="era__caption">Adulthood unlocked. Work trips and colleagues soon found their way into the journal.</p>
@@ -614,9 +191,9 @@
           <figcaption>Duvet usability testing in a New York living room</figcaption>
         </figure>
         <div class="era__thumbs">
-          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2014-1.JPG" data-caption="Duvet usability testing in a New York living room" aria-label="View spread 1 of 3"><span class="thumb__n">01</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2014-2.JPG" data-caption="New York, mapped from memory" aria-label="View spread 2 of 3"><span class="thumb__n">02</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2014-3.JPG" data-caption="Design camp from my first design job" aria-label="View spread 3 of 3"><span class="thumb__n">03</span></button>
+          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2014-1.JPG" data-caption="Duvet usability testing in a New York living room" data-alt="Duvet usability testing in a New York living room, 2014" aria-label="View spread 1 of 3"><span class="thumb__n">01</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2014-2.JPG" data-caption="New York, mapped from memory" data-alt="Hand-drawn map of New York City drawn from memory, 2014" aria-label="View spread 2 of 3"><span class="thumb__n">02</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2014-3.JPG" data-caption="Design camp from my first design job" data-alt="Sketches from a design camp at my first design job, 2014" aria-label="View spread 3 of 3"><span class="thumb__n">03</span></button>
         </div>
       </div>
       <div class="era__spacer" aria-hidden="true"></div>
@@ -625,7 +202,7 @@
     <section class="era" id="y2024">
       <div class="era__head">
         <span class="era__dot" aria-hidden="true"></span>
-        <span class="era__year">2015–2025</span>
+        <h2 class="era__year">2015–2025</h2>
         <span class="era__sub">My Ongoing Collection of Tiny Nonsense</span>
       </div>
       <p class="era__caption">Looking back, I'm no longer sure who's talking to whom — am I reading my younger self, or is my younger self reading me?</p>
@@ -637,12 +214,12 @@
           <figcaption>Tokyo Design Week 2015</figcaption>
         </figure>
         <div class="era__thumbs">
-          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2015-1.jpeg" data-caption="Tokyo Design Week 2015" aria-label="View spread 1 of 6"><span class="thumb__n">01</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2015-2.jpeg" data-caption="Autumn, pressed between two pages" aria-label="View spread 2 of 6"><span class="thumb__n">02</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2019.JPG" data-caption="A Christmas trip, right before everything changed" aria-label="View spread 3 of 6"><span class="thumb__n">03</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2023.JPG" data-caption="Turkey with colleagues/ Japan with family" aria-label="View spread 4 of 6"><span class="thumb__n">04</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2025-1.JPG" data-caption="These aren't receipts. They're memories" aria-label="View spread 5 of 6"><span class="thumb__n">05</span></button>
-          <button class="thumb" data-src="../../assets/images/doodle-journal/2025-2.JPG" data-caption="Dated July 2025" aria-label="View spread 6 of 6"><span class="thumb__n">06</span></button>
+          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2015-1.jpeg" data-caption="Tokyo Design Week 2015" data-alt="Notebook spread from Tokyo Design Week, 2015" aria-label="View spread 1 of 6"><span class="thumb__n">01</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2015-2.jpeg" data-caption="Autumn, pressed between two pages" data-alt="A pressed autumn leaf kept between notebook pages, 2015" aria-label="View spread 2 of 6"><span class="thumb__n">02</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2019.JPG" data-caption="A Christmas trip, right before everything changed" data-alt="Journal page from a Christmas trip, 2019" aria-label="View spread 3 of 6"><span class="thumb__n">03</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2023.JPG" data-caption="Turkey with colleagues/ Japan with family" data-alt="Journal pages from a work trip to Turkey and a family trip to Japan, 2023" aria-label="View spread 4 of 6"><span class="thumb__n">04</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2025-1.JPG" data-caption="These aren't receipts. They're memories" data-alt="Collaged receipts and ephemera kept as memories, 2025" aria-label="View spread 5 of 6"><span class="thumb__n">05</span></button>
+          <button class="thumb" data-src="../../assets/images/doodle-journal/2025-2.JPG" data-caption="Dated July 2025" data-alt="Notebook spread dated July 2025" aria-label="View spread 6 of 6"><span class="thumb__n">06</span></button>
         </div>
       </div>
       <div class="era__spacer" aria-hidden="true"></div>
@@ -651,7 +228,7 @@
     <section class="era reveal">
       <div class="era__head">
         <span class="era__dot" aria-hidden="true"></span>
-        <span class="era__year">To be continued</span>
+        <h2 class="era__year">To be continued</h2>
       </div>
     </section>
 
@@ -738,12 +315,22 @@
         if (cap && t.dataset.caption) cap.textContent = t.dataset.caption;
         if ('cta' in t.dataset) {
           if (img) img.hidden = true;
-          if (cta) cta.hidden = false;
+          if (cta) {
+            cta.hidden = false;
+            const ctaLink = cta.querySelector('a');
+            if (ctaLink) ctaLink.focus();
+          }
         } else {
           if (cta) cta.hidden = true;
           if (img) {
-            if (t.dataset.src) { img.src = t.dataset.src; img.hidden = false; }
-            else { img.removeAttribute('src'); img.hidden = true; }
+            if (t.dataset.src) {
+              img.src = t.dataset.src;
+              img.alt = t.dataset.alt || img.alt;
+              img.hidden = false;
+            } else {
+              img.removeAttribute('src');
+              img.hidden = true;
+            }
           }
         }
       });
@@ -774,13 +361,26 @@
   const jump = document.getElementById('tocJump');
   if (jump) {
     const jumpBtn = jump.querySelector('.toc-jump__btn');
+    const jumpPanel = jump.querySelector('.toc-jump__panel');
+
+    // Panel is visually hidden (opacity: 0) when closed, but without `inert`
+    // its links stay in the tab order — a keyboard user tabbing past the
+    // button would land on invisible links. Keep `inert` in sync with `open`.
+    const closeJump = () => {
+      jump.classList.remove('open');
+      jumpBtn.setAttribute('aria-expanded', 'false');
+      jumpPanel.inert = true;
+    };
+    jumpPanel.inert = true;
+
     jumpBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       const open = jump.classList.toggle('open');
       jumpBtn.setAttribute('aria-expanded', String(open));
+      jumpPanel.inert = !open;
     });
-    document.addEventListener('click', (e) => { if (!jump.contains(e.target)) jump.classList.remove('open'); });
-    jump.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => jump.classList.remove('open')));
+    document.addEventListener('click', (e) => { if (!jump.contains(e.target)) closeJump(); });
+    jump.querySelectorAll('a').forEach((a) => a.addEventListener('click', closeJump));
   }
 
   // Hero cover image: slides right as the hero scrolls past, fully off-screen

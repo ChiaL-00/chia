@@ -1,0 +1,435 @@
+/* ─────────────────────────────────────────────
+   DOODLE JOURNAL — Project-Specific Styles
+   Personal archive, 1998–present
+   Import AFTER style.css and personal-project.css
+   ───────────────────────────────────────────── */
+
+:root {
+  --brand:       #0B346E;
+  --paper:       #FFFFFB;
+  --paper-deep:  #ece8de;
+  --paper-stage: #efece4;
+  --ink:         #1a1a18;
+  --ink-soft:    #4a4a44;
+  --ink-faint:   #8a8a82;
+  --rule:        #d8d2c4;
+  --mono:        ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+
+  /* secondary ink — a nod to the ballpoint-pen blue running through the actual
+     notebook pages; used only for interactive/hover moments, never for the
+     "current position" markers (those use --accent) */
+  --ink-blue:      oklch(42% 0.07 250);
+  --ink-blue-soft: oklch(42% 0.07 250 / 0.12);
+
+  /* aliases used by local components */
+  --bg:          #FFFFFB;
+  --bg-deep:     #ece8de;
+  --ink-muted:   #8a8a82;
+  --rule-soft:   #e3ddd0;
+  --accent:       #C73E3A;
+  --accent-shade: color-mix(in srgb, #C73E3A 70%, black);
+}
+
+html { scroll-behavior: smooth; }
+[hidden] { display: none !important; }
+
+/* the hero cover image intentionally bleeds past the right edge — clip it at
+   the viewport edge instead of letting it create a horizontal scrollbar.
+   "clip" (not "hidden") so it doesn't become a scroll container and break
+   the sticky era__head positioning further down the page. */
+body { overflow-x: clip; }
+
+/* keep nav pinned on this page so the sticky era__head has a stable offset to sit under */
+nav.nav--hidden { transform: none !important; }
+
+/* ── HERO (local overrides only) ── */
+.hero__title,
+.hero__title em { color: var(--brand); }
+.hero__dek { margin-bottom: 1.5rem; }
+.hero {
+  overflow: visible; /* let the cover image overflow past the hero without being clipped */
+}
+.hero__inner {
+  display: grid;
+  /* minmax(0, Nfr), not plain Nfr — otherwise the second track grows to fit
+     the cover image's full max-content width instead of the fr ratio */
+  grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+  align-items: start;
+  gap: 0 1rem;
+}
+.hero__cover {
+  height: auto;
+  min-width: 0; /* stop the grid track from growing to fit this item's width */
+  justify-self: start;
+  pointer-events: none;
+}
+/* fade only — no slide-up, unlike the site-wide .reveal default.
+   also drop the transform transition entirely: the scroll-linked slide-out
+   below sets transform continuously and needs it to apply instantly,
+   not ease over .reveal's 0.7s. */
+.hero__cover.reveal,
+.hero__cover.reveal.visible {
+  transform: none;
+  transition: opacity 0.7s ease;
+}
+.hero__intro {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 1.18rem;
+  line-height: 1.75;
+  color: var(--ink);
+  margin-bottom: 3.5rem;
+}
+.hero__intro em { font-style: italic; color: var(--ink-soft); }
+/* shared style.css sets 0.7 opacity on this label, which blends to ~3.96:1 against
+   this page's --paper — below WCAG AA. Bumped just enough to clear 4.5:1 here. */
+.hero__meta-label { opacity: 0.8; }
+
+/* ── ARCHIVE LAYOUT ── */
+.archive {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3rem 3rem 3rem;
+}
+
+/* ── CONTENTS — margin tick-rail (fixed in the left margin) ── */
+nav.toc-rail {
+  /* reset global nav overrides from style.css */
+  top: 50%;
+  left: 2.5rem;
+  right: auto;
+  background: transparent;
+  border-bottom: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+  padding: 0;
+  transform: translateY(-50%);
+  z-index: 40;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.15rem;
+}
+.toc-rail a {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.42rem 0;
+  color: var(--ink-muted);
+  text-decoration: none;
+}
+.toc-rail__mark {
+  width: 18px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink-muted);
+  flex: none;
+  opacity: 0.55;
+  transition: width 0.25s ease, background 0.25s ease, opacity 0.25s ease;
+}
+.toc-rail__year {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translateX(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+.toc-rail:hover .toc-rail__year { opacity: 0.7; transform: none; }
+.toc-rail a:hover .toc-rail__mark { width: 30px; background: var(--accent-shade); opacity: 1; }
+.toc-rail a:hover .toc-rail__year { opacity: 1; color: var(--accent-shade); }
+.toc-rail a.active .toc-rail__mark { width: 34px; background: var(--accent); opacity: 1; }
+.toc-rail a.active .toc-rail__year { opacity: 1; color: var(--accent); }
+
+/* hidden until the top of the timeline scrolls into view */
+.toc-rail {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.45s ease, visibility 0.45s ease;
+}
+body.rail-visible .toc-rail {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ── CONTENTS — floating button (mobile only) ── */
+.toc-jump { display: none; }
+.toc-jump__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: var(--ink);
+  color: var(--bg);
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  padding: 0.8rem 1.3rem;
+  font-family: var(--sans);
+  font-size: 0.82rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  box-shadow: 0 12px 30px -14px rgba(40,32,20,0.6);
+}
+.toc-jump__ix { display: flex; flex-direction: column; gap: 3px; }
+.toc-jump__ix span { width: 15px; height: 1.5px; background: var(--bg); border-radius: 2px; }
+.toc-jump__panel {
+  list-style: none;
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 0.6rem);
+  width: 232px;
+  padding: 0.5rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 12px;
+  box-shadow: 0 18px 40px -18px rgba(40,32,20,0.5);
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.toc-jump.open .toc-jump__panel { opacity: 1; transform: none; pointer-events: auto; }
+.toc-jump__panel li + li { border-top: 1px solid var(--rule-soft); }
+.toc-jump__panel a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 7px;
+  color: var(--ink-soft);
+  transition: background 0.15s ease;
+}
+.toc-jump__panel a:hover { background: var(--ink-blue-soft); }
+.toc-jump__panel a:active { background: var(--bg); }
+.toc-jump__panel a.active { color: var(--accent); }
+.toc-jump__panel .yr { font-family: var(--serif); font-size: 1.1rem; }
+.toc-jump__panel .sub { font-family: var(--serif); font-style: italic; font-size: 0.95rem; color: var(--ink-soft); }
+
+/* ── TIMELINE / ERAS ── */
+.eras {
+  position: relative;
+  padding-left: 2.75rem;
+}
+/* spine drawn between dots, not as one long line */
+.era:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: calc(5px - 2.75rem);
+  top: calc(1.2rem + 11px);
+  bottom: -0.7rem;
+  width: 1px;
+  background: var(--rule);
+}
+.era:last-child .era__dot { background: var(--accent); border-color: var(--accent); }
+.era {
+  position: relative;
+}
+/* real content, not padding — padding-bottom isn't counted by the browser
+   when clamping how far a sticky child inside can travel, so the buffer
+   between eras has to be an actual element with height */
+.era__spacer {
+  height: 5.5rem;
+}
+.era__dot {
+  position: absolute;
+  left: calc(-2.75rem + 1px);
+  top: 1.2rem;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 1px solid var(--ink-muted);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+.era.seen .era__dot { background: var(--accent); border-color: var(--accent); }
+
+.era__head {
+  display: flex;
+  align-items: baseline;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+  position: sticky;
+  top: 3.75rem;
+  z-index: 5;
+  background: var(--bg);
+  padding: 0.5rem 0;
+}
+.era__year {
+  font-family: var(--serif);
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  line-height: 0.95;
+  font-weight: 400;
+  margin: 0;
+}
+.era__sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  color: var(--ink-soft);
+}
+.era__caption {
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 2rem;
+}
+.era__caption .ph {
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+/* ── MEDIA: one large spread + thumbnail strip ── */
+.era__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 0.9rem;
+}
+.thumb {
+  position: relative;
+  width: 86px;
+  aspect-ratio: 16 / 9;
+  flex: none;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  background: var(--paper);
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  overflow: hidden;
+  opacity: 0.6;
+  transition: opacity 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.thumb:hover { opacity: 1; border-color: var(--ink-blue); }
+.thumb:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.thumb.is-active {
+  opacity: 1;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent);
+}
+.thumb__gutter {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 1px;
+  background: rgba(40,32,20,0.12); transform: translateX(-50%);
+}
+.thumb__n {
+  position: absolute; left: 5px; bottom: 3px;
+  font-family: var(--mono); font-size: 0.52rem; letter-spacing: 0.06em;
+  color: var(--paper);
+  background: rgba(26, 26, 24, 0.72);
+  padding: 1px 4px;
+  border-radius: 2px;
+  line-height: 1.3;
+}
+.thumb.is-active .thumb__n { color: var(--paper); background: var(--accent); }
+
+/* ── NOTEBOOK SPREAD ── */
+figure.spread { margin: 0; }
+.spread__frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.spread__frame {
+  position: relative;
+  border-radius: 2px;
+  overflow: visible;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.02), 0 12px 28px -22px rgba(40,32,20,0.5);
+}
+/* fixed-height frame — images centred, no stretch, no jumping when switching */
+.spread__frame--uniform {
+  height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--paper-deep);
+}
+.spread__frame--uniform img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+.spread__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper-deep);
+  aspect-ratio: 4 / 3;
+  padding: 2rem;
+  text-align: center;
+}
+.spread__cta p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+}
+.spread__cta a {
+  color: var(--accent-shade);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+figure.spread figcaption {
+  margin-top: 0.7rem;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-soft);
+}
+
+/* ── CLOSING VIDEO — full-bleed, 16:9 ── */
+.video-feature { width: 100%; }
+.video-feature__frame {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--brand); /* placeholder — swap for a poster/first-frame once the clip is in */
+}
+.video-feature__video {
+  /* hidden by default — an empty <video controls> paints its own opaque
+     black box regardless of CSS background, hiding the placeholder colour.
+     JS below un-hides it once a real <source> is present. */
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .archive { padding: 0 1.25rem 4rem; }
+  /* mobile: drop the cover image, let the text take the full width */
+  .hero__inner { grid-template-columns: 1fr; }
+  .hero__cover { display: none; }
+  /* mobile: hide the margin rail, use a floating Contents button instead */
+  .toc-rail { display: none !important; }
+  .toc-jump {
+    display: block;
+    position: fixed;
+    right: 1.1rem;
+    bottom: 1.1rem;
+    z-index: 70;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.35s ease;
+  }
+  body.rail-visible .toc-jump { opacity: 1; visibility: visible; pointer-events: auto; transform: none; }
+  .eras { padding-left: 2rem; }
+  .era__dot { left: calc(-2rem + 1px); }
+  .era__spacer { height: 4rem; }
+  .thumb { width: 72px; }
+}
+@media (max-width: 480px) {
+  .hero__meta { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+}
