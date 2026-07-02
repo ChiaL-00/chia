@@ -45,6 +45,12 @@
   html { scroll-behavior: smooth; }
   [hidden] { display: none !important; }
 
+  /* the hero cover image intentionally bleeds past the right edge — clip it at
+     the viewport edge instead of letting it create a horizontal scrollbar.
+     "clip" (not "hidden") so it doesn't become a scroll container and break
+     the sticky era__head positioning further down the page. */
+  body { overflow-x: clip; }
+
   /* keep nav pinned on this page so the sticky era__head has a stable offset to sit under */
   nav.nav--hidden { transform: none !important; }
 
@@ -52,6 +58,23 @@
   .hero__title,
   .hero__title em { color: var(--brand); }
   .hero__dek { margin-bottom: 1.5rem; }
+  .hero {
+    overflow: visible; /* let the cover image overflow past the hero without being clipped */
+  }
+  .hero__inner {
+    display: grid;
+    /* minmax(0, Nfr), not plain Nfr — otherwise the second track grows to fit
+       the cover image's full max-content width instead of the fr ratio */
+    grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+    align-items: start;
+    gap: 0 1rem;
+  }
+  .hero__cover {
+    height: auto;
+    min-width: 0; /* stop the grid track from growing to fit this item's width */
+    justify-self: start;
+    pointer-events: none;
+  }
   .hero__intro {
     font-family: var(--serif);
     font-weight: 300;
@@ -189,6 +212,7 @@
   /* ── TIMELINE / ERAS ── */
   .eras {
     position: relative;
+    z-index: -1;
     padding-left: 2.75rem;
   }
   /* spine drawn between dots, not as one long line */
@@ -361,6 +385,9 @@
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     .archive { padding: 0 1.25rem 4rem; }
+    /* mobile: drop the cover image, let the text take the full width */
+    .hero__inner { grid-template-columns: 1fr; }
+    .hero__cover { display: none; }
     /* mobile: hide the margin rail, use a floating Contents button instead */
     .toc-rail { display: none !important; }
     .toc-jump {
@@ -398,22 +425,25 @@
 <!-- HERO -->
 <section class="hero">
   <div class="hero__inner">
-    <h1 class="hero__title"><em>Doodle</em> Journal</h1>
-    <p class="hero__dek">A drawer, not a gallery</p>
-    <p class="hero__intro">
-      I've been filling notebook for almost 30 years. They aren't sketchbooks in the traditional sense.
-      <br>They're somewhere between diary, observation, and unfinished conversations with myself.
-    </p>
-    <div class="hero__meta">
-      <div class="hero__meta-item">
-        <span class="hero__meta-label">Timeline</span>
-        <span class="hero__meta-value">1998-present</span>
-      </div>
-      <div class="hero__meta-item">
-        <span class="hero__meta-label">Last entry</span>
-        <span class="hero__meta-value">Yesterday</span>
+    <div class="hero__text">
+      <h1 class="hero__title"><em>Doodle</em> Journal</h1>
+      <p class="hero__dek">A drawer, not a gallery</p>
+      <p class="hero__intro">
+        I've been filling notebook for almost 30 years. They aren't sketchbooks in the traditional sense.
+        They're somewhere between diary, observation, and unfinished conversations with myself.
+      </p>
+      <div class="hero__meta">
+        <div class="hero__meta-item">
+          <span class="hero__meta-label">Timeline</span>
+          <span class="hero__meta-value">1998-present</span>
+        </div>
+        <div class="hero__meta-item">
+          <span class="hero__meta-label">Last entry</span>
+          <span class="hero__meta-value">Yesterday</span>
+        </div>
       </div>
     </div>
+    <img class="hero__cover" src="../../assets/images/doodle-journal/cover_image.png" alt="" aria-hidden="true">
   </div>
 </section>
 
