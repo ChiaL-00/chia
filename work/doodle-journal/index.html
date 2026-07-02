@@ -98,7 +98,7 @@
   .archive {
     max-width: 1100px;
     margin: 0 auto;
-    padding: 3rem 3rem 6rem;
+    padding: 3rem 3rem 3rem;
   }
 
   /* ── CONTENTS — margin tick-rail (fixed in the left margin) ── */
@@ -468,7 +468,7 @@
         </div>
       </div>
     </div>
-    <img class="hero__cover reveal" src="../../assets/images/doodle-journal/cover_image.png" alt="" aria-hidden="true">
+    <img class="hero__cover reveal" src="../../assets/images/doodle-journal/cover_image.jpg" alt="" aria-hidden="true" fetchpriority="high">
   </div>
 </section>
 
@@ -514,7 +514,7 @@
       <div class="era__media">
         <figure class="spread">
           <div class="spread__frame">
-            <img src="../../assets/images/doodle-journal/1998.jpeg" alt="Notebook spread, 1998">
+            <img src="../../assets/images/doodle-journal/1998.jpeg" width="2243" height="2250" loading="lazy" decoding="async" alt="Notebook spread, 1998">
           </div>
           <figcaption>Dated 21 October 1998</figcaption>
         </figure>
@@ -532,7 +532,7 @@
       <div class="era__media" data-gallery>
         <figure class="spread">
           <div class="spread__frame">
-            <img src="../../assets/images/doodle-journal/2003-1.JPG" alt="School notebook spread, 2003">
+            <img src="../../assets/images/doodle-journal/2003-1.JPG" width="1800" height="1350" loading="lazy" decoding="async" alt="School notebook spread, 2003">
             <div class="spread__cta" hidden>
               <p>Interested to see more? Visit my <a href="https://www.patreon.com/ThisisPhxspeaking/posts/guo-san-de-lian-145026899?utm_medium=clipboard_copy&utm_source=copyLink&utm_campaign=postshare_creator&utm_content=join_link" target="_blank" rel="noopener">Patreon</a></p>
             </div>
@@ -559,7 +559,7 @@
       <div class="era__media" data-gallery>
         <figure class="spread">
           <div class="spread__frame">
-            <img src="../../assets/images/doodle-journal/2006-1.JPG" alt="Travel journal spread, 2006">
+            <img src="../../assets/images/doodle-journal/2006-1.JPG" width="1800" height="1350" loading="lazy" decoding="async" alt="Travel journal spread, 2006">
           </div>
           <figcaption>Selected pages from my 2006 Japan journal</figcaption>
         </figure>
@@ -586,12 +586,12 @@
       <div class="era__media" data-gallery>
         <figure class="spread">
           <div class="spread__frame spread__frame--uniform">
-            <img src="../../assets/images/doodle-journal/2008-1.png" alt="Notebook spread, 2008">
+            <img src="../../assets/images/doodle-journal/2008-1.jpg" width="1800" height="1358" loading="lazy" decoding="async" alt="Notebook spread, 2008">
           </div>
           <figcaption>The right hand side is the draft for another story</figcaption>
         </figure>
         <div class="era__thumbs">
-          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2008-1.png" data-caption="The right hand side is the draft for another story" aria-label="View spread 1 of 3"><span class="thumb__n">01</span></button>
+          <button class="thumb is-active" data-src="../../assets/images/doodle-journal/2008-1.jpg" data-caption="The right hand side is the draft for another story" aria-label="View spread 1 of 3"><span class="thumb__n">01</span></button>
           <button class="thumb" data-src="../../assets/images/doodle-journal/2008-2.jpg" data-caption="The fully digitised story" aria-label="View spread 2 of 3"><span class="thumb__n">02</span></button>
           <button class="thumb" data-src="../../assets/images/doodle-journal/2008-3.jpg" data-caption="The cast kept growing, extended from family to friends" aria-label="View spread 3 of 3"><span class="thumb__n">03</span></button>
         </div>
@@ -609,7 +609,7 @@
       <div class="era__media" data-gallery>
         <figure class="spread">
           <div class="spread__frame">
-            <img src="../../assets/images/doodle-journal/2014-1.JPG" alt="Duvet usability testing in a New York living room">
+            <img src="../../assets/images/doodle-journal/2014-1.JPG" width="1800" height="1350" loading="lazy" decoding="async" alt="Duvet usability testing in a New York living room">
           </div>
           <figcaption>Duvet usability testing in a New York living room</figcaption>
         </figure>
@@ -632,7 +632,7 @@
       <div class="era__media" data-gallery>
         <figure class="spread">
           <div class="spread__frame">
-            <img src="../../assets/images/doodle-journal/2015-1.jpeg" alt="Tokyo Design Week 2015">
+            <img src="../../assets/images/doodle-journal/2015-1.jpeg" width="1800" height="1273" loading="lazy" decoding="async" alt="Tokyo Design Week 2015">
           </div>
           <figcaption>Tokyo Design Week 2015</figcaption>
         </figure>
@@ -662,7 +662,7 @@
      flip-through-the-notebook / writing-the-last-page clip is uploaded. -->
 <section class="video-feature">
   <div class="video-feature__frame">
-    <video class="video-feature__video" controls playsinline autoplay muted aria-label="Flipping through the notebook and writing on the last page">
+    <video class="video-feature__video" controls playsinline muted preload="none" aria-label="Flipping through the notebook and writing on the last page">
       <source src="../../assets/video/doodle-journal/ending.mp4" type="video/mp4">
     </video>
   </div>
@@ -692,6 +692,20 @@
   const closingVideo = document.querySelector('.video-feature__video');
   if (closingVideo && (closingVideo.getAttribute('src') || closingVideo.querySelector('source[src]'))) {
     closingVideo.style.display = 'block';
+
+    // Play only once the closing video actually scrolls into view, so the
+    // "flip through the notebook" moment lands when someone can see it
+    // instead of finishing off-screen while they're still reading the timeline.
+    const videoSection = document.querySelector('.video-feature');
+    const playSpy = new IntersectionObserver((entries, obs) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) {
+          closingVideo.play();
+          obs.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+    playSpy.observe(videoSection);
   }
 
   // Gallery: click a thumbnail to swap the large "currently showed" spread.
@@ -702,8 +716,22 @@
     const img = g.querySelector('img');
     const cta = g.querySelector('.spread__cta');
     const thumbs = [...g.querySelectorAll('.thumb')];
+
+    // Thumbnail images are decorative until their era scrolls near the
+    // viewport — loading all ~20 of them upfront costs several MB that
+    // most visitors never scroll far enough to see.
+    const thumbSpy = new IntersectionObserver((entries, obs) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        thumbs.forEach((t) => {
+          if (t.dataset.src) t.style.backgroundImage = `url("${t.dataset.src}")`;
+        });
+        obs.disconnect();
+      });
+    }, { rootMargin: '600px 0px' });
+    thumbSpy.observe(g);
+
     thumbs.forEach((t) => {
-      if (t.dataset.src) t.style.backgroundImage = `url("${t.dataset.src}")`;
       t.addEventListener('click', () => {
         thumbs.forEach((x) => x.classList.remove('is-active'));
         t.classList.add('is-active');
