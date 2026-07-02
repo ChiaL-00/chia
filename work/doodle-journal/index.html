@@ -263,6 +263,20 @@
 <script>
   /* Progressive enhancement only — page is fully usable without JS. */
 
+  // Keep the sticky era__head offset in sync with the site nav's own
+  // hide-on-scroll-down/show-on-scroll-up behavior (driven by main.js, which
+  // toggles nav--hidden on #siteNav). Watching the class directly — rather
+  // than re-deriving scroll direction here — keeps this in lockstep with
+  // main.js's own thresholds instead of duplicating and possibly drifting.
+  const siteNav = document.getElementById('siteNav');
+  if (siteNav) {
+    const syncNavState = () => {
+      document.body.classList.toggle('nav-retreated', siteNav.classList.contains('nav--hidden'));
+    };
+    syncNavState();
+    new MutationObserver(syncNavState).observe(siteNav, { attributes: true, attributeFilter: ['class'] });
+  }
+
   // Closing video: show the <video> only once it actually has a source —
   // add a <source src="..."> inside it (or a src="" attribute) and this
   // picks it up automatically, no other edit needed.

@@ -39,8 +39,6 @@ html { scroll-behavior: smooth; }
    the sticky era__head positioning further down the page. */
 body { overflow-x: clip; }
 
-/* keep nav pinned on this page so the sticky era__head has a stable offset to sit under */
-nav.nav--hidden { transform: none !important; }
 
 /* ── HERO (local overrides only) ── */
 .hero__title,
@@ -258,7 +256,13 @@ body.rail-visible .toc-rail {
   z-index: 5;
   background: var(--bg);
   padding: 0.5rem 0;
+  transition: top 0.35s ease;
 }
+/* the site nav now hides on scroll-down / shows on scroll-up like every other
+   page — synced here (via body.nav-retreated, toggled by the inline <script>)
+   so era__head sticks flush to the viewport top once the nav is gone,
+   instead of leaving a gap where the nav used to sit. */
+body.nav-retreated .era__head { top: 0; }
 .era__year {
   font-family: var(--serif);
   font-size: clamp(2.6rem, 5vw, 4rem);
