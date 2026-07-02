@@ -390,6 +390,23 @@
     color: var(--ink-soft);
   }
 
+  /* ── CLOSING VIDEO — full-bleed, 16:9 ── */
+  .video-feature { width: 100%; }
+  .video-feature__frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background: var(--brand); /* placeholder — swap for a poster/first-frame once the clip is in */
+  }
+  .video-feature__video {
+    /* hidden by default — an empty <video controls> paints its own opaque
+       black box regardless of CSS background, hiding the placeholder colour.
+       JS below un-hides it once a real <source> is present. */
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     .archive { padding: 0 1.25rem 4rem; }
@@ -641,6 +658,16 @@
   </div>
 </main>
 
+<!-- VIDEO — full-bleed, 16:9. Placeholder solid colour until the real
+     flip-through-the-notebook / writing-the-last-page clip is uploaded. -->
+<section class="video-feature">
+  <div class="video-feature__frame">
+    <video class="video-feature__video" controls playsinline autoplay muted aria-label="Flipping through the notebook and writing on the last page">
+      <source src="../../assets/video/doodle-journal/ending.mp4" type="video/mp4">
+    </video>
+  </div>
+</section>
+
 <div class="project-nav">
   <a class="project-nav__item project-nav__item--next" href="../airbnb-hosting/" style="grid-column: 2;">
     <span class="project-nav__label">Next →</span>
@@ -658,6 +685,14 @@
 <script src="../../assets/js/main.js"></script>
 <script>
   /* Progressive enhancement only — page is fully usable without JS. */
+
+  // Closing video: show the <video> only once it actually has a source —
+  // add a <source src="..."> inside it (or a src="" attribute) and this
+  // picks it up automatically, no other edit needed.
+  const closingVideo = document.querySelector('.video-feature__video');
+  if (closingVideo && (closingVideo.getAttribute('src') || closingVideo.querySelector('source[src]'))) {
+    closingVideo.style.display = 'block';
+  }
 
   // Gallery: click a thumbnail to swap the large "currently showed" spread.
   // Photo-ready: add data-src="path.jpg" to a thumb (and it swaps into the
