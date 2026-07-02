@@ -75,6 +75,15 @@
     justify-self: start;
     pointer-events: none;
   }
+  /* fade only — no slide-up, unlike the site-wide .reveal default.
+     also drop the transform transition entirely: the scroll-linked slide-out
+     below sets transform continuously and needs it to apply instantly,
+     not ease over .reveal's 0.7s. */
+  .hero__cover.reveal,
+  .hero__cover.reveal.visible {
+    transform: none;
+    transition: opacity 0.7s ease;
+  }
   .hero__intro {
     font-family: var(--serif);
     font-weight: 300;
@@ -212,7 +221,6 @@
   /* ── TIMELINE / ERAS ── */
   .eras {
     position: relative;
-    z-index: -1;
     padding-left: 2.75rem;
   }
   /* spine drawn between dots, not as one long line */
@@ -429,7 +437,7 @@
       <h1 class="hero__title"><em>Doodle</em> Journal</h1>
       <p class="hero__dek">A drawer, not a gallery</p>
       <p class="hero__intro">
-        I've been filling notebook for almost 30 years. They aren't sketchbooks in the traditional sense.
+        I've been filling notebooks for almost 30 years. They aren't sketchbooks in the traditional sense.
         They're somewhere between diary, observation, and unfinished conversations with myself.
       </p>
       <div class="hero__meta">
@@ -438,12 +446,12 @@
           <span class="hero__meta-value">1998-present</span>
         </div>
         <div class="hero__meta-item">
-          <span class="hero__meta-label">Last entry</span>
+          <span class="hero__meta-label">Last update</span>
           <span class="hero__meta-value">Yesterday</span>
         </div>
       </div>
     </div>
-    <img class="hero__cover" src="../../assets/images/doodle-journal/cover_image.png" alt="" aria-hidden="true">
+    <img class="hero__cover reveal" src="../../assets/images/doodle-journal/cover_image.png" alt="" aria-hidden="true">
   </div>
 </section>
 
@@ -710,6 +718,35 @@
     });
     document.addEventListener('click', (e) => { if (!jump.contains(e.target)) jump.classList.remove('open'); });
     jump.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => jump.classList.remove('open')));
+  }
+
+  // Hero cover image: slides right as the hero scrolls past, fully off-screen
+  // (its left edge past the right of the viewport) by the time the hero is gone.
+  const heroSection = document.querySelector('.hero');
+  const heroCover = document.querySelector('.hero__cover');
+  if (heroSection && heroCover) {
+    let slideDistance = 0;
+
+    const measureSlide = () => {
+      if (!heroCover.offsetParent) { slideDistance = 0; return; } // hidden (mobile)
+      const prevTransform = heroCover.style.transform;
+      heroCover.style.transform = 'none';
+      const naturalLeft = heroCover.getBoundingClientRect().left;
+      heroCover.style.transform = prevTransform;
+      slideDistance = window.innerWidth - naturalLeft;
+    };
+
+    const updateSlide = () => {
+      if (!slideDistance) { heroCover.style.transform = 'translateX(0px)'; return; }
+      const rect = heroSection.getBoundingClientRect();
+      const progress = Math.min(Math.max(-rect.top / rect.height, 0), 1);
+      heroCover.style.transform = `translateX(${progress * slideDistance}px)`;
+    };
+
+    measureSlide();
+    updateSlide();
+    window.addEventListener('scroll', updateSlide, { passive: true });
+    window.addEventListener('resize', () => { measureSlide(); updateSlide(); });
   }
 </script>
 </body>
