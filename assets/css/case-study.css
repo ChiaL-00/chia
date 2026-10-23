@@ -13,6 +13,31 @@ img, video { width: 100%; display: block; }
 
 
 /* ══════════════════════════════════════════════
+   PAGE TRANSITION — ENTER
+   Arriving from a homepage card: the screen starts
+   filled with the card's shape colour, which fades
+   out to reveal the hero. Class set by inline <head> script.
+   ══════════════════════════════════════════════ */
+
+html.pt-enter { background: var(--pt-color, var(--yellow)); }
+html.pt-enter body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: var(--pt-color, var(--yellow));
+  pointer-events: none;
+  animation: pt-reveal 600ms cubic-bezier(0.4, 0, 0.2, 1) 100ms forwards;
+}
+@keyframes pt-reveal {
+  to { opacity: 0; visibility: hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.pt-enter body::after { animation-duration: 1ms; animation-delay: 0s; }
+}
+
+
+/* ══════════════════════════════════════════════
    HERO
    ══════════════════════════════════════════════ */
 

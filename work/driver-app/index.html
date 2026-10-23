@@ -6,6 +6,24 @@
 <title>Driver App Redesign — Yun-Chia Lin</title>
 <meta name="description" content="End-to-end redesign of a private hire driver app for 5,000+ professional drivers. UX research, strategy, and interaction design.">
 
+<script>
+  // Page transition: arriving from a homepage card animation → start on the
+  // shape colour and fade in (see .pt-enter in case-study.css). Runs before
+  // first paint so there is no flash of the page underneath.
+  (function () {
+    try {
+      var d = JSON.parse(sessionStorage.getItem('pt-enter'));
+      sessionStorage.removeItem('pt-enter');
+      if (!d || Date.now() - d.t > 5000) return;
+      var root = document.documentElement;
+      root.style.setProperty('--pt-color', d.color);
+      root.classList.add('pt-enter');
+      document.addEventListener('animationend', function (e) {
+        if (e.animationName === 'pt-reveal') root.classList.remove('pt-enter');
+      });
+    } catch (_) {}
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/css/style.css">

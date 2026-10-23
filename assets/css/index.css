@@ -447,6 +447,56 @@ nav.site-nav.scrolled {
   height: auto;
   display: block;
 }
+
+/* thumb-shape: coloured backdrop shape drawn in CSS behind a transparent cutout.
+   Position/size are % of the thumb box (= the image box), measured from the
+   source artwork, so the shape scales with the card. Set per project below. */
+.thumb-shape {
+  position: absolute;
+  left: var(--shape-x);
+  top: var(--shape-y);
+  width: var(--shape-w);
+  aspect-ratio: 1;
+  border-radius: var(--shape-radius, 50%);
+  background: var(--shape-color);
+  pointer-events: none;
+}
+.thumb-shape + img { position: relative; z-index: 1; }
+
+/* driver-cover.png 1435×1037: circle Ø935 at (342, 46) */
+.thumb--driver {
+  --shape-color: var(--yellow); /* matches driver-app case study */
+  --shape-x: 23.83%;
+  --shape-y: 4.44%;
+  --shape-w: 65.16%;
+}
+/* Hover: car edges forward (left) as if about to pull away.
+   The click transition clones the car from its hovered position, so it
+   continues seamlessly into the drive-off. */
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .thumb--driver img { transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1); }
+  .work-card:hover .thumb--driver img { transform: translateX(-5%); }
+}
+
+/* Page transition layer (built by index.js on card click) */
+.pt-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  pointer-events: none;
+  overflow: hidden;
+}
+.pt-circle,
+.pt-car {
+  position: absolute;
+  will-change: transform;
+}
+.pt-circle { border-radius: 50%; }
+.pt-car { border-radius: 0; }
+/* Hide the originals while their clones animate */
+.pt-source .thumb-shape,
+.pt-source .thumb-shape + img { visibility: hidden; }
+
 .work-card.overflow-img .title,
 .work-card.overflow-img .desc,
 .work-card.overflow-img .meta {
