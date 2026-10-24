@@ -81,23 +81,25 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
   })();
 }
 
-// ── PAGE TRANSITION: card → case study ──
-// Cards with a CSS .thumb-shape play an exit animation before navigating:
-// the cover image drives off to the left while the shape grows from its
-// centre to fill the screen. The case study page picks up from the flag
-// in sessionStorage (see the inline script in its <head>) and fades in.
+// ── PAGE TRANSITIONS: card → case study ──
+// Some cards play an exit animation before navigating. The case study page
+// picks up from the 'pt-enter' flag in sessionStorage (see the inline script
+// in its <head>) and fades in from the colour the homepage ended on.
+//  - Cards with a CSS .thumb-shape (driver app): the cover image drives off
+//    to the left while the shape grows from its centre to fill the screen.
+//  - Employee Manager (feature card): see playFeature() below.
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const cards = document.querySelectorAll('.work-card');
   let layer = null;
   let running = false;
 
-  cards.forEach((card) => {
-    const shape = card.querySelector('.thumb-shape');
-    const img = shape && shape.nextElementSibling;
-    if (!img) return;
+  const shouldAnimate = (e) =>
+    e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey &&
+    !reduceMotion.matches && !running && !!Element.prototype.animate;
 
-    // Warm the cache on intent so the case study is ready when the animation ends
+  // Warm the cache on intent so the case study is ready when the animation ends
+  function prefetchOnIntent(card) {
     const prefetch = () => {
       if (card.dataset.prefetched) return;
       card.dataset.prefetched = '1';
@@ -108,14 +110,36 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     };
     card.addEventListener('pointerenter', prefetch, { once: true });
     card.addEventListener('focus', prefetch, { once: true });
+  }
 
+  function navigate(card, color) {
+    try {
+      sessionStorage.setItem('pt-enter', JSON.stringify({ color, t: Date.now() }));
+    } catch (_) { /* storage blocked: case study just loads normally */ }
+    window.location.href = card.href;
+  }
+
+  cards.forEach((card) => {
+    const shape = card.querySelector('.thumb-shape');
+    const img = shape && shape.nextElementSibling;
+    if (!img) return;
+    prefetchOnIntent(card);
     card.addEventListener('click', (e) => {
-      if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
-      if (reduceMotion.matches || running || !Element.prototype.animate) return;
+      if (!shouldAnimate(e)) return;
       e.preventDefault();
       play(card, shape, img);
     });
   });
+
+  const feature = document.querySelector('.work-card.feature');
+  if (feature) {
+    prefetchOnIntent(feature);
+    feature.addEventListener('click', (e) => {
+      if (!shouldAnimate(e)) return;
+      e.preventDefault();
+      playFeature(feature);
+    });
+  }
 
   function play(card, shape, img) {
     running = true;
@@ -165,12 +189,67 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       { duration: 800, delay: 150, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', fill: 'forwards' }
     );
 
-    Promise.all([drive.finished, grow.finished]).then(() => {
-      try {
-        sessionStorage.setItem('pt-enter', JSON.stringify({ color, t: Date.now() }));
-      } catch (_) { /* storage blocked: case study just loads normally */ }
-      window.location.href = card.href;
-    });
+    Promise.all([drive.finished, grow.finished]).then(() => navigate(card, color));
+  }
+
+  // Employee Manager: the card slides out right. The two cards below either
+  // drop away one after the other (two-column desktop grid) or, when the grid
+  // is a single column, slide out left one after the other. The page then fades
+  // to its background colour, which the case study fades in from.
+  function playFeature(card) {
+    running = true;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const ease = 'cubic-bezier(0.55, 0, 0.8, 0.2)';     // ease-in: accelerate away
+    const fall = 'cubic-bezier(0.55, 0.085, 0.68, 0.53)'; // gentler ease-in, like gravity
+    const driver = document.querySelector('.work-card[href*="driver-app"]');
+    const docBuddy = document.querySelector('.work-card[href*="doc-buddy"]');
+    const bg = getComputedStyle(document.body).backgroundColor;
+    const anims = [];
+
+    document.documentElement.classList.add('pt-leaving');
+
+    // Single-keyframe animations start from the current transform (e.g. hover lift)
+    const c = card.getBoundingClientRect();
+    anims.push(card.animate(
+      [{ transform: `translateX(${vw - c.left + 40}px)` }],
+      { duration: 650, easing: ease, fill: 'forwards' }
+    ));
+
+    if (driver && docBuddy) {
+      const d = driver.getBoundingClientRect();
+      const sameRow = Math.abs(d.top - docBuddy.getBoundingClientRect().top) < 2;
+      if (sameRow) {
+        [driver, docBuddy].forEach((el, i) => {
+          const r = el.getBoundingClientRect();
+          anims.push(el.animate(
+            [{ transform: `translateY(${Math.max(vh - r.top, 0) + 40}px)` }],
+            { duration: 550, delay: 150 + i * 150, easing: fall, fill: 'forwards' }
+          ));
+        });
+      } else {
+        [driver, docBuddy].forEach((el, i) => {
+          const r = el.getBoundingClientRect();
+          anims.push(el.animate(
+            [{ transform: `translateX(${-(r.right + 40)}px)` }],
+            { duration: 550, delay: 150 + i * 150, easing: ease, fill: 'forwards' }
+          ));
+        });
+      }
+    }
+
+    // Once the cards have cleared, fade the rest of the page to its background
+    layer = document.createElement('div');
+    layer.className = 'pt-layer';
+    layer.setAttribute('aria-hidden', 'true');
+    layer.style.background = bg;
+    document.body.appendChild(layer);
+    anims.push(layer.animate(
+      [{ opacity: 0 }, { opacity: 1 }],
+      { duration: 250, delay: 650, easing: 'ease-out', fill: 'both' } // 'both': transparent during the delay
+    ));
+
+    Promise.all(anims.map((a) => a.finished)).then(() => navigate(card, bg));
   }
 
   // Back button restores this page from bfcache mid-transition — reset it
@@ -180,5 +259,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     layer = null;
     running = false;
     document.querySelectorAll('.pt-source').forEach((c) => c.classList.remove('pt-source'));
+    document.documentElement.classList.remove('pt-leaving');
+    cards.forEach((c) => c.getAnimations().forEach((a) => a.cancel()));
   });
 })();
