@@ -4,6 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Field Report — Chia Lin</title>
+  <script>
+    // Page transition: arriving from the homepage card animation → start
+    // covered by the homepage background, which slides away to the left
+    // (see .pt-enter.pt-wipe in case-study.css). Runs before first paint.
+    (function () {
+      try {
+        var d = JSON.parse(sessionStorage.getItem('pt-enter'));
+        sessionStorage.removeItem('pt-enter');
+        if (!d || Date.now() - d.t > 5000) return;
+        var root = document.documentElement;
+        root.style.setProperty('--pt-color', d.color);
+        root.classList.add('pt-enter');
+        if (d.wipe) root.classList.add('pt-wipe');
+        document.addEventListener('animationend', function (e) {
+          if (e.animationName === 'pt-wipe' || e.animationName === 'pt-reveal') {
+            root.classList.remove('pt-enter', 'pt-wipe');
+          }
+        });
+      } catch (_) {}
+    })();
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

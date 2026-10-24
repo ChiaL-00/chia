@@ -32,8 +32,16 @@ html.pt-enter body::after {
 @keyframes pt-reveal {
   to { opacity: 0; visibility: hidden; }
 }
+/* Wipe variant: instead of fading, the cover slides away to the left */
+html.pt-enter.pt-wipe body::after {
+  animation: pt-wipe 700ms cubic-bezier(0.65, 0, 0.35, 1) 50ms forwards;
+}
+@keyframes pt-wipe {
+  to { transform: translateX(-100%); visibility: hidden; }
+}
 @media (prefers-reduced-motion: reduce) {
-  html.pt-enter body::after { animation-duration: 1ms; animation-delay: 0s; }
+  html.pt-enter body::after,
+  html.pt-enter.pt-wipe body::after { animation-duration: 1ms; animation-delay: 0s; }
 }
 
 

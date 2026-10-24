@@ -90,10 +90,13 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 //  - Cards marked data-transition="reveal" (Doc Buddy): the cover image slides
 //    out right and the page fades away around the shape; the case study then
 //    opens through a circle growing from the shape's centre.
+//  - Cards marked data-transition="split" (Field Report): the cover image slides
+//    out left while the rest of the card slides out right; the case study is
+//    then uncovered by the homepage background sliding away to the left.
 //  - Employee Manager (feature card): see playFeature() below.
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const cards = document.querySelectorAll('.work-card');
+  const cards = document.querySelectorAll('.work-card, .archive-card');
   let layer = null;
   let running = false;
 
@@ -122,9 +125,10 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     window.location.href = card.href;
   }
 
+  const players = { drive: play, reveal: playReveal, split: playSplit };
   cards.forEach((card) => {
     const type = card.dataset.transition;
-    if (type !== 'drive' && type !== 'reveal') return;
+    if (!players[type]) return;
     const shape = card.querySelector('.thumb-shape');
     const img = shape && shape.nextElementSibling;
     if (!img) return;
@@ -132,7 +136,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     card.addEventListener('click', (e) => {
       if (!shouldAnimate(e)) return;
       e.preventDefault();
-      (type === 'drive' ? play : playReveal)(card, shape, img);
+      players[type](card, shape, img);
     });
   });
 
@@ -261,6 +265,61 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       .then(() => navigate(card, color, { bg, reveal }));
   }
 
+  // Field Report: the cover image (the man) slides out left while the rest of
+  // the card, shape included, slides out right — same duration and easing, so
+  // both leave the viewport together. Meanwhile the page fades to its
+  // background; the case study is then uncovered by that background sliding
+  // away left (see .pt-wipe in case-study.css).
+  function playSplit(card, shape, img) {
+    running = true;
+    const vw = window.innerWidth;
+    const c = card.getBoundingClientRect(); // includes the hover lift, so no jump
+    const i = img.getBoundingClientRect();
+    const bg = getComputedStyle(document.body).backgroundColor;
+    const ease = 'cubic-bezier(0.55, 0, 0.8, 0.2)'; // ease-in: accelerate away
+
+    layer = document.createElement('div');
+    layer.className = 'pt-layer';
+    layer.setAttribute('aria-hidden', 'true');
+
+    const fade = document.createElement('div');
+    fade.className = 'pt-fade';
+    fade.style.background = bg;
+
+    // The card travels as a copy above the fade; its own image stays behind
+    const cardCopy = card.cloneNode(true);
+    cardCopy.removeAttribute('href');
+    cardCopy.classList.add('pt-card');
+    Object.assign(cardCopy.style, {
+      left: c.left + 'px', top: c.top + 'px',
+      width: c.width + 'px', height: c.height + 'px',
+    });
+    cardCopy.querySelector('.thumb-shape + img').style.visibility = 'hidden';
+
+    const cover = img.cloneNode();
+    cover.removeAttribute('loading');
+    cover.className = 'pt-cover';
+    Object.assign(cover.style, {
+      left: i.left + 'px', top: i.top + 'px',
+      width: i.width + 'px', height: i.height + 'px',
+    });
+
+    layer.append(fade, cardCopy, cover);
+    document.body.appendChild(layer);
+    card.classList.add('pt-hidden');
+
+    const timing = { duration: 700, easing: ease, fill: 'forwards' };
+    const anims = [
+      cover.animate([{ transform: `translateX(${-(i.right + 40)}px)` }], timing),
+      cardCopy.animate([{ transform: `translateX(${vw - c.left + 40}px)` }], timing),
+      fade.animate(
+        [{ opacity: 0 }, { opacity: 1 }],
+        { duration: 400, delay: 250, easing: 'ease-out', fill: 'both' }
+      ),
+    ];
+    Promise.all(anims.map((a) => a.finished)).then(() => navigate(card, bg, { wipe: true }));
+  }
+
   // Employee Manager: the card slides out right. The two cards below either
   // drop away one after the other (two-column desktop grid) or, when the grid
   // is a single column, slide out left one after the other. The page then fades
@@ -327,7 +386,8 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     layer.remove();
     layer = null;
     running = false;
-    document.querySelectorAll('.pt-source').forEach((c) => c.classList.remove('pt-source'));
+    document.querySelectorAll('.pt-source, .pt-hidden')
+      .forEach((c) => c.classList.remove('pt-source', 'pt-hidden'));
     document.documentElement.classList.remove('pt-leaving');
     cards.forEach((c) => c.getAnimations().forEach((a) => a.cancel()));
   });
