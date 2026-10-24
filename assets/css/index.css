@@ -447,6 +447,14 @@ nav.site-nav.scrolled {
   height: auto;
   display: block;
 }
+/* Archive thumbs are a fixed 16:9 box but the cover art is taller: let the
+   bottom (e.g. Field Report's shoes) spill out of the frame instead of being
+   cut off. In normal flow, no absolute positioning — keeps Safari happy. */
+.archive-card.overflow-img .thumb {
+  overflow: visible;
+  min-height: 0; /* else aspect-ratio grows the box to fit the image */
+}
+.archive-card.overflow-img .thumb img { position: relative; z-index: 1; }
 
 /* thumb-shape: coloured backdrop shape drawn in CSS behind a transparent cutout.
    Position/size are % of the thumb box (= the image box), measured from the
