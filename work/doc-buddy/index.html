@@ -4,6 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IBM Doc Buddy — Chia Lin</title>
+  <script>
+    // Page transition: arriving from the homepage card animation. The homepage
+    // ended on its plain background after the blue circle shrank to a point;
+    // start on that background and unfold this page through a circle growing
+    // from that point (see .pt-circle-reveal in case-study.css).
+    // Runs before first paint.
+    (function () {
+      try {
+        var d = JSON.parse(sessionStorage.getItem('pt-enter'));
+        sessionStorage.removeItem('pt-enter');
+        if (!d || Date.now() - d.t > 5000) return;
+        var root = document.documentElement;
+        var anim = 'pt-reveal';
+        root.style.setProperty('--pt-color', d.color);
+        if (d.reveal) {
+          var r = d.reveal;
+          root.style.setProperty('--pt-bg', d.bg);
+          root.style.setProperty('--pt-x', r.x + 'px');
+          root.style.setProperty('--pt-y', r.y + 'px');
+          root.style.setProperty('--pt-r', r.r + 'px');
+          root.classList.add('pt-circle-reveal');
+          anim = 'pt-circle-reveal';
+        } else {
+          root.classList.add('pt-enter');
+        }
+        document.addEventListener('animationend', function (e) {
+          if (e.animationName === anim) root.classList.remove('pt-circle-reveal', 'pt-enter');
+        });
+      } catch (_) {}
+    })();
+  </script>
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">

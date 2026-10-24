@@ -470,12 +470,22 @@ nav.site-nav.scrolled {
   --shape-y: 4.44%;
   --shape-w: 65.16%;
 }
+/* docbuddy-cover.png 1435×1037: circle Ø944 at (409, 46) */
+.thumb--docbuddy {
+  --shape-color: #0043ce; /* doc-buddy case study --accent (IBM Blue 70) */
+  --shape-x: 28.50%;
+  --shape-y: 4.44%;
+  --shape-w: 65.78%;
+}
 /* Hover: car edges forward (left) as if about to pull away.
    The click transition clones the car from its hovered position, so it
    continues seamlessly into the drive-off. */
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
   .thumb--driver img { transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1); }
   .work-card:hover .thumb--driver img { transform: translateX(-5%); }
+  /* Doc Buddy leans the other way: the image nudges right, the way it leaves */
+  .thumb--docbuddy img { transition: transform 0.5s cubic-bezier(0.33, 1, 0.68, 1); }
+  .work-card:hover .thumb--docbuddy img { transform: translateX(2%); }
 }
 
 /* Page transition layer (built by index.js on card click) */
@@ -487,12 +497,14 @@ nav.site-nav.scrolled {
   overflow: hidden;
 }
 .pt-circle,
-.pt-car {
+.pt-cover,
+.pt-fade {
   position: absolute;
   will-change: transform;
 }
 .pt-circle { border-radius: 50%; }
-.pt-car { border-radius: 0; }
+.pt-cover { border-radius: 0; }
+.pt-fade { inset: 0; will-change: opacity; }
 /* Cards sliding off-screen mustn't add a horizontal scrollbar mid-transition */
 html.pt-leaving { overflow-x: hidden; } /* on html only: body would become a scroller */
 html.pt-leaving .work-card { pointer-events: none; }

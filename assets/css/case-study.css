@@ -37,6 +37,25 @@ html.pt-enter body::after {
 }
 
 
+/* Circle reveal variant: the homepage ended on its plain background, its
+   shape having shrunk to a point. Start on that background, then grow a
+   circular clip on <body> from that point until it covers the viewport.
+   Vars are set by the inline <head> script, in viewport px. */
+html.pt-circle-reveal { background: var(--pt-bg); }
+html.pt-circle-reveal body {
+  clip-path: circle(0 at var(--pt-x) var(--pt-y));
+  /* ease-out: bursts out of the point (the homepage shrink eased in to it),
+     then settles as it reaches the corners */
+  animation: pt-circle-reveal 800ms cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+@keyframes pt-circle-reveal {
+  to { clip-path: circle(var(--pt-r) at var(--pt-x) var(--pt-y)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  html.pt-circle-reveal body { animation-duration: 1ms; animation-delay: 0s; }
+}
+
+
 /* ══════════════════════════════════════════════
    HERO
    ══════════════════════════════════════════════ */

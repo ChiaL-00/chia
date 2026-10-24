@@ -85,8 +85,11 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 // Some cards play an exit animation before navigating. The case study page
 // picks up from the 'pt-enter' flag in sessionStorage (see the inline script
 // in its <head>) and fades in from the colour the homepage ended on.
-//  - Cards with a CSS .thumb-shape (driver app): the cover image drives off
+//  - Cards marked data-transition="drive" (driver app): the cover image drives off
 //    to the left while the shape grows from its centre to fill the screen.
+//  - Cards marked data-transition="reveal" (Doc Buddy): the cover image slides
+//    out right and the page fades away around the shape; the case study then
+//    opens through a circle growing from the shape's centre.
 //  - Employee Manager (feature card): see playFeature() below.
 (function () {
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -112,14 +115,16 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     card.addEventListener('focus', prefetch, { once: true });
   }
 
-  function navigate(card, color) {
+  function navigate(card, color, extra = {}) {
     try {
-      sessionStorage.setItem('pt-enter', JSON.stringify({ color, t: Date.now() }));
+      sessionStorage.setItem('pt-enter', JSON.stringify({ color, t: Date.now(), ...extra }));
     } catch (_) { /* storage blocked: case study just loads normally */ }
     window.location.href = card.href;
   }
 
   cards.forEach((card) => {
+    const type = card.dataset.transition;
+    if (type !== 'drive' && type !== 'reveal') return;
     const shape = card.querySelector('.thumb-shape');
     const img = shape && shape.nextElementSibling;
     if (!img) return;
@@ -127,7 +132,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     card.addEventListener('click', (e) => {
       if (!shouldAnimate(e)) return;
       e.preventDefault();
-      play(card, shape, img);
+      (type === 'drive' ? play : playReveal)(card, shape, img);
     });
   });
 
@@ -164,7 +169,7 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
     const car = img.cloneNode();
     car.removeAttribute('loading');
-    car.className = 'pt-car';
+    car.className = 'pt-cover';
     Object.assign(car.style, {
       left: i.left + 'px', top: i.top + 'px',
       width: i.width + 'px', height: i.height + 'px',
@@ -190,6 +195,70 @@ if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     );
 
     Promise.all([drive.finished, grow.finished]).then(() => navigate(card, color));
+  }
+
+  // Doc Buddy: as the cover image slides out right, the shape shrinks into its
+  // centre and the rest of the page fades to its background. The case study
+  // starts on that plain background and unfolds through a circle growing from
+  // the point where the shape vanished (see .pt-circle-reveal in case-study.css).
+  function playReveal(card, shape, img) {
+    running = true;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const s = shape.getBoundingClientRect();
+    const i = img.getBoundingClientRect(); // includes the hover nudge, so no jump
+    const color = getComputedStyle(shape).backgroundColor;
+    const bg = getComputedStyle(document.body).backgroundColor;
+
+    layer = document.createElement('div');
+    layer.className = 'pt-layer';
+    layer.setAttribute('aria-hidden', 'true');
+
+    const fade = document.createElement('div');
+    fade.className = 'pt-fade';
+    fade.style.background = bg;
+
+    const circle = document.createElement('div');
+    circle.className = 'pt-circle';
+    Object.assign(circle.style, {
+      left: s.left + 'px', top: s.top + 'px',
+      width: s.width + 'px', height: s.height + 'px',
+      background: color,
+    });
+
+    const cover = img.cloneNode();
+    cover.removeAttribute('loading');
+    cover.className = 'pt-cover';
+    Object.assign(cover.style, {
+      left: i.left + 'px', top: i.top + 'px',
+      width: i.width + 'px', height: i.height + 'px',
+    });
+
+    layer.append(fade, circle, cover);
+    document.body.appendChild(layer);
+    card.classList.add('pt-source');
+
+    const slide = cover.animate(
+      [{ transform: 'translateX(0)' }, { transform: `translateX(${vw - i.left + 40}px)` }],
+      { duration: 600, easing: 'cubic-bezier(0.55, 0, 0.8, 0.2)', fill: 'forwards' }
+    );
+    const shrink = circle.animate(
+      [{ transform: 'scale(1)' }, { transform: 'scale(0)' }],
+      // ease-in: speeds up into the point, so the case study's ease-out reveal
+      // carries the motion straight back out without a stall at the centre
+      { duration: 600, easing: 'cubic-bezier(0.42, 0, 1, 1)', fill: 'forwards' }
+    );
+    const fadeOut = fade.animate(
+      [{ opacity: 0 }, { opacity: 1 }],
+      { duration: 300, delay: 250, easing: 'ease-out', fill: 'both' }
+    );
+
+    // Where the shape vanished, and the radius that covers the whole viewport
+    const x = s.left + s.width / 2;
+    const y = s.top + s.height / 2;
+    const reveal = { x, y, r: Math.hypot(Math.max(x, vw - x), Math.max(y, vh - y)) };
+    Promise.all([slide.finished, shrink.finished, fadeOut.finished])
+      .then(() => navigate(card, color, { bg, reveal }));
   }
 
   // Employee Manager: the card slides out right. The two cards below either
